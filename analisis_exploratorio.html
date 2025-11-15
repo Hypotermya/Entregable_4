@@ -1,0 +1,3560 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analisis Exploratorio de los datos &#8212; Informe - Modelos de Clasificacion</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'analisis_exploratorio';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Split de los datos" href="split_procesamiento.html" />
+    <link rel="prev" title="Introduccion a los datos" href="introduccion_a_las_variables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logoUN.png" class="logo__image only-light" alt="Informe - Modelos de Clasificacion - Home"/>
+    <script>document.write(`<img src="_static/logoUN.png" class="logo__image only-dark" alt="Informe - Modelos de Clasificacion - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Presentacion
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduccion_a_las_variables.html">Introduccion a los datos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Exploratorio de los datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="split_procesamiento.html">Split de los datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn.html">KNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes.html">Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree.html">Arbol de decision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="randomforest.html">Random Forest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XGBoost.html">XGBoost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">librerias</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fanalisis_exploratorio.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/analisis_exploratorio.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analisis Exploratorio de los datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">Importacion de librerias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-de-datos-desde-la-red">Cargado de datos desde la red</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-usadas">Funciones usadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-general-del-dataset">Analisis general del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">Analisis univariado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Analisis Bivariado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-variables-con-el-target">Comparacion de variables con el target</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-correlacion">Analisis de correlacion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-los-datos">
+<h1>Analisis Exploratorio de los datos<a class="headerlink" href="#analisis-exploratorio-de-los-datos" title="Link to this heading">#</a></h1>
+<section id="importacion-de-librerias">
+<h2>Importacion de librerias<a class="headerlink" href="#importacion-de-librerias" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">shapiro</span><span class="p">,</span> <span class="n">normaltest</span><span class="p">,</span> <span class="n">kstest</span><span class="p">,</span><span class="n">f_oneway</span><span class="p">,</span> <span class="n">kruskal</span><span class="p">,</span> <span class="n">chi2_contingency</span><span class="p">,</span> <span class="n">levene</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cargado-de-datos-desde-la-red">
+<h2>Cargado de datos desde la red<a class="headerlink" href="#cargado-de-datos-desde-la-red" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_url</span><span class="o">=</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1NJiaIRABEh1mJrqzP6bAYBkhBruBwUUzplHdXViv9-g/export?format=csv&#39;</span>
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">df_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Patient_ID</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Country</th>
+      <th>Ethnicity</th>
+      <th>Family_History</th>
+      <th>Radiation_Exposure</th>
+      <th>Iodine_Deficiency</th>
+      <th>Smoking</th>
+      <th>Obesity</th>
+      <th>Diabetes</th>
+      <th>TSH_Level</th>
+      <th>T3_Level</th>
+      <th>T4_Level</th>
+      <th>Nodule_Size</th>
+      <th>Thyroid_Cancer_Risk</th>
+      <th>Diagnosis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>66</td>
+      <td>Male</td>
+      <td>Russia</td>
+      <td>Caucasian</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>9.37</td>
+      <td>1.67</td>
+      <td>6.16</td>
+      <td>1.08</td>
+      <td>Low</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>29</td>
+      <td>Male</td>
+      <td>Germany</td>
+      <td>Hispanic</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>1.83</td>
+      <td>1.73</td>
+      <td>10.54</td>
+      <td>4.05</td>
+      <td>Low</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>86</td>
+      <td>Male</td>
+      <td>Nigeria</td>
+      <td>Caucasian</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>6.26</td>
+      <td>2.59</td>
+      <td>10.57</td>
+      <td>4.61</td>
+      <td>Low</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>75</td>
+      <td>Female</td>
+      <td>India</td>
+      <td>Asian</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>4.10</td>
+      <td>2.62</td>
+      <td>11.04</td>
+      <td>2.46</td>
+      <td>Medium</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>35</td>
+      <td>Female</td>
+      <td>Germany</td>
+      <td>African</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>9.10</td>
+      <td>2.11</td>
+      <td>10.71</td>
+      <td>2.11</td>
+      <td>High</td>
+      <td>Benign</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="funciones-usadas">
+<h2>Funciones usadas<a class="headerlink" href="#funciones-usadas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">Summary</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sheet</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hoja: </span><span class="si">{</span><span class="n">sheet</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Crear la tabla de resumen</span>
+    <span class="n">resumen</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Cantidad de filas&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;Cantidad de columnas&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;Datos faltantes&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+        <span class="s2">&quot;Filas duplicadas&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Convertir el resumen en un DataFrame</span>
+    <span class="n">ResumenHoja</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resumen</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Resumen&quot;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Resumen:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">ResumenHoja</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Encabezado:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">graficar_distribuciones</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columnas</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;muted&quot;</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">columnas</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">n</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">columnas</span><span class="p">):</span>
+        <span class="c1"># Histograma con KDE</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Histograma de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Boxplot</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightcoral&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Boxplot de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Distribuciones de variables numéricas&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">graficar_categoricas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">cat</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span>  <span class="ow">in</span> <span class="n">cat</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribución de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prueba_normalidad</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Detectar variables numéricas</span>
+    <span class="n">numericas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Patient_ID&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numericas</span><span class="p">:</span>
+        <span class="n">serie</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>  <span class="c1"># muy pocas muestras → no confiable</span>
+            <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span>
+                <span class="s2">&quot;n_muestras&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">serie</span><span class="p">),</span>
+                <span class="s2">&quot;shapiro_p&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                <span class="s2">&quot;dagostino_p&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                <span class="s2">&quot;ks_p&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                <span class="s2">&quot;es_normal (alpha=0.05)&quot;</span><span class="p">:</span> <span class="s2">&quot;Muestra insuficiente&quot;</span>
+            <span class="p">})</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Shapiro-Wilk (solo si n &lt;= 5000, más grande no recomendado)</span>
+        <span class="n">stat_shapiro</span><span class="p">,</span> <span class="n">p_shapiro</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">5000</span> <span class="k">else</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+        <span class="c1"># D’Agostino y Pearson</span>
+        <span class="n">stat_dagostino</span><span class="p">,</span> <span class="n">p_dagostino</span> <span class="o">=</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
+
+        <span class="c1"># Kolmogorov-Smirnov contra normal estándar</span>
+        <span class="n">stat_ks</span><span class="p">,</span> <span class="n">p_ks</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">serie</span> <span class="o">-</span> <span class="n">serie</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">serie</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;norm&#39;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Veredicto final</span>
+        <span class="n">es_normal</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">p_shapiro</span><span class="p">)</span> <span class="ow">or</span> <span class="n">p_shapiro</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="p">(</span><span class="n">p_dagostino</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="p">(</span><span class="n">p_ks</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span>
+            <span class="s2">&quot;n_muestras&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">serie</span><span class="p">),</span>
+            <span class="s2">&quot;shapiro_p&quot;</span><span class="p">:</span> <span class="n">p_shapiro</span><span class="p">,</span>
+            <span class="s2">&quot;dagostino_p&quot;</span><span class="p">:</span> <span class="n">p_dagostino</span><span class="p">,</span>
+            <span class="s2">&quot;ks_p&quot;</span><span class="p">:</span> <span class="n">p_ks</span><span class="p">,</span>
+            <span class="s2">&quot;es_normal (alpha=0.05)&quot;</span><span class="p">:</span> <span class="n">es_normal</span>
+        <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;es_normal (alpha=0.05)&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">analisis_bivariado_numerico</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">mostrar_graficos</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Seleccionar solo las columnas numéricas</span>
+    <span class="n">num_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">num_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Patient_ID&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Se necesitan al menos dos variables numéricas para el análisis bivariado.&quot;</span><span class="p">)</span>
+    
+    <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Calcular correlaciones entre todas las parejas posibles</span>
+    <span class="k">for</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">valid_data</span> <span class="o">=</span> <span class="n">num_df</span><span class="p">[[</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>  
+        <span class="n">pearson</span> <span class="o">=</span> <span class="n">valid_data</span><span class="p">[</span><span class="n">var1</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">valid_data</span><span class="p">[</span><span class="n">var2</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">)</span>
+        <span class="n">spearman</span> <span class="o">=</span> <span class="n">valid_data</span><span class="p">[</span><span class="n">var1</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">valid_data</span><span class="p">[</span><span class="n">var2</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
+        <span class="n">covarianza</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">valid_data</span><span class="p">[</span><span class="n">var1</span><span class="p">],</span> <span class="n">valid_data</span><span class="p">[</span><span class="n">var2</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;Variable 1&#39;</span><span class="p">:</span> <span class="n">var1</span><span class="p">,</span>
+        <span class="s1">&#39;Variable 2&#39;</span><span class="p">:</span> <span class="n">var2</span><span class="p">,</span>
+        <span class="s1">&#39;Correlación Pearson&#39;</span><span class="p">:</span> <span class="n">pearson</span><span class="p">,</span>
+        <span class="s1">&#39;Correlación Spearman&#39;</span><span class="p">:</span> <span class="n">spearman</span><span class="p">,</span>
+        <span class="s1">&#39;Covarianza&#39;</span><span class="p">:</span> <span class="n">covarianza</span>
+        <span class="p">})</span>
+    
+    <span class="n">corr_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Correlación Spearman&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===  Correlaciones más altas ===&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">corr_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Correlaciones más bajas ===&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">corr_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>
+
+    <span class="c1"># Gráficos opcionales para las correlaciones más altas y más bajas</span>
+    <span class="k">if</span> <span class="n">mostrar_graficos</span><span class="p">:</span>
+        <span class="n">pares_altas</span> <span class="o">=</span> <span class="n">corr_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+        <span class="n">pares_bajas</span> <span class="o">=</span> <span class="n">corr_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+        <span class="n">pares_interes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pares_altas</span><span class="p">,</span> <span class="n">pares_bajas</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">pares_interes</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Variable 1&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Variable 2&#39;</span><span class="p">]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">var1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">var2</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">num_df</span><span class="p">,</span> <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.6</span><span class="p">},</span> <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">})</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">var1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">var2</span><span class="si">}</span><span class="se">\n</span><span class="s2">Correlación Spearman: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Correlación Spearman&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">corr_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">analisis_bivariado_categorico</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">mostrar_graficos</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grafico</span><span class="o">=</span><span class="s1">&#39;heatmap&#39;</span><span class="p">):</span>
+    <span class="c1"># Filtrar solo variables categóricas</span>
+    <span class="n">cat_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">cat_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Se necesitan al menos dos variables categóricas para el análisis bivariado.&quot;</span><span class="p">)</span>
+
+    <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Iterar sobre todas las combinaciones posibles de variables categóricas</span>
+    <span class="k">for</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="c1"># Crear tabla de contingencia</span>
+        <span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">var1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">var2</span><span class="p">])</span>
+
+        <span class="c1"># Evitar tablas muy pequeñas</span>
+        <span class="k">if</span> <span class="n">tabla</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">tabla</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Prueba Chi-cuadrado</span>
+        <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+
+        <span class="c1"># Calcular V de Cramer</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">tabla</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">phi2</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">/</span> <span class="n">n</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">tabla</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">phi2corr</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">phi2</span> <span class="o">-</span> <span class="p">((</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">rcorr</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="p">((</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">kcorr</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="p">((</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">cramer_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phi2corr</span> <span class="o">/</span> <span class="nb">min</span><span class="p">((</span><span class="n">kcorr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">rcorr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span> <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">kcorr</span><span class="p">,</span> <span class="n">rcorr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;Variable 1&#39;</span><span class="p">:</span> <span class="n">var1</span><span class="p">,</span>
+            <span class="s1">&#39;Variable 2&#39;</span><span class="p">:</span> <span class="n">var2</span><span class="p">,</span>
+            <span class="s1">&#39;Chi-cuadrado&#39;</span><span class="p">:</span> <span class="n">chi2</span><span class="p">,</span>
+            <span class="s1">&#39;Grados de libertad&#39;</span><span class="p">:</span> <span class="n">dof</span><span class="p">,</span>
+            <span class="s1">&#39;Valor p&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
+            <span class="s1">&#39;V de Cramer&#39;</span><span class="p">:</span> <span class="n">cramer_v</span>
+        <span class="p">})</span>
+
+    <span class="c1"># Convertir resultados a DataFrame</span>
+    <span class="n">resumen_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Valor p&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">resumen_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se encontraron combinaciones categóricas válidas.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resumen_df</span>
+
+    <span class="c1"># Mostrar top relaciones significativas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Relaciones categóricas más significativas (menor valor p) ===&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">resumen_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Relaciones menos significativas ===&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">resumen_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>
+
+    <span class="c1"># Graficar top relaciones más significativas</span>
+    <span class="k">if</span> <span class="n">mostrar_graficos</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Gráficos de las relaciones más significativas:&quot;</span><span class="p">)</span>
+        <span class="n">top_pairs</span> <span class="o">=</span> <span class="n">resumen_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">top_pairs</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Variable 1&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Variable 2&#39;</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">var1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">var2</span><span class="si">}</span><span class="s2"> (p = </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Valor p&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, V de Cramer = </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;V de Cramer&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Normalizar por filas para mostrar proporciones</span>
+            <span class="n">tabla_rel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">var1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">var2</span><span class="p">],</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">grafico</span> <span class="o">==</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">:</span>
+                <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">tabla_rel</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">var1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">var2</span><span class="si">}</span><span class="se">\n</span><span class="s2">(p = </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Valor p&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, V = </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;V de Cramer&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var1</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">resumen_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">analisis_bivariado_cat_num</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">categoricas</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">numericas</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mostrar_graficos</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">categoricas</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">categoricas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">numericas</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">numericas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">categoricas</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numericas</span><span class="p">:</span>
+            <span class="n">grupos</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">num</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span> <span class="o">==</span> <span class="n">nivel</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="k">for</span> <span class="n">nivel</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+            <span class="n">grupos</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grupos</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">grupos</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># ==== NORMALIDAD (Kolmogorov-Smirnov) ====</span>
+            <span class="n">normalidades</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grupos</span><span class="p">:</span>
+                <span class="c1"># Estandarizamos los datos para comparar contra N(0,1)</span>
+                <span class="n">g_std</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">g</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">p_norm</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span><span class="n">g_std</span><span class="p">,</span> <span class="s1">&#39;norm&#39;</span><span class="p">)</span>
+                <span class="n">normalidades</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_norm</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">)</span>
+
+            <span class="c1"># ==== HOMOCEDASTICIDAD (Levene) ====</span>
+            <span class="n">stat_lev</span><span class="p">,</span> <span class="n">p_levene</span> <span class="o">=</span> <span class="n">levene</span><span class="p">(</span><span class="o">*</span><span class="n">grupos</span><span class="p">)</span>
+            <span class="n">homocedasticas</span> <span class="o">=</span> <span class="n">p_levene</span> <span class="o">&gt;</span> <span class="mf">0.05</span>
+
+            <span class="c1"># ==== ELECCIÓN DE PRUEBA ====</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">normalidades</span><span class="p">)</span> <span class="ow">and</span> <span class="n">homocedasticas</span><span class="p">:</span>
+                <span class="n">prueba</span> <span class="o">=</span> <span class="s2">&quot;ANOVA&quot;</span>
+                <span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">f_oneway</span><span class="p">(</span><span class="o">*</span><span class="n">grupos</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prueba</span> <span class="o">=</span> <span class="s2">&quot;Kruskal-Wallis&quot;</span>
+                <span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">kruskal</span><span class="p">(</span><span class="o">*</span><span class="n">grupos</span><span class="p">)</span>
+
+            <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;Categórica&#39;</span><span class="p">:</span> <span class="n">cat</span><span class="p">,</span>
+                <span class="s1">&#39;Numérica&#39;</span><span class="p">:</span> <span class="n">num</span><span class="p">,</span>
+                <span class="s1">&#39;Prueba&#39;</span><span class="p">:</span> <span class="n">prueba</span><span class="p">,</span>
+                <span class="s1">&#39;Normalidad_OK&#39;</span><span class="p">:</span> <span class="nb">all</span><span class="p">(</span><span class="n">normalidades</span><span class="p">),</span>
+                <span class="s1">&#39;Homocedasticidad_OK&#39;</span><span class="p">:</span> <span class="n">homocedasticas</span><span class="p">,</span>
+                <span class="s1">&#39;p-Levene&#39;</span><span class="p">:</span> <span class="n">p_levene</span><span class="p">,</span>
+                <span class="s1">&#39;Estadístico&#39;</span><span class="p">:</span> <span class="n">stat</span><span class="p">,</span>
+                <span class="s1">&#39;p-valor&#39;</span><span class="p">:</span> <span class="n">p_valor</span>
+            <span class="p">})</span>
+
+            <span class="c1"># ==== GRÁFICO ====</span>
+            <span class="k">if</span> <span class="n">mostrar_graficos</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+                <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s1"> por </span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">prueba</span><span class="si">}</span><span class="s1">, p=</span><span class="si">{</span><span class="n">p_valor</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span><span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">comparacion_numericas_target</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">num_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">num_cols</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===== Análisis bivariado: </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> =====</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Boxplot</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> (Boxplot)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">comparacion_categoricas_target</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===== Análisis bivariado: </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> =====</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frecuencias absolutas:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tabla</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Frecuencias relativas (%):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> 
+              <span class="n">tabla</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">tabla</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Heatmap </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para calcular Cramér&#39;s V</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cramers_v</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">confusion_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">chi2</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">phi2</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">phi2corr</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">phi2</span> <span class="o">-</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>    
+    <span class="n">rcorr</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">kcorr</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phi2corr</span> <span class="o">/</span> <span class="nb">min</span><span class="p">((</span><span class="n">kcorr</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">rcorr</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para crear la matriz de correlación categórica</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">categorical_corr_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cat_cols</span><span class="p">)</span>
+    <span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">cat_cols</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cat_cols</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">cramers_v</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span>
+            <span class="n">corr_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="n">corr_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">corr_matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-general-del-dataset">
+<h2>Analisis general del dataset<a class="headerlink" href="#analisis-general-del-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Summary</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;Datos pacientes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hoja: Datos pacientes
+
+Resumen:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cantidad de filas</th>
+      <th>Cantidad de columnas</th>
+      <th>Datos faltantes</th>
+      <th>Filas duplicadas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Resumen</th>
+      <td>212691</td>
+      <td>17</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encabezado:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Patient_ID</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Country</th>
+      <th>Ethnicity</th>
+      <th>Family_History</th>
+      <th>Radiation_Exposure</th>
+      <th>Iodine_Deficiency</th>
+      <th>Smoking</th>
+      <th>Obesity</th>
+      <th>Diabetes</th>
+      <th>TSH_Level</th>
+      <th>T3_Level</th>
+      <th>T4_Level</th>
+      <th>Nodule_Size</th>
+      <th>Thyroid_Cancer_Risk</th>
+      <th>Diagnosis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>66</td>
+      <td>Male</td>
+      <td>Russia</td>
+      <td>Caucasian</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>9.37</td>
+      <td>1.67</td>
+      <td>6.16</td>
+      <td>1.08</td>
+      <td>Low</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>29</td>
+      <td>Male</td>
+      <td>Germany</td>
+      <td>Hispanic</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>1.83</td>
+      <td>1.73</td>
+      <td>10.54</td>
+      <td>4.05</td>
+      <td>Low</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>86</td>
+      <td>Male</td>
+      <td>Nigeria</td>
+      <td>Caucasian</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>6.26</td>
+      <td>2.59</td>
+      <td>10.57</td>
+      <td>4.61</td>
+      <td>Low</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>75</td>
+      <td>Female</td>
+      <td>India</td>
+      <td>Asian</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>4.10</td>
+      <td>2.62</td>
+      <td>11.04</td>
+      <td>2.46</td>
+      <td>Medium</td>
+      <td>Benign</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>35</td>
+      <td>Female</td>
+      <td>Germany</td>
+      <td>African</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>9.10</td>
+      <td>2.11</td>
+      <td>10.71</td>
+      <td>2.11</td>
+      <td>High</td>
+      <td>Benign</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Patient_ID</th>
+      <th>Age</th>
+      <th>TSH_Level</th>
+      <th>T3_Level</th>
+      <th>T4_Level</th>
+      <th>Nodule_Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>212691.00000</td>
+      <td>212691.000000</td>
+      <td>212691.000000</td>
+      <td>212691.000000</td>
+      <td>212691.000000</td>
+      <td>212691.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>106346.00000</td>
+      <td>51.918497</td>
+      <td>5.045102</td>
+      <td>2.001727</td>
+      <td>8.246204</td>
+      <td>2.503403</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>61398.74739</td>
+      <td>21.632815</td>
+      <td>2.860264</td>
+      <td>0.866248</td>
+      <td>2.164188</td>
+      <td>1.444631</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.00000</td>
+      <td>15.000000</td>
+      <td>0.100000</td>
+      <td>0.500000</td>
+      <td>4.500000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>53173.50000</td>
+      <td>33.000000</td>
+      <td>2.570000</td>
+      <td>1.250000</td>
+      <td>6.370000</td>
+      <td>1.250000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>106346.00000</td>
+      <td>52.000000</td>
+      <td>5.040000</td>
+      <td>2.000000</td>
+      <td>8.240000</td>
+      <td>2.510000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>159518.50000</td>
+      <td>71.000000</td>
+      <td>7.520000</td>
+      <td>2.750000</td>
+      <td>10.120000</td>
+      <td>3.760000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>212691.00000</td>
+      <td>89.000000</td>
+      <td>10.000000</td>
+      <td>3.500000</td>
+      <td>12.000000</td>
+      <td>5.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Thyroid_Cancer_Risk</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thyroid_Cancer_Risk
+Low       108388
+Medium     72400
+High       31903
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Conteo de Riesgo de cancer&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">Thyroid_Cancer_Risk</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Thyroid Cancer Risk&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/534c7d4db4c38c473c104c0c16fc094b35d2e48483924ad88552ce8654dbd524.png" src="_images/534c7d4db4c38c473c104c0c16fc094b35d2e48483924ad88552ce8654dbd524.png" />
+</div>
+</div>
+<p>podemos observar que el dataset esta desbalanceado, tomaremos en cuenta esto mas adelante</p>
+</section>
+<section id="analisis-univariado">
+<h2>Analisis univariado<a class="headerlink" href="#analisis-univariado" title="Link to this heading">#</a></h2>
+<p>realizamod el analisis univariado mostrando las graficas de numericas y categoricas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numericas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;TSH_Level&#39;</span><span class="p">,</span> <span class="s1">&#39;T3_Level&#39;</span><span class="p">,</span> <span class="s1">&#39;T4_Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Nodule_Size&#39;</span><span class="p">]</span>
+<span class="n">graficar_distribuciones</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">numericas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9d72334438437b620723a7d2e504e3b5f46c2267d8194f33b4d4205e30632279.png" src="_images/9d72334438437b620723a7d2e504e3b5f46c2267d8194f33b4d4205e30632279.png" />
+</div>
+</div>
+<p>se realiza lo mismo para las variables categoricas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categoricas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Country&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethnicity&#39;</span><span class="p">,</span> <span class="s1">&#39;Family_History&#39;</span><span class="p">,</span> <span class="s1">&#39;Radiation_Exposure&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Iodine_Deficiency&#39;</span><span class="p">,</span> <span class="s1">&#39;Smoking&#39;</span><span class="p">,</span> <span class="s1">&#39;Obesity&#39;</span><span class="p">,</span> <span class="s1">&#39;Diabetes&#39;</span><span class="p">,</span> <span class="s1">&#39;Diagnosis&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graficar_categoricas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">categoricas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/239de9cde6d9e3310d4eb45413c7435b81b577bc7aba70a022c7e1f1ae9d6d77.png" src="_images/239de9cde6d9e3310d4eb45413c7435b81b577bc7aba70a022c7e1f1ae9d6d77.png" />
+<img alt="_images/f5cc98d4d0cf7d2b1ac795f79ad56b14232e782318641a54b5ae07871d9dbbc4.png" src="_images/f5cc98d4d0cf7d2b1ac795f79ad56b14232e782318641a54b5ae07871d9dbbc4.png" />
+<img alt="_images/bf4343afe59d21ea55442c6d1ffd3dc6becd6d49ad98dc38c2bc545bb28ef653.png" src="_images/bf4343afe59d21ea55442c6d1ffd3dc6becd6d49ad98dc38c2bc545bb28ef653.png" />
+<img alt="_images/24c5accef0e54f5a59878a2827f56ee154283c12227d2f32e66a75a6ebc36f7e.png" src="_images/24c5accef0e54f5a59878a2827f56ee154283c12227d2f32e66a75a6ebc36f7e.png" />
+<img alt="_images/8051bcde28108d886a16e111b6dc39487d6d42674e125bdb66f8b6787665d8ed.png" src="_images/8051bcde28108d886a16e111b6dc39487d6d42674e125bdb66f8b6787665d8ed.png" />
+<img alt="_images/4b65d2246b956453ddb8c5d55737050d80dacf16e61579f703fc05592de88226.png" src="_images/4b65d2246b956453ddb8c5d55737050d80dacf16e61579f703fc05592de88226.png" />
+<img alt="_images/4005bbd3a912c03d5d736166f0c3f81d0e1a26d3a3d4d5dec280db5a4cf97a31.png" src="_images/4005bbd3a912c03d5d736166f0c3f81d0e1a26d3a3d4d5dec280db5a4cf97a31.png" />
+<img alt="_images/60a7d54177f07b2579ae8bef20c61c3f83c412031f7dffe92f077c052643ddff.png" src="_images/60a7d54177f07b2579ae8bef20c61c3f83c412031f7dffe92f077c052643ddff.png" />
+<img alt="_images/0454f0be4d86c284ce65d69b7dc4d5c7ff08dd8e26621476a7d0a8fe11d103a7.png" src="_images/0454f0be4d86c284ce65d69b7dc4d5c7ff08dd8e26621476a7d0a8fe11d103a7.png" />
+<img alt="_images/c1e8153a943b11d4850d27c37c8bd826ff1c271a1d1e09541b6612f82f3a20e2.png" src="_images/c1e8153a943b11d4850d27c37c8bd826ff1c271a1d1e09541b6612f82f3a20e2.png" />
+</div>
+</div>
+</section>
+<section id="analisis-bivariado">
+<h2>Analisis Bivariado<a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h2>
+<p>Realizamos el analisis bivariado de las variables numericas y categoricas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prueba_normalidad</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>variable</th>
+      <th>n_muestras</th>
+      <th>shapiro_p</th>
+      <th>dagostino_p</th>
+      <th>ks_p</th>
+      <th>es_normal (alpha=0.05)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Age</td>
+      <td>212691</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>TSH_Level</td>
+      <td>212691</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>T3_Level</td>
+      <td>212691</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>T4_Level</td>
+      <td>212691</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Nodule_Size</td>
+      <td>212691</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analisis_bivariado_numerico</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">mostrar_graficos</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===  Correlaciones más altas ===
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable 1</th>
+      <th>Variable 2</th>
+      <th>Correlación Pearson</th>
+      <th>Correlación Spearman</th>
+      <th>Covarianza</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>TSH_Level</td>
+      <td>Nodule_Size</td>
+      <td>0.000416</td>
+      <td>0.000423</td>
+      <td>0.001718</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>TSH_Level</td>
+      <td>T3_Level</td>
+      <td>0.000335</td>
+      <td>0.000335</td>
+      <td>0.000830</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>TSH_Level</td>
+      <td>T4_Level</td>
+      <td>-0.000795</td>
+      <td>-0.000799</td>
+      <td>-0.004921</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Age</td>
+      <td>TSH_Level</td>
+      <td>-0.000925</td>
+      <td>-0.000921</td>
+      <td>-0.057210</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Age</td>
+      <td>T3_Level</td>
+      <td>-0.001013</td>
+      <td>-0.001019</td>
+      <td>-0.018992</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Correlaciones más bajas ===
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable 1</th>
+      <th>Variable 2</th>
+      <th>Correlación Pearson</th>
+      <th>Correlación Spearman</th>
+      <th>Covarianza</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Age</td>
+      <td>Nodule_Size</td>
+      <td>-0.001489</td>
+      <td>-0.001485</td>
+      <td>-0.046526</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>T3_Level</td>
+      <td>Nodule_Size</td>
+      <td>-0.001799</td>
+      <td>-0.001788</td>
+      <td>-0.002251</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>T4_Level</td>
+      <td>Nodule_Size</td>
+      <td>-0.001860</td>
+      <td>-0.001861</td>
+      <td>-0.005814</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Age</td>
+      <td>T4_Level</td>
+      <td>-0.002373</td>
+      <td>-0.002373</td>
+      <td>-0.111110</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>T3_Level</td>
+      <td>T4_Level</td>
+      <td>-0.004069</td>
+      <td>-0.004063</td>
+      <td>-0.007629</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="_images/897f74a2d014ce154f8f7da1294b992900bcaae5cf3e22990ddc6922d77022ad.png" src="_images/897f74a2d014ce154f8f7da1294b992900bcaae5cf3e22990ddc6922d77022ad.png" />
+<img alt="_images/8b02f5cf4d03755a4ddb8f2ef9ec1d6c44ff86bf276ee2d932a64b3e91fe59c1.png" src="_images/8b02f5cf4d03755a4ddb8f2ef9ec1d6c44ff86bf276ee2d932a64b3e91fe59c1.png" />
+<img alt="_images/33cf556f69520a30155f7110ebe936f8f9dbc8e89907c4a5c07c172aee7ab0cb.png" src="_images/33cf556f69520a30155f7110ebe936f8f9dbc8e89907c4a5c07c172aee7ab0cb.png" />
+<img alt="_images/4c9de8a25c05a6c9f4e851d7151ef8d76c57155eef73081a2762585115d486fc.png" src="_images/4c9de8a25c05a6c9f4e851d7151ef8d76c57155eef73081a2762585115d486fc.png" />
+<img alt="_images/b71bf04dbbf0468f4cd061c5a764115265619672eedf1f970ac6fd4534be1a63.png" src="_images/b71bf04dbbf0468f4cd061c5a764115265619672eedf1f970ac6fd4534be1a63.png" />
+<img alt="_images/ed2bce629aed4a4bda343a57fe36f1b32298a96208e18bc3da4f3ed41c8108fb.png" src="_images/ed2bce629aed4a4bda343a57fe36f1b32298a96208e18bc3da4f3ed41c8108fb.png" />
+<img alt="_images/69084e44ff1f5a3b253efe4c4dd3157f4bb8bac13dc27c1025cdd9c6bb81de27.png" src="_images/69084e44ff1f5a3b253efe4c4dd3157f4bb8bac13dc27c1025cdd9c6bb81de27.png" />
+<img alt="_images/3c1c132c0b050828863b85e3a6dcd919b4dcff80b79d5f28bb57e3b8291c8e84.png" src="_images/3c1c132c0b050828863b85e3a6dcd919b4dcff80b79d5f28bb57e3b8291c8e84.png" />
+<img alt="_images/bf98a039fa0dd1438f2c3e9cb30701c54d07093ad0314ef005e635d330912509.png" src="_images/bf98a039fa0dd1438f2c3e9cb30701c54d07093ad0314ef005e635d330912509.png" />
+<img alt="_images/e286150a9031d6c09f3ace9cb46d8de4aecef67aa1d1e0bd8954a901d5916dec.png" src="_images/e286150a9031d6c09f3ace9cb46d8de4aecef67aa1d1e0bd8954a901d5916dec.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable 1</th>
+      <th>Variable 2</th>
+      <th>Correlación Pearson</th>
+      <th>Correlación Spearman</th>
+      <th>Covarianza</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>TSH_Level</td>
+      <td>Nodule_Size</td>
+      <td>0.000416</td>
+      <td>0.000423</td>
+      <td>0.001718</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>TSH_Level</td>
+      <td>T3_Level</td>
+      <td>0.000335</td>
+      <td>0.000335</td>
+      <td>0.000830</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>TSH_Level</td>
+      <td>T4_Level</td>
+      <td>-0.000795</td>
+      <td>-0.000799</td>
+      <td>-0.004921</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Age</td>
+      <td>TSH_Level</td>
+      <td>-0.000925</td>
+      <td>-0.000921</td>
+      <td>-0.057210</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Age</td>
+      <td>T3_Level</td>
+      <td>-0.001013</td>
+      <td>-0.001019</td>
+      <td>-0.018992</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Age</td>
+      <td>Nodule_Size</td>
+      <td>-0.001489</td>
+      <td>-0.001485</td>
+      <td>-0.046526</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>T3_Level</td>
+      <td>Nodule_Size</td>
+      <td>-0.001799</td>
+      <td>-0.001788</td>
+      <td>-0.002251</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>T4_Level</td>
+      <td>Nodule_Size</td>
+      <td>-0.001860</td>
+      <td>-0.001861</td>
+      <td>-0.005814</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Age</td>
+      <td>T4_Level</td>
+      <td>-0.002373</td>
+      <td>-0.002373</td>
+      <td>-0.111110</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>T3_Level</td>
+      <td>T4_Level</td>
+      <td>-0.004069</td>
+      <td>-0.004063</td>
+      <td>-0.007629</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analisis_bivariado_categorico</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">mostrar_graficos</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Relaciones categóricas más significativas (menor valor p) ===
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable 1</th>
+      <th>Variable 2</th>
+      <th>Chi-cuadrado</th>
+      <th>Grados de libertad</th>
+      <th>Valor p</th>
+      <th>V de Cramer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>Diagnosis</td>
+      <td>45942.931977</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0.464757</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Ethnicity</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>24048.658999</td>
+      <td>8</td>
+      <td>0.0</td>
+      <td>0.237731</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ethnicity</td>
+      <td>Diagnosis</td>
+      <td>5146.683841</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>0.155497</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Family_History</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>19926.918897</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0.306073</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Country</td>
+      <td>Diagnosis</td>
+      <td>2757.420910</td>
+      <td>9</td>
+      <td>0.0</td>
+      <td>0.113676</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Relaciones menos significativas ===
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable 1</th>
+      <th>Variable 2</th>
+      <th>Chi-cuadrado</th>
+      <th>Grados de libertad</th>
+      <th>Valor p</th>
+      <th>V de Cramer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>50</th>
+      <td>Family_History</td>
+      <td>Diabetes</td>
+      <td>0.035534</td>
+      <td>1</td>
+      <td>0.850480</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Family_History</td>
+      <td>Smoking</td>
+      <td>0.032947</td>
+      <td>1</td>
+      <td>0.855966</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Radiation_Exposure</td>
+      <td>Diabetes</td>
+      <td>0.004245</td>
+      <td>1</td>
+      <td>0.948053</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Smoking</td>
+      <td>Diabetes</td>
+      <td>0.003945</td>
+      <td>1</td>
+      <td>0.949920</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Country</td>
+      <td>Obesity</td>
+      <td>2.996919</td>
+      <td>9</td>
+      <td>0.964417</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gráficos de las relaciones más significativas:
+
+Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
+</pre></div>
+</div>
+<img alt="_images/36205892768cf2b77cb432e40129b793e5613385390a0ac6842dc4abfdff6872.png" src="_images/36205892768cf2b77cb432e40129b793e5613385390a0ac6842dc4abfdff6872.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ethnicity vs Thyroid_Cancer_Risk (p = 0.0000, V de Cramer = 0.238)
+</pre></div>
+</div>
+<img alt="_images/f5fcda62b3a31e72f6e5d3328cdfefe211e2812e184eb9ec2a47b80cd77bf1f2.png" src="_images/f5fcda62b3a31e72f6e5d3328cdfefe211e2812e184eb9ec2a47b80cd77bf1f2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ethnicity vs Diagnosis (p = 0.0000, V de Cramer = 0.155)
+</pre></div>
+</div>
+<img alt="_images/02757758009843bd5160a7e81ffadb7ede943be6d54abc09c641c16c0cf9a67e.png" src="_images/02757758009843bd5160a7e81ffadb7ede943be6d54abc09c641c16c0cf9a67e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family_History vs Thyroid_Cancer_Risk (p = 0.0000, V de Cramer = 0.306)
+</pre></div>
+</div>
+<img alt="_images/cc938023831a06e6852424b55a473ed6dbb547543cc0dad380b9b19cdd5e40ee.png" src="_images/cc938023831a06e6852424b55a473ed6dbb547543cc0dad380b9b19cdd5e40ee.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Country vs Diagnosis (p = 0.0000, V de Cramer = 0.114)
+</pre></div>
+</div>
+<img alt="_images/84d92c1f5842bd59060d4de4c02933de0d4bb329f0b167191571425873b1f4b9.png" src="_images/84d92c1f5842bd59060d4de4c02933de0d4bb329f0b167191571425873b1f4b9.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable 1</th>
+      <th>Variable 2</th>
+      <th>Chi-cuadrado</th>
+      <th>Grados de libertad</th>
+      <th>Valor p</th>
+      <th>V de Cramer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>Diagnosis</td>
+      <td>45942.931977</td>
+      <td>2</td>
+      <td>0.000000</td>
+      <td>0.464757</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Ethnicity</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>24048.658999</td>
+      <td>8</td>
+      <td>0.000000</td>
+      <td>0.237731</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ethnicity</td>
+      <td>Diagnosis</td>
+      <td>5146.683841</td>
+      <td>4</td>
+      <td>0.000000</td>
+      <td>0.155497</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Family_History</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>19926.918897</td>
+      <td>2</td>
+      <td>0.000000</td>
+      <td>0.306073</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Country</td>
+      <td>Diagnosis</td>
+      <td>2757.420910</td>
+      <td>9</td>
+      <td>0.000000</td>
+      <td>0.113676</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Family_History</td>
+      <td>Diagnosis</td>
+      <td>4223.059166</td>
+      <td>1</td>
+      <td>0.000000</td>
+      <td>0.140893</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Country</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>13307.120917</td>
+      <td>18</td>
+      <td>0.000000</td>
+      <td>0.176750</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Radiation_Exposure</td>
+      <td>Diagnosis</td>
+      <td>1685.753639</td>
+      <td>1</td>
+      <td>0.000000</td>
+      <td>0.089001</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Iodine_Deficiency</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>9946.122124</td>
+      <td>2</td>
+      <td>0.000000</td>
+      <td>0.216227</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Iodine_Deficiency</td>
+      <td>Diagnosis</td>
+      <td>2085.399938</td>
+      <td>1</td>
+      <td>0.000000</td>
+      <td>0.098996</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Radiation_Exposure</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>7505.195052</td>
+      <td>2</td>
+      <td>0.000000</td>
+      <td>0.187823</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Country</td>
+      <td>Ethnicity</td>
+      <td>51.593547</td>
+      <td>36</td>
+      <td>0.044533</td>
+      <td>0.004281</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Gender</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>5.241407</td>
+      <td>2</td>
+      <td>0.072752</td>
+      <td>0.003904</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Gender</td>
+      <td>Smoking</td>
+      <td>2.214296</td>
+      <td>1</td>
+      <td>0.136737</td>
+      <td>0.002389</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Diabetes</td>
+      <td>Diagnosis</td>
+      <td>2.183932</td>
+      <td>1</td>
+      <td>0.139458</td>
+      <td>0.002359</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ethnicity</td>
+      <td>Smoking</td>
+      <td>6.830751</td>
+      <td>4</td>
+      <td>0.145107</td>
+      <td>0.003648</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Gender</td>
+      <td>Iodine_Deficiency</td>
+      <td>1.702165</td>
+      <td>1</td>
+      <td>0.192005</td>
+      <td>0.001817</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Gender</td>
+      <td>Country</td>
+      <td>11.988197</td>
+      <td>9</td>
+      <td>0.213976</td>
+      <td>0.003748</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Radiation_Exposure</td>
+      <td>Iodine_Deficiency</td>
+      <td>1.190421</td>
+      <td>1</td>
+      <td>0.275245</td>
+      <td>0.000946</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Country</td>
+      <td>Radiation_Exposure</td>
+      <td>10.889202</td>
+      <td>9</td>
+      <td>0.283380</td>
+      <td>0.002980</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Ethnicity</td>
+      <td>Iodine_Deficiency</td>
+      <td>4.898400</td>
+      <td>4</td>
+      <td>0.297882</td>
+      <td>0.002055</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Radiation_Exposure</td>
+      <td>Obesity</td>
+      <td>1.049395</td>
+      <td>1</td>
+      <td>0.305646</td>
+      <td>0.000482</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Country</td>
+      <td>Iodine_Deficiency</td>
+      <td>10.470912</td>
+      <td>9</td>
+      <td>0.313723</td>
+      <td>0.002630</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Gender</td>
+      <td>Family_History</td>
+      <td>0.947140</td>
+      <td>1</td>
+      <td>0.330448</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Obesity</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>2.111911</td>
+      <td>2</td>
+      <td>0.347860</td>
+      <td>0.000725</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Radiation_Exposure</td>
+      <td>Smoking</td>
+      <td>0.792693</td>
+      <td>1</td>
+      <td>0.373287</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Gender</td>
+      <td>Obesity</td>
+      <td>0.792400</td>
+      <td>1</td>
+      <td>0.373375</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Smoking</td>
+      <td>Obesity</td>
+      <td>0.756845</td>
+      <td>1</td>
+      <td>0.384318</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Iodine_Deficiency</td>
+      <td>Diabetes</td>
+      <td>0.678391</td>
+      <td>1</td>
+      <td>0.410141</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Smoking</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>1.741176</td>
+      <td>2</td>
+      <td>0.418705</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Ethnicity</td>
+      <td>Radiation_Exposure</td>
+      <td>3.820181</td>
+      <td>4</td>
+      <td>0.430888</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Gender</td>
+      <td>Diagnosis</td>
+      <td>0.433727</td>
+      <td>1</td>
+      <td>0.510166</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Diabetes</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>1.253271</td>
+      <td>2</td>
+      <td>0.534387</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Iodine_Deficiency</td>
+      <td>Smoking</td>
+      <td>0.341962</td>
+      <td>1</td>
+      <td>0.558699</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Country</td>
+      <td>Diabetes</td>
+      <td>7.734664</td>
+      <td>9</td>
+      <td>0.561091</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Country</td>
+      <td>Smoking</td>
+      <td>7.671904</td>
+      <td>9</td>
+      <td>0.567518</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Obesity</td>
+      <td>Diagnosis</td>
+      <td>0.317200</td>
+      <td>1</td>
+      <td>0.573295</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Ethnicity</td>
+      <td>Family_History</td>
+      <td>2.630021</td>
+      <td>4</td>
+      <td>0.621514</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Country</td>
+      <td>Family_History</td>
+      <td>6.894035</td>
+      <td>9</td>
+      <td>0.648151</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Family_History</td>
+      <td>Obesity</td>
+      <td>0.173718</td>
+      <td>1</td>
+      <td>0.676828</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Gender</td>
+      <td>Ethnicity</td>
+      <td>2.268396</td>
+      <td>4</td>
+      <td>0.686529</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Smoking</td>
+      <td>Diagnosis</td>
+      <td>0.152845</td>
+      <td>1</td>
+      <td>0.695831</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Obesity</td>
+      <td>Diabetes</td>
+      <td>0.150656</td>
+      <td>1</td>
+      <td>0.697910</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Ethnicity</td>
+      <td>Obesity</td>
+      <td>2.182228</td>
+      <td>4</td>
+      <td>0.702284</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Family_History</td>
+      <td>Radiation_Exposure</td>
+      <td>0.129576</td>
+      <td>1</td>
+      <td>0.718872</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Gender</td>
+      <td>Radiation_Exposure</td>
+      <td>0.085803</td>
+      <td>1</td>
+      <td>0.769582</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Gender</td>
+      <td>Diabetes</td>
+      <td>0.084210</td>
+      <td>1</td>
+      <td>0.771671</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Iodine_Deficiency</td>
+      <td>Obesity</td>
+      <td>0.071659</td>
+      <td>1</td>
+      <td>0.788936</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Family_History</td>
+      <td>Iodine_Deficiency</td>
+      <td>0.061574</td>
+      <td>1</td>
+      <td>0.804026</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Ethnicity</td>
+      <td>Diabetes</td>
+      <td>1.459393</td>
+      <td>4</td>
+      <td>0.833809</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Family_History</td>
+      <td>Diabetes</td>
+      <td>0.035534</td>
+      <td>1</td>
+      <td>0.850480</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Family_History</td>
+      <td>Smoking</td>
+      <td>0.032947</td>
+      <td>1</td>
+      <td>0.855966</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Radiation_Exposure</td>
+      <td>Diabetes</td>
+      <td>0.004245</td>
+      <td>1</td>
+      <td>0.948053</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Smoking</td>
+      <td>Diabetes</td>
+      <td>0.003945</td>
+      <td>1</td>
+      <td>0.949920</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Country</td>
+      <td>Obesity</td>
+      <td>2.996919</td>
+      <td>9</td>
+      <td>0.964417</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categoricas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Thyroid_Cancer_Risk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analisis_bivariado_cat_num</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">categoricas</span><span class="p">,</span><span class="n">numericas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0cb7cf859f9330a4659f400ee0093b3c11b30d3d2a3d1fafd18c42b38dd0091c.png" src="_images/0cb7cf859f9330a4659f400ee0093b3c11b30d3d2a3d1fafd18c42b38dd0091c.png" />
+<img alt="_images/3cc7bb8db80be8662f2c86db7019a4860cf1fe1853490f0ef8950a92f99c0271.png" src="_images/3cc7bb8db80be8662f2c86db7019a4860cf1fe1853490f0ef8950a92f99c0271.png" />
+<img alt="_images/1ea36c1d4c6cc081aee0cb9f2401f23247220a009b21cb90b707cb17979458e5.png" src="_images/1ea36c1d4c6cc081aee0cb9f2401f23247220a009b21cb90b707cb17979458e5.png" />
+<img alt="_images/a70567d2d0ab8d9b312a4099924d2a8f7d008b3847d832589c34fc215653c758.png" src="_images/a70567d2d0ab8d9b312a4099924d2a8f7d008b3847d832589c34fc215653c758.png" />
+<img alt="_images/1a8263fc060f11510bffa6db19c2f538b201452549543cb39e12022acdd37f20.png" src="_images/1a8263fc060f11510bffa6db19c2f538b201452549543cb39e12022acdd37f20.png" />
+<img alt="_images/2cb2b7bc60be2de20797ab77e83743ba85276b0679c77b32e002b2a6e861464f.png" src="_images/2cb2b7bc60be2de20797ab77e83743ba85276b0679c77b32e002b2a6e861464f.png" />
+<img alt="_images/00acd9a2cacfb648527f8679729ea4da702f2ca1e5a0051ff522d180a068de4a.png" src="_images/00acd9a2cacfb648527f8679729ea4da702f2ca1e5a0051ff522d180a068de4a.png" />
+<img alt="_images/b73ed0ee6fa0dc0b063c48955df163fbdda20bb6eb94c15154eb4a42e5e5a9f5.png" src="_images/b73ed0ee6fa0dc0b063c48955df163fbdda20bb6eb94c15154eb4a42e5e5a9f5.png" />
+<img alt="_images/6bd5b69e49da13dbd811926a3de8e43d06478c47f23e556d1880b633de49a0b4.png" src="_images/6bd5b69e49da13dbd811926a3de8e43d06478c47f23e556d1880b633de49a0b4.png" />
+<img alt="_images/5a25896486506c17e8577956c3cb6cc60a2ddcd71ccef69a7de95e11a812b605.png" src="_images/5a25896486506c17e8577956c3cb6cc60a2ddcd71ccef69a7de95e11a812b605.png" />
+<img alt="_images/0d011b5ce07d5078e26684a86823c3c015016f77c5f5218483b2d50c89f3845a.png" src="_images/0d011b5ce07d5078e26684a86823c3c015016f77c5f5218483b2d50c89f3845a.png" />
+<img alt="_images/86ce4dddf5f9ba6826d2816d4fb1641dc08ccff6cc041539e204d2712ef13bde.png" src="_images/86ce4dddf5f9ba6826d2816d4fb1641dc08ccff6cc041539e204d2712ef13bde.png" />
+<img alt="_images/7dce9fc4e8e759c0a601e47cd3c37b5ed05096dbc59506bccfd13325b30420dd.png" src="_images/7dce9fc4e8e759c0a601e47cd3c37b5ed05096dbc59506bccfd13325b30420dd.png" />
+<img alt="_images/979c4c61ef3a38e91485d0543df925870a5f7ddfcf2db2de4d37e4c5882be6b5.png" src="_images/979c4c61ef3a38e91485d0543df925870a5f7ddfcf2db2de4d37e4c5882be6b5.png" />
+<img alt="_images/4b0b8b92ebcd92c89daa6d47c359ca2876a8643832ff5614738b0f0f7fcc0603.png" src="_images/4b0b8b92ebcd92c89daa6d47c359ca2876a8643832ff5614738b0f0f7fcc0603.png" />
+<img alt="_images/cb17cc7e1c88224a159b6e28adf7403ae5d33c432ccec6d41dec9f6453546222.png" src="_images/cb17cc7e1c88224a159b6e28adf7403ae5d33c432ccec6d41dec9f6453546222.png" />
+<img alt="_images/ebf788ba9a14b247c2548e8b7b43dd460aa8f9c2ccb84184f7fbdc617b26a81b.png" src="_images/ebf788ba9a14b247c2548e8b7b43dd460aa8f9c2ccb84184f7fbdc617b26a81b.png" />
+<img alt="_images/8348fc42b6d7bebf47c2e48be0aa89b6e1dc568cac4f23add8e354be26f0e878.png" src="_images/8348fc42b6d7bebf47c2e48be0aa89b6e1dc568cac4f23add8e354be26f0e878.png" />
+<img alt="_images/c530c90993b1628df708bf53b0a62d55f83c73bb30ab8a45f5e8945fe6fb036e.png" src="_images/c530c90993b1628df708bf53b0a62d55f83c73bb30ab8a45f5e8945fe6fb036e.png" />
+<img alt="_images/998a8ab67e955b940062495745500ad05e6c60b64bacfdf1f13b2a5d85435346.png" src="_images/998a8ab67e955b940062495745500ad05e6c60b64bacfdf1f13b2a5d85435346.png" />
+<img alt="_images/ea1f10b4eb7beb4791c8407fe07e11b64ed357ab092b23756752217ee2248b10.png" src="_images/ea1f10b4eb7beb4791c8407fe07e11b64ed357ab092b23756752217ee2248b10.png" />
+<img alt="_images/26506e2568fd77ca033d7afb0f025c69ea4c1508e7186770e310911b68af5b6a.png" src="_images/26506e2568fd77ca033d7afb0f025c69ea4c1508e7186770e310911b68af5b6a.png" />
+<img alt="_images/8fbced40082fb867b6e18ea5701412397a288e0bee86b03407b15e89e6fb351e.png" src="_images/8fbced40082fb867b6e18ea5701412397a288e0bee86b03407b15e89e6fb351e.png" />
+<img alt="_images/94e6fb0d48b77adbea9fcfbd07d01a4ef226cd937d89e8b2c0f78a3b3b8e64b7.png" src="_images/94e6fb0d48b77adbea9fcfbd07d01a4ef226cd937d89e8b2c0f78a3b3b8e64b7.png" />
+<img alt="_images/6521c0555d3b6e34a5780eab0fad042a2b96f002c67d9a580cece68f89388ac2.png" src="_images/6521c0555d3b6e34a5780eab0fad042a2b96f002c67d9a580cece68f89388ac2.png" />
+<img alt="_images/bf601867d8aa9005c8fe1255c34cb09ccf4dfbe95628ced3e7551c2c9114d3c4.png" src="_images/bf601867d8aa9005c8fe1255c34cb09ccf4dfbe95628ced3e7551c2c9114d3c4.png" />
+<img alt="_images/4e1d314792c96dc55ca9c52fd722fe8e3755c7ac374ed17b01772e842d7c873f.png" src="_images/4e1d314792c96dc55ca9c52fd722fe8e3755c7ac374ed17b01772e842d7c873f.png" />
+<img alt="_images/734057238d6081f1fced35ad0c6a6e2ae9254a359ea2408ce3fe44973d4644b8.png" src="_images/734057238d6081f1fced35ad0c6a6e2ae9254a359ea2408ce3fe44973d4644b8.png" />
+<img alt="_images/2acb66acbce00c24cbb1c37a03be4ccf21596104b6a6bec20428f787508f5d25.png" src="_images/2acb66acbce00c24cbb1c37a03be4ccf21596104b6a6bec20428f787508f5d25.png" />
+<img alt="_images/1a992ed0356d884e068f6d2792d0f6c15593392c7d459ed3a507206d2ea792e2.png" src="_images/1a992ed0356d884e068f6d2792d0f6c15593392c7d459ed3a507206d2ea792e2.png" />
+<img alt="_images/f6bf97917a84c53f80314aee4fc3f473e20815e532e60fdeae15d0bae9f9257a.png" src="_images/f6bf97917a84c53f80314aee4fc3f473e20815e532e60fdeae15d0bae9f9257a.png" />
+<img alt="_images/21a99c200939562ce93bbe9a7bdd8139af548ce037763044fb801dea30dfc5d4.png" src="_images/21a99c200939562ce93bbe9a7bdd8139af548ce037763044fb801dea30dfc5d4.png" />
+<img alt="_images/a9e9097fd16e1c3c5727201c1621ed3ebea02d337825553b047164ffd5ff5d3b.png" src="_images/a9e9097fd16e1c3c5727201c1621ed3ebea02d337825553b047164ffd5ff5d3b.png" />
+<img alt="_images/a5da659722cb45135f02af01de785955b8992821ecfac913f31483f933055c25.png" src="_images/a5da659722cb45135f02af01de785955b8992821ecfac913f31483f933055c25.png" />
+<img alt="_images/36301f614bee53cada65e244434a878d3cd74c66b3038c3049a23a6151640f38.png" src="_images/36301f614bee53cada65e244434a878d3cd74c66b3038c3049a23a6151640f38.png" />
+<img alt="_images/8e2c7a8f3295a3cc7416e5a4b88b2e23c7b83c59c85b06be7d2540ce8e5ea119.png" src="_images/8e2c7a8f3295a3cc7416e5a4b88b2e23c7b83c59c85b06be7d2540ce8e5ea119.png" />
+<img alt="_images/0a84329cf8b1e7f19c89aa69db799b79e0ce5ee3c5b13c0c92c33a70f1b25d56.png" src="_images/0a84329cf8b1e7f19c89aa69db799b79e0ce5ee3c5b13c0c92c33a70f1b25d56.png" />
+<img alt="_images/30e0d11e004643e85670d1011f553ffec93777754eb2bf01d1321d82e6b6fd23.png" src="_images/30e0d11e004643e85670d1011f553ffec93777754eb2bf01d1321d82e6b6fd23.png" />
+<img alt="_images/18060c9aa667f86ba858c994f637be1f56c2ff60c0f1d5d21cecda642e768764.png" src="_images/18060c9aa667f86ba858c994f637be1f56c2ff60c0f1d5d21cecda642e768764.png" />
+<img alt="_images/2bc358e9ffa71603cc02d2a08f2295bf3e9f144e05d2a8e9bcf69af73baef221.png" src="_images/2bc358e9ffa71603cc02d2a08f2295bf3e9f144e05d2a8e9bcf69af73baef221.png" />
+<img alt="_images/21bda145fbe3357505597554a2837cfbb48df73bd7e8eee3635915d7284a11db.png" src="_images/21bda145fbe3357505597554a2837cfbb48df73bd7e8eee3635915d7284a11db.png" />
+<img alt="_images/fef8d30c1cc257327743ac40c11c8d2184fae2582c10c24009fbdef6dd2d87c8.png" src="_images/fef8d30c1cc257327743ac40c11c8d2184fae2582c10c24009fbdef6dd2d87c8.png" />
+<img alt="_images/606dc482564810f0f20e1fbcddc4dffc2e5139ee64a662c757ee9e3bcd75ac57.png" src="_images/606dc482564810f0f20e1fbcddc4dffc2e5139ee64a662c757ee9e3bcd75ac57.png" />
+<img alt="_images/aa983910eb36533dd620fbb052aff86ec9d8d0019b26c623c16e862d8d2f7059.png" src="_images/aa983910eb36533dd620fbb052aff86ec9d8d0019b26c623c16e862d8d2f7059.png" />
+<img alt="_images/e374800c69026f07bae16a0fb49c94c8c0d3beadd144a49fa017dab4da6c3c12.png" src="_images/e374800c69026f07bae16a0fb49c94c8c0d3beadd144a49fa017dab4da6c3c12.png" />
+<img alt="_images/85d2dc2a8e4100476e0d0a24f6a122ff80b6e2d6bab4f0987898c0a9458bcdf7.png" src="_images/85d2dc2a8e4100476e0d0a24f6a122ff80b6e2d6bab4f0987898c0a9458bcdf7.png" />
+<img alt="_images/e6591b09bd3b5a127b9681867ddfa5bae8eeb0f3e4f6ab79aa473f27e612d2f8.png" src="_images/e6591b09bd3b5a127b9681867ddfa5bae8eeb0f3e4f6ab79aa473f27e612d2f8.png" />
+<img alt="_images/ee03625ce77b56a4c8a6747be7e2223df99f367c8c9b21edcd834a5414b242a3.png" src="_images/ee03625ce77b56a4c8a6747be7e2223df99f367c8c9b21edcd834a5414b242a3.png" />
+<img alt="_images/b88952dc9598a70d6270542957442fe281b8a17658256bd78bba3b71ee20aedd.png" src="_images/b88952dc9598a70d6270542957442fe281b8a17658256bd78bba3b71ee20aedd.png" />
+<img alt="_images/92c00661aa444c3de88d8e5b7d0b4a08df324579d6ff4d77d5367955bdf95d4d.png" src="_images/92c00661aa444c3de88d8e5b7d0b4a08df324579d6ff4d77d5367955bdf95d4d.png" />
+<img alt="_images/228c1662ee7141921d49b4b68a8e0c0fed630039bddf38c9511a1b966acc11ec.png" src="_images/228c1662ee7141921d49b4b68a8e0c0fed630039bddf38c9511a1b966acc11ec.png" />
+<img alt="_images/0c55f9f3cc34e59a374d3b06727458eb39241e6c348c9125f2ef407f7639457a.png" src="_images/0c55f9f3cc34e59a374d3b06727458eb39241e6c348c9125f2ef407f7639457a.png" />
+<img alt="_images/ab6b7bd4472e91797d676bb8ca59df7c56172ca1264d4ae27a8cc4d44a6321e0.png" src="_images/ab6b7bd4472e91797d676bb8ca59df7c56172ca1264d4ae27a8cc4d44a6321e0.png" />
+<img alt="_images/28165c53da39a3c13a78913114c204b1a127c1b3c0d09252ddb79ded8b0a64f9.png" src="_images/28165c53da39a3c13a78913114c204b1a127c1b3c0d09252ddb79ded8b0a64f9.png" />
+<img alt="_images/5101da1f2b4053a9e241747ba1527c5dc4bc8a66f6ffffc93476c93c4e7605ed.png" src="_images/5101da1f2b4053a9e241747ba1527c5dc4bc8a66f6ffffc93476c93c4e7605ed.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Categórica</th>
+      <th>Numérica</th>
+      <th>Prueba</th>
+      <th>Normalidad_OK</th>
+      <th>Homocedasticidad_OK</th>
+      <th>p-Levene</th>
+      <th>Estadístico</th>
+      <th>p-valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Gender</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.485397</td>
+      <td>0.004881</td>
+      <td>0.944301</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Gender</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.484763</td>
+      <td>0.002273</td>
+      <td>0.961974</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Gender</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.384236</td>
+      <td>2.000556</td>
+      <td>0.157242</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Gender</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.664562</td>
+      <td>0.002879</td>
+      <td>0.957207</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Gender</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.794736</td>
+      <td>7.043431</td>
+      <td>0.007956</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Country</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.225315</td>
+      <td>8.870927</td>
+      <td>0.449273</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Country</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.488191</td>
+      <td>6.882726</td>
+      <td>0.649328</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Country</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.340051</td>
+      <td>11.877293</td>
+      <td>0.220316</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Country</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.622783</td>
+      <td>3.664433</td>
+      <td>0.932080</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Country</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.271185</td>
+      <td>4.811564</td>
+      <td>0.850416</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Ethnicity</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.780655</td>
+      <td>1.831779</td>
+      <td>0.766663</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Ethnicity</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.179338</td>
+      <td>0.671904</td>
+      <td>0.954748</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Ethnicity</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.173087</td>
+      <td>1.641710</td>
+      <td>0.801277</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ethnicity</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.585414</td>
+      <td>7.517001</td>
+      <td>0.110962</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Ethnicity</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.041313</td>
+      <td>6.310519</td>
+      <td>0.177128</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Family_History</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.046459</td>
+      <td>2.379642</td>
+      <td>0.122926</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Family_History</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.809819</td>
+      <td>5.345033</td>
+      <td>0.020781</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Family_History</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.856685</td>
+      <td>0.374010</td>
+      <td>0.540827</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Family_History</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.912134</td>
+      <td>0.032954</td>
+      <td>0.855950</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Family_History</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.212871</td>
+      <td>1.774364</td>
+      <td>0.182843</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Radiation_Exposure</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.570835</td>
+      <td>3.415552</td>
+      <td>0.064585</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Radiation_Exposure</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.396084</td>
+      <td>0.009479</td>
+      <td>0.922440</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Radiation_Exposure</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.848254</td>
+      <td>2.243160</td>
+      <td>0.134207</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Radiation_Exposure</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.134561</td>
+      <td>0.017747</td>
+      <td>0.894022</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Radiation_Exposure</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.428812</td>
+      <td>0.003014</td>
+      <td>0.956218</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Iodine_Deficiency</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.904620</td>
+      <td>1.187722</td>
+      <td>0.275790</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Iodine_Deficiency</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.453040</td>
+      <td>0.143838</td>
+      <td>0.704495</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Iodine_Deficiency</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.464890</td>
+      <td>0.000114</td>
+      <td>0.991477</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Iodine_Deficiency</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.331656</td>
+      <td>0.376063</td>
+      <td>0.539718</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Iodine_Deficiency</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.280878</td>
+      <td>0.000285</td>
+      <td>0.986542</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Smoking</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.660551</td>
+      <td>0.039135</td>
+      <td>0.843181</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Smoking</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.124112</td>
+      <td>0.159894</td>
+      <td>0.689254</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Smoking</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.002182</td>
+      <td>0.284149</td>
+      <td>0.593995</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Smoking</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.564877</td>
+      <td>0.002252</td>
+      <td>0.962151</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Smoking</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.521642</td>
+      <td>1.349222</td>
+      <td>0.245414</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Obesity</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.474662</td>
+      <td>1.061471</td>
+      <td>0.302880</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Obesity</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.038162</td>
+      <td>0.370654</td>
+      <td>0.542648</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Obesity</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.775385</td>
+      <td>0.240779</td>
+      <td>0.623644</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Obesity</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.394220</td>
+      <td>1.100551</td>
+      <td>0.294145</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Obesity</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.135889</td>
+      <td>1.732267</td>
+      <td>0.188122</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Diabetes</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.181485</td>
+      <td>1.436332</td>
+      <td>0.230734</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Diabetes</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.024469</td>
+      <td>0.654110</td>
+      <td>0.418647</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Diabetes</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.663930</td>
+      <td>0.677742</td>
+      <td>0.410365</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Diabetes</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.234996</td>
+      <td>0.067774</td>
+      <td>0.794606</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Diabetes</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.074423</td>
+      <td>0.772822</td>
+      <td>0.379345</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Diagnosis</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.502365</td>
+      <td>0.002792</td>
+      <td>0.957861</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Diagnosis</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.380399</td>
+      <td>1.514385</td>
+      <td>0.218471</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Diagnosis</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.839462</td>
+      <td>1.216515</td>
+      <td>0.270046</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Diagnosis</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.810381</td>
+      <td>0.314599</td>
+      <td>0.574872</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Diagnosis</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.977052</td>
+      <td>1.503649</td>
+      <td>0.220111</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>Age</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.585203</td>
+      <td>2.271072</td>
+      <td>0.321250</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>TSH_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.539708</td>
+      <td>1.607559</td>
+      <td>0.447634</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>T3_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.463471</td>
+      <td>2.758072</td>
+      <td>0.251821</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>T4_Level</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.496013</td>
+      <td>2.483825</td>
+      <td>0.288831</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>Nodule_Size</td>
+      <td>Kruskal-Wallis</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.640644</td>
+      <td>0.165870</td>
+      <td>0.920411</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="comparacion-de-variables-con-el-target">
+<h3>Comparacion de variables con el target<a class="headerlink" href="#comparacion-de-variables-con-el-target" title="Link to this heading">#</a></h3>
+<p>realizamos una comparacion mas detenidamente entre la variable objetivo y las demas variables para ver como se comparan entre si</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comparacion_numericas_target</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;Thyroid_Cancer_Risk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Patient_ID vs Thyroid_Cancer_Risk =====
+</pre></div>
+</div>
+<img alt="_images/26bae73855d768c4f0549b02c24a9f4d096e7551a9a91eb88a2c1c1b5f9b58a6.png" src="_images/26bae73855d768c4f0549b02c24a9f4d096e7551a9a91eb88a2c1c1b5f9b58a6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Age vs Thyroid_Cancer_Risk =====
+</pre></div>
+</div>
+<img alt="_images/2be64e9a3b24d12cfd0bfd5f942f036c7f2ea7c6b3952ed3ffba0f0edb319e3d.png" src="_images/2be64e9a3b24d12cfd0bfd5f942f036c7f2ea7c6b3952ed3ffba0f0edb319e3d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: TSH_Level vs Thyroid_Cancer_Risk =====
+</pre></div>
+</div>
+<img alt="_images/b495b7ba6a41704435700fd89832c0fbf6b8e41a8797cfdd408db98f5589ccea.png" src="_images/b495b7ba6a41704435700fd89832c0fbf6b8e41a8797cfdd408db98f5589ccea.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: T3_Level vs Thyroid_Cancer_Risk =====
+</pre></div>
+</div>
+<img alt="_images/05975900217e75c04e966a2c95be4400d2892d1c881df1b62f046e584e77b786.png" src="_images/05975900217e75c04e966a2c95be4400d2892d1c881df1b62f046e584e77b786.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: T4_Level vs Thyroid_Cancer_Risk =====
+</pre></div>
+</div>
+<img alt="_images/3e1dff2b253f4b6a5d7f3c541d0bf1ed7b40e03692d41cc5a2c8eb464ef88f3a.png" src="_images/3e1dff2b253f4b6a5d7f3c541d0bf1ed7b40e03692d41cc5a2c8eb464ef88f3a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Nodule_Size vs Thyroid_Cancer_Risk =====
+</pre></div>
+</div>
+<img alt="_images/0beafa69f4005263f9e42d870721b99069528cb3c26a07720b15d11680a81277.png" src="_images/0beafa69f4005263f9e42d870721b99069528cb3c26a07720b15d11680a81277.png" />
+</div>
+</div>
+<p>Se realizan comparaciones entre la variable objetivo y las categoricas y se examina el numero de personas que pertenecen a cada una de las categorias con respecto a las otras variables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comparacion_categoricas_target</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;Thyroid_Cancer_Risk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Gender vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Gender                                   
+Female               19297  64791   43439
+Male                 12606  43597   28961
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Gender                                 
+Female               0.15  0.51    0.34
+Male                 0.15  0.51    0.34
+</pre></div>
+</div>
+<img alt="_images/892e5c8bd31a060309c377888515dbd8c789c056c57855f42ccfc0c222f432ee.png" src="_images/892e5c8bd31a060309c377888515dbd8c789c056c57855f42ccfc0c222f432ee.png" />
+<img alt="_images/77d1b4c77708599b6ae52b07d8aa46bdc45f61ff20c904765e17f16d866a989e.png" src="_images/77d1b4c77708599b6ae52b07d8aa46bdc45f61ff20c904765e17f16d866a989e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Country vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Country                                  
+Brazil                2308  11354    7751
+China                 3469  17140   11369
+Germany               1117   5704    3736
+India                13965  17117   11414
+Japan                 1697   9108    6062
+Nigeria               3357  17076   11485
+Russia                2226  11462    7609
+South Korea           1571   7943    5451
+UK                    1107   5803    3732
+USA                   1086   5681    3791
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Country                                
+Brazil               0.11  0.53    0.36
+China                0.11  0.54    0.36
+Germany              0.11  0.54    0.35
+India                0.33  0.40    0.27
+Japan                0.10  0.54    0.36
+Nigeria              0.11  0.53    0.36
+Russia               0.10  0.54    0.36
+South Korea          0.10  0.53    0.36
+UK                   0.10  0.55    0.35
+USA                  0.10  0.54    0.36
+</pre></div>
+</div>
+<img alt="_images/679e955c7d1a849354e5242008701c304370ebe2f3cb85c2b4341ffeefcf49fa.png" src="_images/679e955c7d1a849354e5242008701c304370ebe2f3cb85c2b4341ffeefcf49fa.png" />
+<img alt="_images/68fdac190ae0e77426a9376abf133f8926252441d54ed22643870c8f8c84b4eb.png" src="_images/68fdac190ae0e77426a9376abf133f8926252441d54ed22643870c8f8c84b4eb.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Ethnicity vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Ethnicity                                
+African               8209  20618   13587
+Asian                17829  21254   14178
+Caucasian             3200  36201   24268
+Hispanic              1575  18270   12167
+Middle Eastern        1090  12045    8200
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Ethnicity                              
+African              0.19  0.49    0.32
+Asian                0.33  0.40    0.27
+Caucasian            0.05  0.57    0.38
+Hispanic             0.05  0.57    0.38
+Middle Eastern       0.05  0.56    0.38
+</pre></div>
+</div>
+<img alt="_images/f7a0515659a8f2faa95cd292da32015265c2e11d0afa14261f012d6d2724fec4.png" src="_images/f7a0515659a8f2faa95cd292da32015265c2e11d0afa14261f012d6d2724fec4.png" />
+<img alt="_images/fbb3f3edc0dc6986ddc935821a656806206e43e908fc846557dd52313473d71d.png" src="_images/fbb3f3edc0dc6986ddc935821a656806206e43e908fc846557dd52313473d71d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Family_History vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Family_History                           
+No                   11676  82242   54948
+Yes                  20227  26146   17452
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Family_History                         
+No                   0.08  0.55    0.37
+Yes                  0.32  0.41    0.27
+</pre></div>
+</div>
+<img alt="_images/e6d29daa99cc4b679ec525cacea04b682f63c9a5255707a302ead05828ae9f80.png" src="_images/e6d29daa99cc4b679ec525cacea04b682f63c9a5255707a302ead05828ae9f80.png" />
+<img alt="_images/79e6e221d9e8efd72f7afe3ca06313f115868410ea3cd363c75cada0c260c582.png" src="_images/79e6e221d9e8efd72f7afe3ca06313f115868410ea3cd363c75cada0c260c582.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Radiation_Exposure vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Radiation_Exposure                       
+No                   22033  95171   63627
+Yes                   9870  13217    8773
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Radiation_Exposure                     
+No                   0.12  0.53    0.35
+Yes                  0.31  0.41    0.28
+</pre></div>
+</div>
+<img alt="_images/32c29bcd2cd3e274b5c9b81e7144b04acdf4f75315247dbc555be5e22aa86b3a.png" src="_images/32c29bcd2cd3e274b5c9b81e7144b04acdf4f75315247dbc555be5e22aa86b3a.png" />
+<img alt="_images/2b818d8830d726e021d03b8a2e00369e4ffe4080bfb45153b2c9852447abfc0f.png" src="_images/2b818d8830d726e021d03b8a2e00369e4ffe4080bfb45153b2c9852447abfc0f.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Iodine_Deficiency vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Iodine_Deficiency                        
+No                   16846  85630   57197
+Yes                  15057  22758   15203
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Iodine_Deficiency                      
+No                   0.11  0.54    0.36
+Yes                  0.28  0.43    0.29
+</pre></div>
+</div>
+<img alt="_images/b52a0446c74ff95779507e74acc3c420c408cf2a7fc8ec3d3efa77a7f8cb4b86.png" src="_images/b52a0446c74ff95779507e74acc3c420c408cf2a7fc8ec3d3efa77a7f8cb4b86.png" />
+<img alt="_images/d78ea0c30e8827ef6947a23fd8c99ffb865f7d82c30aba3a64dda190869d06c6.png" src="_images/d78ea0c30e8827ef6947a23fd8c99ffb865f7d82c30aba3a64dda190869d06c6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Smoking vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Smoking                                  
+No                   25534  86658   58068
+Yes                   6369  21730   14332
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Smoking                                
+No                   0.15  0.51    0.34
+Yes                  0.15  0.51    0.34
+</pre></div>
+</div>
+<img alt="_images/98620b942f3823e012966c5847e13e270dda922066d9e0c02fa78a46136dc856.png" src="_images/98620b942f3823e012966c5847e13e270dda922066d9e0c02fa78a46136dc856.png" />
+<img alt="_images/7f2618e9ce57b10d78a9e40ec7f67bf5793460e07b66dcb458c4bab7ed9055ef.png" src="_images/7f2618e9ce57b10d78a9e40ec7f67bf5793460e07b66dcb458c4bab7ed9055ef.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Obesity vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Obesity                                  
+No                   22430  75766   50609
+Yes                   9473  32622   21791
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Obesity                                
+No                   0.15  0.51    0.34
+Yes                  0.15  0.51    0.34
+</pre></div>
+</div>
+<img alt="_images/197fc0b369059324463311211d7c28c4e119bbdab9977dbe232d5d31938c2b30.png" src="_images/197fc0b369059324463311211d7c28c4e119bbdab9977dbe232d5d31938c2b30.png" />
+<img alt="_images/99ee952e80ad21f9d7e58eba789827a6d4e48a00920f044c0c196e6182c8a81c.png" src="_images/99ee952e80ad21f9d7e58eba789827a6d4e48a00920f044c0c196e6182c8a81c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Diabetes vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Diabetes                                 
+No                   25497  86602   57999
+Yes                   6406  21786   14401
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Diabetes                               
+No                   0.15  0.51    0.34
+Yes                  0.15  0.51    0.34
+</pre></div>
+</div>
+<img alt="_images/3c36e6cb7803e2c5eb0c52c51557869c45488cb76fde4f030845d1507aaaa0ed.png" src="_images/3c36e6cb7803e2c5eb0c52c51557869c45488cb76fde4f030845d1507aaaa0ed.png" />
+<img alt="_images/344c87bc117148b0ba089e880576edc9ed4483fd192881e6a96db794de60ac53.png" src="_images/344c87bc117148b0ba089e880576edc9ed4483fd192881e6a96db794de60ac53.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Diagnosis vs Thyroid_Cancer_Risk =====
+
+Frecuencias absolutas:
+ Thyroid_Cancer_Risk   High    Low  Medium
+Diagnosis                                
+Benign                9564  92153   61479
+Malignant            22339  16235   10921
+
+Frecuencias relativas (%):
+ Thyroid_Cancer_Risk  High   Low  Medium
+Diagnosis                              
+Benign               0.06  0.56    0.38
+Malignant            0.45  0.33    0.22
+</pre></div>
+</div>
+<img alt="_images/76940b71e56f6248cff6ceb77ab86644ccfb8ae2f34c0214ce99410f80f9e360.png" src="_images/76940b71e56f6248cff6ceb77ab86644ccfb8ae2f34c0214ce99410f80f9e360.png" />
+<img alt="_images/065f06bd40e6726526d2583051e773436af964ea21f42962d7135e1721724a4c.png" src="_images/065f06bd40e6726526d2583051e773436af964ea21f42962d7135e1721724a4c.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="analisis-de-correlacion">
+<h2>Analisis de correlacion<a class="headerlink" href="#analisis-de-correlacion" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">numericas</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Matriz de Correlación&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c9657076eb69a8356b7543d592107a9e41a965ae402294ce3b54429e0fba02ad.png" src="_images/c9657076eb69a8356b7543d592107a9e41a965ae402294ce3b54429e0fba02ad.png" />
+</div>
+</div>
+<p>Podemos observar que no hay correlaciones fuertes entre las variables numericas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_cat</span> <span class="o">=</span> <span class="n">categorical_corr_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_cat</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Matriz de correlación categórica (Cramér&#39;s V)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4b527588674c949ba6aaabef978250cf0cd2f200b4ca154746d2246530a9e980.png" src="_images/4b527588674c949ba6aaabef978250cf0cd2f200b4ca154746d2246530a9e980.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="introduccion_a_las_variables.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduccion a los datos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="split_procesamiento.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Split de los datos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">Importacion de librerias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-de-datos-desde-la-red">Cargado de datos desde la red</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-usadas">Funciones usadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-general-del-dataset">Analisis general del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">Analisis univariado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Analisis Bivariado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-variables-con-el-target">Comparacion de variables con el target</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-correlacion">Analisis de correlacion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Miguel Jaimes, Mateo Molinares, Mateo Gomez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
