@@ -803,9 +803,9 @@ Pipeline(steps=[(&#39;preprocesador&#39;,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best RandomForest CV score: 0.6665915534848386
-RandomForest Mejores parametros: {&#39;model__max_depth&#39;: 15, &#39;model__n_estimators&#39;: 100}
-Tiempo: 14.20 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best RandomForest CV score: 0.6678355022711764
+RandomForest Mejores parametros: {&#39;model__max_depth&#39;: None, &#39;model__min_samples_split&#39;: 5, &#39;model__n_estimators&#39;: 100}
+Tiempo: 76.56 minutos
 </pre></div>
 </div>
 </div>
@@ -817,25 +817,25 @@ Tiempo: 14.20 minutos
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3e6470a9dd52787fea9f899a24ad4ea2f0c40b32c1f8a3ef6496df473b648938.png" src="_images/3e6470a9dd52787fea9f899a24ad4ea2f0c40b32c1f8a3ef6496df473b648938.png" />
+<img alt="_images/61d8aafa8eb5ca9000ba4a54408bd8653d4861a7b374459d36ee57239dc4662a.png" src="_images/61d8aafa8eb5ca9000ba4a54408bd8653d4861a7b374459d36ee57239dc4662a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.60      0.85      0.70     21678
-      Medium       0.38      0.14      0.21     14480
+         Low       0.60      0.78      0.68     21678
+      Medium       0.40      0.21      0.28     14480
         High       1.00      1.00      1.00      6381
 
-    accuracy                           0.63     42539
-   macro avg       0.66      0.66      0.64     42539
-weighted avg       0.59      0.63      0.58     42539
+    accuracy                           0.62     42539
+   macro avg       0.67      0.67      0.65     42539
+weighted avg       0.59      0.62      0.59     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6306683278873504,
- &#39;Precision (macro)&#39;: 0.6605901163579252,
- &#39;Recall (macro)&#39;: 0.6634764548148805,
- &#39;F1-score (macro)&#39;: 0.6361147878760299,
- &#39;ROC-AUC&#39;: np.float64(0.7555282156448199)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6221349820165025,
+ &#39;Precision (macro)&#39;: 0.6654986118673757,
+ &#39;Recall (macro)&#39;: 0.6658441920817619,
+ &#39;F1-score (macro)&#39;: 0.6523630971986031,
+ &#39;ROC-AUC&#39;: 0.7542735423485278}
 </pre></div>
 </div>
 </div>
@@ -847,18 +847,15 @@ weighted avg       0.59      0.63      0.58     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/eacbc1bead36baac107d0c8addb296be85c539ec2662dcae8b5d9dbc76793052.png" src="_images/eacbc1bead36baac107d0c8addb296be85c539ec2662dcae8b5d9dbc76793052.png" />
+<img alt="_images/7ebf5faac8438899a5eb99963974f38c209544ad8e21d497c58fb2e51d7bfe85.png" src="_images/7ebf5faac8438899a5eb99963974f38c209544ad8e21d497c58fb2e51d7bfe85.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
 High: 1.0000
-Low: 0.6517
-Medium: 0.6149
-AUC macro promedio: 0.7555
+Low: 0.6512
+Medium: 0.6116
+AUC macro promedio: 0.7543
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(1.0),
-  1: np.float64(0.651689738977095),
-  2: np.float64(0.6148949079573645)},
- np.float64(0.7555404438629225))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 1.0, 1: 0.6512067346830224, 2: 0.6116138923625613}, 0.7542845349827716)
 </pre></div>
 </div>
 </div>
@@ -887,26 +884,26 @@ AUC macro promedio: 0.7555
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          feature  importance
-25       cat__Diagnosis_Malignant    0.208984
-19        cat__Family_History_Yes    0.165891
-15           cat__Ethnicity_Asian    0.131439
-21     cat__Iodine_Deficiency_Yes    0.111085
-8              cat__Country_India    0.094538
-20    cat__Radiation_Exposure_Yes    0.075873
-16       cat__Ethnicity_Caucasian    0.051707
-17        cat__Ethnicity_Hispanic    0.027783
-18  cat__Ethnicity_Middle Eastern    0.022130
-3                   num__T4_Level    0.012690
-1                  num__TSH_Level    0.012432
-4                num__Nodule_Size    0.012307
-2                   num__T3_Level    0.012256
-0                        num__Age    0.011593
-24              cat__Diabetes_Yes    0.006711
-22               cat__Smoking_Yes    0.006191
-23               cat__Obesity_Yes    0.005787
-6              cat__Country_China    0.005334
-10           cat__Country_Nigeria    0.005189
-5                cat__Gender_Male    0.004553
+25       cat__Diagnosis_Malignant    0.125822
+19        cat__Family_History_Yes    0.106389
+15           cat__Ethnicity_Asian    0.084311
+21     cat__Iodine_Deficiency_Yes    0.071906
+1                  num__TSH_Level    0.070627
+3                   num__T4_Level    0.070620
+4                num__Nodule_Size    0.069796
+2                   num__T3_Level    0.068942
+0                        num__Age    0.064209
+8              cat__Country_India    0.062383
+20    cat__Radiation_Exposure_Yes    0.051629
+16       cat__Ethnicity_Caucasian    0.036636
+17        cat__Ethnicity_Hispanic    0.021603
+18  cat__Ethnicity_Middle Eastern    0.015833
+5                cat__Gender_Male    0.010287
+23               cat__Obesity_Yes    0.009942
+22               cat__Smoking_Yes    0.009124
+24              cat__Diabetes_Yes    0.009033
+10           cat__Country_Nigeria    0.006918
+6              cat__Country_China    0.006716
 </pre></div>
 </div>
 </div>
@@ -924,7 +921,7 @@ AUC macro promedio: 0.7555
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ea6c11cc48500501bc351246c7d98158470d56b5f05ca648aff2daa2fd1dfeb3.png" src="_images/ea6c11cc48500501bc351246c7d98158470d56b5f05ca648aff2daa2fd1dfeb3.png" />
+<img alt="_images/d9cc06e4cd317808d1d2630bd6ad1e0901752de88b8a89ca519ab7dc293c01c8.png" src="_images/d9cc06e4cd317808d1d2630bd6ad1e0901752de88b8a89ca519ab7dc293c01c8.png" />
 </div>
 </div>
 <p>El gráfico de importancia de características del modelo Random Forest muestra que las variables con mayor peso predictivo son “Diagnosis_Malignant”, “Family_History_Yes” y “Ethnicity_Asian”, indicando que el historial familiar y ciertos factores étnicos tienen una fuerte influencia en la predicción. También destacan “Iodine_Deficiency_Yes”, “Country_India” y “Radiation_Exposure_Yes”, lo que sugiere la relevancia de factores ambientales y geográficos en la detección del cáncer. En contraste, variables como país de residencia o género presentan una contribución marginal, evidenciando que el modelo prioriza variables clínicas y genéticas por encima de las demográficas.</p>
@@ -950,7 +947,7 @@ AUC macro promedio: 0.7555
     <span class="s2">&quot;model__max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
     <span class="s2">&quot;model__subsample&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>         
     <span class="s2">&quot;model__colsample_bytree&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
-    <span class="s1">&#39;modelo__min_child_weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="s1">&#39;model__min_child_weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -987,8 +984,8 @@ AUC macro promedio: 0.7555
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>XGBoost balanceado SMOTE - Mejor score:  0.666872820894058
-XGBoost balanceado SMOTE - Mejores parametros : {&#39;model__colsample_bytree&#39;: 0.8, &#39;model__learning_rate&#39;: 0.1, &#39;model__max_depth&#39;: 3, &#39;model__n_estimators&#39;: 200, &#39;model__subsample&#39;: 0.8}
-Tiempo: 79.80 minutos
+XGBoost balanceado SMOTE - Mejores parametros : {&#39;model__colsample_bytree&#39;: 0.8, &#39;model__learning_rate&#39;: 0.1, &#39;model__max_depth&#39;: 3, &#39;model__min_child_weight&#39;: 1, &#39;model__n_estimators&#39;: 200, &#39;model__subsample&#39;: 0.8}
+Tiempo: 142.13 minutos
 </pre></div>
 </div>
 </div>
@@ -1019,7 +1016,7 @@ weighted avg       0.59      0.65      0.55     42539
  &#39;Precision (macro)&#39;: 0.6695216471364859,
  &#39;Recall (macro)&#39;: 0.667168212649329,
  &#39;F1-score (macro)&#39;: 0.606018670343519,
- &#39;ROC-AUC&#39;: np.float64(0.7585158592591448)}
+ &#39;ROC-AUC&#39;: 0.7585158592591448}
 </pre></div>
 </div>
 </div>
@@ -38167,25 +38164,25 @@ weighted avg       0.59      0.65      0.55     42539
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_divB3D5IN6WFQ03FT4"></div>
+        <div class="lime top_div" id="top_divGFLM5FNFGH3EZC1"></div>
         
         <script>
-        var top_div = d3.select('#top_divB3D5IN6WFQ03FT4').classed('lime top_div', true);
+        var top_div = d3.select('#top_divGFLM5FNFGH3EZC1').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["Clase 0", "Clase 1"], [0.009046491012402087, 0.5038866189127911, 0.48706689007480686]);
+            var pp = new lime.PredictProba(pp_svg, ["Clase 0", "Clase 1"], [0.0, 0.5370674603174606, 0.46293253968253956]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["Clase 0", "Clase 1"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["cat__Radiation_Exposure_Yes <= 0.00", 0.14786817658703819], ["cat__Country_India <= 0.00", 0.10640839369498827], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.1005686686179933], ["cat__Family_History_Yes <= 0.00", 0.0903227672110581], ["0.00 < cat__Iodine_Deficiency_Yes <= 1.00", -0.06029894546743655], ["cat__Ethnicity_Caucasian <= 0.00", -0.035582028104137846], ["cat__Ethnicity_Middle Eastern <= 0.00", -0.032813935505922605], ["cat__Ethnicity_Hispanic <= 0.00", -0.02906016714880299], ["cat__Country_UK <= 0.00", -0.02575209673162668], ["cat__Diabetes_Yes <= 0.00", -0.01889923825789565]], 1, exp_div);
+                exp.show([["cat__Radiation_Exposure_Yes <= 0.00", 0.18860420277431902], ["cat__Country_India <= 0.00", 0.12453236922557158], ["cat__Family_History_Yes <= 0.00", 0.10181410570457056], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.09751485118925375], ["0.00 < cat__Iodine_Deficiency_Yes <= 1.00", -0.05997891061743221], ["cat__Ethnicity_Hispanic <= 0.00", -0.035397361898587144], ["cat__Ethnicity_Caucasian <= 0.00", -0.03419467603270534], ["cat__Ethnicity_Middle Eastern <= 0.00", -0.02992569561132394], ["cat__Country_Germany > 0.00", 0.024269979528547026], ["0.00 < cat__Gender_Male <= 1.00", 0.015736398951916752]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["cat__Radiation_Exposure_Yes", "0.00", 0.14786817658703819], ["cat__Country_India", "0.00", 0.10640839369498827], ["cat__Ethnicity_Asian", "1.00", -0.1005686686179933], ["cat__Family_History_Yes", "0.00", 0.0903227672110581], ["cat__Iodine_Deficiency_Yes", "1.00", -0.06029894546743655], ["cat__Ethnicity_Caucasian", "0.00", -0.035582028104137846], ["cat__Ethnicity_Middle Eastern", "0.00", -0.032813935505922605], ["cat__Ethnicity_Hispanic", "0.00", -0.02906016714880299], ["cat__Country_UK", "0.00", -0.02575209673162668], ["cat__Diabetes_Yes", "0.00", -0.01889923825789565]], 1, raw_div);
+            exp.show_raw_tabular([["cat__Radiation_Exposure_Yes", "0.00", 0.18860420277431902], ["cat__Country_India", "0.00", 0.12453236922557158], ["cat__Family_History_Yes", "0.00", 0.10181410570457056], ["cat__Ethnicity_Asian", "1.00", -0.09751485118925375], ["cat__Iodine_Deficiency_Yes", "1.00", -0.05997891061743221], ["cat__Ethnicity_Hispanic", "0.00", -0.035397361898587144], ["cat__Ethnicity_Caucasian", "0.00", -0.03419467603270534], ["cat__Ethnicity_Middle Eastern", "0.00", -0.02992569561132394], ["cat__Country_Germany", "1.00", 0.024269979528547026], ["cat__Gender_Male", "1.00", 0.015736398951916752]], 1, raw_div);
         
         </script>
         </body></html></div></div>
