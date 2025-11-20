@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Gridsearch';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Conclusiones" href="conclusiones.html" />
+    <link rel="next" title="Conclusiones" href="referencias.html" />
     <link rel="prev" title="SVM" href="svm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -191,14 +191,9 @@
 <li class="toctree-l1"><a class="reference internal" href="XGBoost.html">XGBoost</a></li>
 <li class="toctree-l1"><a class="reference internal" href="svm.html">SVM</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Gridsearch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">librerias</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
 </ul>
 
     </div>
@@ -770,9 +765,9 @@ Pipeline(steps=[(&#39;preprocesador&#39;,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_rf</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;model__n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
-    <span class="s1">&#39;model__max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
-    <span class="s1">&#39;model__min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+    <span class="s2">&quot;model__n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span>
+    <span class="s2">&quot;model__max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;model__min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -38231,7 +38226,7 @@ weighted avg       0.59      0.65      0.55     42539
       </div>
     </a>
     <a class="right-next"
-       href="conclusiones.html"
+       href="referencias.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
