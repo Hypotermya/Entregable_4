@@ -193,7 +193,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
 </ul>
 
     </div>
@@ -393,12 +395,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-de-datos-desde-la-red">Cargado de datos desde la red</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-usadas">Funciones usadas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-general-del-dataset">Analisis general del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general-de-la-hoja-datos-pacientes">Resumen general de la hoja “Datos pacientes”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encabezado-del-dataset">Encabezado del dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">Analisis univariado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Analisis Bivariado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-variables-con-el-target">Comparacion de variables con el target</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-correlacion">Analisis de correlacion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones">Observaciones</a></li>
 </ul>
             </nav>
         </div>
@@ -597,6 +602,7 @@ document.write(`
 </section>
 <section id="funciones-usadas">
 <h2>Funciones usadas<a class="headerlink" href="#funciones-usadas" title="Link to this heading">#</a></h2>
+<p>Funciones a utilizar en este proyecto</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">Summary</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sheet</span><span class="p">):</span>
@@ -1181,6 +1187,23 @@ Resumen:
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="resumen-general-de-la-hoja-datos-pacientes">
+<h2>Resumen general de la hoja “Datos pacientes”<a class="headerlink" href="#resumen-general-de-la-hoja-datos-pacientes" title="Link to this heading">#</a></h2>
+<p>El dataset contiene 212,691 filas y 17 columnas.
+No se encontraron valores faltantes ni filas duplicadas, lo que evita la necesidad
+de aplicar limpieza básica como eliminación o imputación de datos.
+Estos datos están listos para análisis exploratorio o preparación para modelos ML.</p>
+</section>
+<section id="encabezado-del-dataset">
+<h2>Encabezado del dataset<a class="headerlink" href="#encabezado-del-dataset" title="Link to this heading">#</a></h2>
+<p>Las primeras filas muestran variables demográficas (Age, Gender, Country, Ethnicity),
+historial clínico (Family_History, Radiation_Exposure, Iodine_Deficiency, Smoking,
+Obesity, Diabetes) y mediciones hormonales (TSH_Level, T3_Level, T4_Level).
+También se incluye Nodule_Size y una etiqueta de riesgo (Thyroid_Cancer_Risk),
+además de la variable objetivo Diagnosis (Benign o Malignant).
+Este conjunto de características combina variables categóricas y numéricas,
+ideal para modelos supervisados de clasificación orientados a diagnóstico clínico.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -1307,6 +1330,10 @@ Name: count, dtype: int64
 </div>
 </div>
 </div>
+<p>Como podemos ver esta distribución muestra un claro desbalance entre clases, ya que la mayoría
+de los pacientes se concentran en los niveles Low y Medium.
+La categoría High es significativamente menor (~15% del total), lo cual sera
+importante para el modelado</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
@@ -1325,7 +1352,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/534c7d4db4c38c473c104c0c16fc094b35d2e48483924ad88552ce8654dbd524.png" src="_images/534c7d4db4c38c473c104c0c16fc094b35d2e48483924ad88552ce8654dbd524.png" />
+<img alt="_images/1c573997124702c282ca002e3817bdce6a60b82eb86b5a0f2bce7b7c26a0e97f.png" src="_images/1c573997124702c282ca002e3817bdce6a60b82eb86b5a0f2bce7b7c26a0e97f.png" />
 </div>
 </div>
 <p>podemos observar que el dataset esta desbalanceado, tomaremos en cuenta esto mas adelante</p>
@@ -1341,7 +1368,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9d72334438437b620723a7d2e504e3b5f46c2267d8194f33b4d4205e30632279.png" src="_images/9d72334438437b620723a7d2e504e3b5f46c2267d8194f33b4d4205e30632279.png" />
+<img alt="_images/a4c7817f4a5e4b3735e8c7c135019f71b231caae6efe8300e2b7cc672cc4cb2c.png" src="_images/a4c7817f4a5e4b3735e8c7c135019f71b231caae6efe8300e2b7cc672cc4cb2c.png" />
 </div>
 </div>
 <p>se realiza lo mismo para las variables categoricas</p>
@@ -1360,16 +1387,16 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/239de9cde6d9e3310d4eb45413c7435b81b577bc7aba70a022c7e1f1ae9d6d77.png" src="_images/239de9cde6d9e3310d4eb45413c7435b81b577bc7aba70a022c7e1f1ae9d6d77.png" />
-<img alt="_images/f5cc98d4d0cf7d2b1ac795f79ad56b14232e782318641a54b5ae07871d9dbbc4.png" src="_images/f5cc98d4d0cf7d2b1ac795f79ad56b14232e782318641a54b5ae07871d9dbbc4.png" />
-<img alt="_images/bf4343afe59d21ea55442c6d1ffd3dc6becd6d49ad98dc38c2bc545bb28ef653.png" src="_images/bf4343afe59d21ea55442c6d1ffd3dc6becd6d49ad98dc38c2bc545bb28ef653.png" />
-<img alt="_images/24c5accef0e54f5a59878a2827f56ee154283c12227d2f32e66a75a6ebc36f7e.png" src="_images/24c5accef0e54f5a59878a2827f56ee154283c12227d2f32e66a75a6ebc36f7e.png" />
-<img alt="_images/8051bcde28108d886a16e111b6dc39487d6d42674e125bdb66f8b6787665d8ed.png" src="_images/8051bcde28108d886a16e111b6dc39487d6d42674e125bdb66f8b6787665d8ed.png" />
-<img alt="_images/4b65d2246b956453ddb8c5d55737050d80dacf16e61579f703fc05592de88226.png" src="_images/4b65d2246b956453ddb8c5d55737050d80dacf16e61579f703fc05592de88226.png" />
-<img alt="_images/4005bbd3a912c03d5d736166f0c3f81d0e1a26d3a3d4d5dec280db5a4cf97a31.png" src="_images/4005bbd3a912c03d5d736166f0c3f81d0e1a26d3a3d4d5dec280db5a4cf97a31.png" />
-<img alt="_images/60a7d54177f07b2579ae8bef20c61c3f83c412031f7dffe92f077c052643ddff.png" src="_images/60a7d54177f07b2579ae8bef20c61c3f83c412031f7dffe92f077c052643ddff.png" />
-<img alt="_images/0454f0be4d86c284ce65d69b7dc4d5c7ff08dd8e26621476a7d0a8fe11d103a7.png" src="_images/0454f0be4d86c284ce65d69b7dc4d5c7ff08dd8e26621476a7d0a8fe11d103a7.png" />
-<img alt="_images/c1e8153a943b11d4850d27c37c8bd826ff1c271a1d1e09541b6612f82f3a20e2.png" src="_images/c1e8153a943b11d4850d27c37c8bd826ff1c271a1d1e09541b6612f82f3a20e2.png" />
+<img alt="_images/43ebe46b2e53848bf779eba6bfcfdb05c76bfe0e5bcc21b7143ae1bf6c0f3be6.png" src="_images/43ebe46b2e53848bf779eba6bfcfdb05c76bfe0e5bcc21b7143ae1bf6c0f3be6.png" />
+<img alt="_images/c0da8a5899ae43ec265261d8e5620883b854bd96a2750f1d5954b5ec7c7940f7.png" src="_images/c0da8a5899ae43ec265261d8e5620883b854bd96a2750f1d5954b5ec7c7940f7.png" />
+<img alt="_images/15c7140e3fd513b623ef93e3495c62c50e3b6a5ca59c47226285434d913efd04.png" src="_images/15c7140e3fd513b623ef93e3495c62c50e3b6a5ca59c47226285434d913efd04.png" />
+<img alt="_images/22da36981daac42230281fbd464c26dbfed6ab0cb3ba57eb1c9c8f7eee6a6475.png" src="_images/22da36981daac42230281fbd464c26dbfed6ab0cb3ba57eb1c9c8f7eee6a6475.png" />
+<img alt="_images/42f7eca72e2000d384b6200d951c9468f6de212e3361802ccec9e3f3cbc258ea.png" src="_images/42f7eca72e2000d384b6200d951c9468f6de212e3361802ccec9e3f3cbc258ea.png" />
+<img alt="_images/8ec28479976d17ab8803899f3e99a1251af84c906ebd6f50b39b861dce3bddd0.png" src="_images/8ec28479976d17ab8803899f3e99a1251af84c906ebd6f50b39b861dce3bddd0.png" />
+<img alt="_images/3b4c18da3b9efad16a270ea8d6ce3903a8865c661098c1272e5651e65fad18ca.png" src="_images/3b4c18da3b9efad16a270ea8d6ce3903a8865c661098c1272e5651e65fad18ca.png" />
+<img alt="_images/8798cbab432b3a19f548e6c261eb2f4e3ab84d4e7cb12eec363a472b51c79075.png" src="_images/8798cbab432b3a19f548e6c261eb2f4e3ab84d4e7cb12eec363a472b51c79075.png" />
+<img alt="_images/8725a6331f8d474d38a094f2edadd8fd4e6eacf7f49f927d8e44c2080828017b.png" src="_images/8725a6331f8d474d38a094f2edadd8fd4e6eacf7f49f927d8e44c2080828017b.png" />
+<img alt="_images/3531a5ab7e36974ceee73dee975cd9d5eecef9a564fc1fcfefaf0cb795c58899.png" src="_images/3531a5ab7e36974ceee73dee975cd9d5eecef9a564fc1fcfefaf0cb795c58899.png" />
 </div>
 </div>
 </section>
@@ -1608,16 +1635,16 @@ Name: count, dtype: int64
     </tr>
   </tbody>
 </table>
-</div></div><img alt="_images/897f74a2d014ce154f8f7da1294b992900bcaae5cf3e22990ddc6922d77022ad.png" src="_images/897f74a2d014ce154f8f7da1294b992900bcaae5cf3e22990ddc6922d77022ad.png" />
-<img alt="_images/8b02f5cf4d03755a4ddb8f2ef9ec1d6c44ff86bf276ee2d932a64b3e91fe59c1.png" src="_images/8b02f5cf4d03755a4ddb8f2ef9ec1d6c44ff86bf276ee2d932a64b3e91fe59c1.png" />
-<img alt="_images/33cf556f69520a30155f7110ebe936f8f9dbc8e89907c4a5c07c172aee7ab0cb.png" src="_images/33cf556f69520a30155f7110ebe936f8f9dbc8e89907c4a5c07c172aee7ab0cb.png" />
-<img alt="_images/4c9de8a25c05a6c9f4e851d7151ef8d76c57155eef73081a2762585115d486fc.png" src="_images/4c9de8a25c05a6c9f4e851d7151ef8d76c57155eef73081a2762585115d486fc.png" />
-<img alt="_images/b71bf04dbbf0468f4cd061c5a764115265619672eedf1f970ac6fd4534be1a63.png" src="_images/b71bf04dbbf0468f4cd061c5a764115265619672eedf1f970ac6fd4534be1a63.png" />
-<img alt="_images/ed2bce629aed4a4bda343a57fe36f1b32298a96208e18bc3da4f3ed41c8108fb.png" src="_images/ed2bce629aed4a4bda343a57fe36f1b32298a96208e18bc3da4f3ed41c8108fb.png" />
-<img alt="_images/69084e44ff1f5a3b253efe4c4dd3157f4bb8bac13dc27c1025cdd9c6bb81de27.png" src="_images/69084e44ff1f5a3b253efe4c4dd3157f4bb8bac13dc27c1025cdd9c6bb81de27.png" />
-<img alt="_images/3c1c132c0b050828863b85e3a6dcd919b4dcff80b79d5f28bb57e3b8291c8e84.png" src="_images/3c1c132c0b050828863b85e3a6dcd919b4dcff80b79d5f28bb57e3b8291c8e84.png" />
-<img alt="_images/bf98a039fa0dd1438f2c3e9cb30701c54d07093ad0314ef005e635d330912509.png" src="_images/bf98a039fa0dd1438f2c3e9cb30701c54d07093ad0314ef005e635d330912509.png" />
-<img alt="_images/e286150a9031d6c09f3ace9cb46d8de4aecef67aa1d1e0bd8954a901d5916dec.png" src="_images/e286150a9031d6c09f3ace9cb46d8de4aecef67aa1d1e0bd8954a901d5916dec.png" />
+</div></div><img alt="_images/8ee600ca3601cc5a3edd327d8a6add6801763c08885424f6233aabb70f34c814.png" src="_images/8ee600ca3601cc5a3edd327d8a6add6801763c08885424f6233aabb70f34c814.png" />
+<img alt="_images/b1d6d05d7a95ffae45bbf0ffc9a5348f195dcfba73363b6a0414098eb101e12d.png" src="_images/b1d6d05d7a95ffae45bbf0ffc9a5348f195dcfba73363b6a0414098eb101e12d.png" />
+<img alt="_images/fd0334c4c16c188fa402ff0e579a937fbb7d8192acb3fa032ce443cf84bcf4ed.png" src="_images/fd0334c4c16c188fa402ff0e579a937fbb7d8192acb3fa032ce443cf84bcf4ed.png" />
+<img alt="_images/a48954691358da49343e380ed2d5f3bab2efedccb5e4721f7327240cdca55a40.png" src="_images/a48954691358da49343e380ed2d5f3bab2efedccb5e4721f7327240cdca55a40.png" />
+<img alt="_images/35291d02129aa563903c9a0a542f69f35f7b959b2b9997ffc1fad75f45d0421d.png" src="_images/35291d02129aa563903c9a0a542f69f35f7b959b2b9997ffc1fad75f45d0421d.png" />
+<img alt="_images/5fee6adfc1254904f08888d5c46c1f890d609c69d721cfe5ce102e37755bd03a.png" src="_images/5fee6adfc1254904f08888d5c46c1f890d609c69d721cfe5ce102e37755bd03a.png" />
+<img alt="_images/c86cb61741fcdb67b368d792a1dec003950945b87d19001d78105bf0877932a1.png" src="_images/c86cb61741fcdb67b368d792a1dec003950945b87d19001d78105bf0877932a1.png" />
+<img alt="_images/7dcff1086c2cd631aa51178bf3e65e81e8930a8fdd6f9b4b26ba9a2f1f74be8f.png" src="_images/7dcff1086c2cd631aa51178bf3e65e81e8930a8fdd6f9b4b26ba9a2f1f74be8f.png" />
+<img alt="_images/d863b7e6697528b55ce34d10959a9111c69f4e55ae8ce3f37c4af11a75913bcc.png" src="_images/d863b7e6697528b55ce34d10959a9111c69f4e55ae8ce3f37c4af11a75913bcc.png" />
+<img alt="_images/4dd1f3722d14fc89c389389faa5cd2c14fe7b12c118f875f096a8feba39a1e86.png" src="_images/4dd1f3722d14fc89c389389faa5cd2c14fe7b12c118f875f096a8feba39a1e86.png" />
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1767,15 +1794,6 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>Thyroid_Cancer_Risk</td>
-      <td>Diagnosis</td>
-      <td>45942.931977</td>
-      <td>2</td>
-      <td>0.0</td>
-      <td>0.464757</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>Ethnicity</td>
       <td>Thyroid_Cancer_Risk</td>
       <td>24048.658999</td>
@@ -1784,7 +1802,7 @@ Name: count, dtype: int64
       <td>0.237731</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>1</th>
       <td>Ethnicity</td>
       <td>Diagnosis</td>
       <td>5146.683841</td>
@@ -1793,22 +1811,31 @@ Name: count, dtype: int64
       <td>0.155497</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>Family_History</td>
-      <td>Thyroid_Cancer_Risk</td>
-      <td>19926.918897</td>
-      <td>2</td>
-      <td>0.0</td>
-      <td>0.306073</td>
-    </tr>
-    <tr>
-      <th>4</th>
+      <th>2</th>
       <td>Country</td>
       <td>Diagnosis</td>
       <td>2757.420910</td>
       <td>9</td>
       <td>0.0</td>
       <td>0.113676</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Country</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>13307.120917</td>
+      <td>18</td>
+      <td>0.0</td>
+      <td>0.176750</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Radiation_Exposure</td>
+      <td>Diagnosis</td>
+      <td>1685.753639</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.089001</td>
     </tr>
   </tbody>
 </table>
@@ -1891,26 +1918,26 @@ Name: count, dtype: int64
 </table>
 </div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gráficos de las relaciones más significativas:
 
-Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
+Ethnicity vs Thyroid_Cancer_Risk (p = 0.0000, V de Cramer = 0.238)
 </pre></div>
 </div>
-<img alt="_images/36205892768cf2b77cb432e40129b793e5613385390a0ac6842dc4abfdff6872.png" src="_images/36205892768cf2b77cb432e40129b793e5613385390a0ac6842dc4abfdff6872.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ethnicity vs Thyroid_Cancer_Risk (p = 0.0000, V de Cramer = 0.238)
-</pre></div>
-</div>
-<img alt="_images/f5fcda62b3a31e72f6e5d3328cdfefe211e2812e184eb9ec2a47b80cd77bf1f2.png" src="_images/f5fcda62b3a31e72f6e5d3328cdfefe211e2812e184eb9ec2a47b80cd77bf1f2.png" />
+<img alt="_images/e551f810a339226eae6e6314699c73614945b53b7778ba4fd9fa444ff2bdb08a.png" src="_images/e551f810a339226eae6e6314699c73614945b53b7778ba4fd9fa444ff2bdb08a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ethnicity vs Diagnosis (p = 0.0000, V de Cramer = 0.155)
 </pre></div>
 </div>
-<img alt="_images/02757758009843bd5160a7e81ffadb7ede943be6d54abc09c641c16c0cf9a67e.png" src="_images/02757758009843bd5160a7e81ffadb7ede943be6d54abc09c641c16c0cf9a67e.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family_History vs Thyroid_Cancer_Risk (p = 0.0000, V de Cramer = 0.306)
-</pre></div>
-</div>
-<img alt="_images/cc938023831a06e6852424b55a473ed6dbb547543cc0dad380b9b19cdd5e40ee.png" src="_images/cc938023831a06e6852424b55a473ed6dbb547543cc0dad380b9b19cdd5e40ee.png" />
+<img alt="_images/1825eabe8ad341e61f955a7760464f43753d3810814efd15ead614402e07b3b4.png" src="_images/1825eabe8ad341e61f955a7760464f43753d3810814efd15ead614402e07b3b4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Country vs Diagnosis (p = 0.0000, V de Cramer = 0.114)
 </pre></div>
 </div>
-<img alt="_images/84d92c1f5842bd59060d4de4c02933de0d4bb329f0b167191571425873b1f4b9.png" src="_images/84d92c1f5842bd59060d4de4c02933de0d4bb329f0b167191571425873b1f4b9.png" />
+<img alt="_images/c3972853467f10a5e5932ad14b6c062203e6f1e3986226e97d3d017ada09f00e.png" src="_images/c3972853467f10a5e5932ad14b6c062203e6f1e3986226e97d3d017ada09f00e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Country vs Thyroid_Cancer_Risk (p = 0.0000, V de Cramer = 0.177)
+</pre></div>
+</div>
+<img alt="_images/09c2059502f0b13234e7428f69022125b0a2c15e453a974d20efe538f6278e0f.png" src="_images/09c2059502f0b13234e7428f69022125b0a2c15e453a974d20efe538f6278e0f.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Radiation_Exposure vs Diagnosis (p = 0.0000, V de Cramer = 0.089)
+</pre></div>
+</div>
+<img alt="_images/ecdb3651fbd73ba13dd34f5d5ad15f1f8a752bb472a6d979828286c63066ef52.png" src="_images/ecdb3651fbd73ba13dd34f5d5ad15f1f8a752bb472a6d979828286c63066ef52.png" />
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1940,15 +1967,6 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
   <tbody>
     <tr>
       <th>0</th>
-      <td>Thyroid_Cancer_Risk</td>
-      <td>Diagnosis</td>
-      <td>45942.931977</td>
-      <td>2</td>
-      <td>0.000000</td>
-      <td>0.464757</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>Ethnicity</td>
       <td>Thyroid_Cancer_Risk</td>
       <td>24048.658999</td>
@@ -1957,7 +1975,7 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
       <td>0.237731</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>1</th>
       <td>Ethnicity</td>
       <td>Diagnosis</td>
       <td>5146.683841</td>
@@ -1966,16 +1984,7 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
       <td>0.155497</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>Family_History</td>
-      <td>Thyroid_Cancer_Risk</td>
-      <td>19926.918897</td>
-      <td>2</td>
-      <td>0.000000</td>
-      <td>0.306073</td>
-    </tr>
-    <tr>
-      <th>4</th>
+      <th>2</th>
       <td>Country</td>
       <td>Diagnosis</td>
       <td>2757.420910</td>
@@ -1984,16 +1993,7 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
       <td>0.113676</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>Family_History</td>
-      <td>Diagnosis</td>
-      <td>4223.059166</td>
-      <td>1</td>
-      <td>0.000000</td>
-      <td>0.140893</td>
-    </tr>
-    <tr>
-      <th>6</th>
+      <th>3</th>
       <td>Country</td>
       <td>Thyroid_Cancer_Risk</td>
       <td>13307.120917</td>
@@ -2002,13 +2002,40 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
       <td>0.176750</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>4</th>
       <td>Radiation_Exposure</td>
       <td>Diagnosis</td>
       <td>1685.753639</td>
       <td>1</td>
       <td>0.000000</td>
       <td>0.089001</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Radiation_Exposure</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>7505.195052</td>
+      <td>2</td>
+      <td>0.000000</td>
+      <td>0.187823</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Family_History</td>
+      <td>Diagnosis</td>
+      <td>4223.059166</td>
+      <td>1</td>
+      <td>0.000000</td>
+      <td>0.140893</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Family_History</td>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>19926.918897</td>
+      <td>2</td>
+      <td>0.000000</td>
+      <td>0.306073</td>
     </tr>
     <tr>
       <th>8</th>
@@ -2021,21 +2048,21 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
     </tr>
     <tr>
       <th>9</th>
+      <td>Thyroid_Cancer_Risk</td>
+      <td>Diagnosis</td>
+      <td>45942.931977</td>
+      <td>2</td>
+      <td>0.000000</td>
+      <td>0.464757</td>
+    </tr>
+    <tr>
+      <th>10</th>
       <td>Iodine_Deficiency</td>
       <td>Diagnosis</td>
       <td>2085.399938</td>
       <td>1</td>
       <td>0.000000</td>
       <td>0.098996</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Radiation_Exposure</td>
-      <td>Thyroid_Cancer_Risk</td>
-      <td>7505.195052</td>
-      <td>2</td>
-      <td>0.000000</td>
-      <td>0.187823</td>
     </tr>
     <tr>
       <th>11</th>
@@ -2451,61 +2478,61 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0cb7cf859f9330a4659f400ee0093b3c11b30d3d2a3d1fafd18c42b38dd0091c.png" src="_images/0cb7cf859f9330a4659f400ee0093b3c11b30d3d2a3d1fafd18c42b38dd0091c.png" />
-<img alt="_images/3cc7bb8db80be8662f2c86db7019a4860cf1fe1853490f0ef8950a92f99c0271.png" src="_images/3cc7bb8db80be8662f2c86db7019a4860cf1fe1853490f0ef8950a92f99c0271.png" />
-<img alt="_images/1ea36c1d4c6cc081aee0cb9f2401f23247220a009b21cb90b707cb17979458e5.png" src="_images/1ea36c1d4c6cc081aee0cb9f2401f23247220a009b21cb90b707cb17979458e5.png" />
-<img alt="_images/a70567d2d0ab8d9b312a4099924d2a8f7d008b3847d832589c34fc215653c758.png" src="_images/a70567d2d0ab8d9b312a4099924d2a8f7d008b3847d832589c34fc215653c758.png" />
-<img alt="_images/1a8263fc060f11510bffa6db19c2f538b201452549543cb39e12022acdd37f20.png" src="_images/1a8263fc060f11510bffa6db19c2f538b201452549543cb39e12022acdd37f20.png" />
-<img alt="_images/2cb2b7bc60be2de20797ab77e83743ba85276b0679c77b32e002b2a6e861464f.png" src="_images/2cb2b7bc60be2de20797ab77e83743ba85276b0679c77b32e002b2a6e861464f.png" />
-<img alt="_images/00acd9a2cacfb648527f8679729ea4da702f2ca1e5a0051ff522d180a068de4a.png" src="_images/00acd9a2cacfb648527f8679729ea4da702f2ca1e5a0051ff522d180a068de4a.png" />
-<img alt="_images/b73ed0ee6fa0dc0b063c48955df163fbdda20bb6eb94c15154eb4a42e5e5a9f5.png" src="_images/b73ed0ee6fa0dc0b063c48955df163fbdda20bb6eb94c15154eb4a42e5e5a9f5.png" />
-<img alt="_images/6bd5b69e49da13dbd811926a3de8e43d06478c47f23e556d1880b633de49a0b4.png" src="_images/6bd5b69e49da13dbd811926a3de8e43d06478c47f23e556d1880b633de49a0b4.png" />
-<img alt="_images/5a25896486506c17e8577956c3cb6cc60a2ddcd71ccef69a7de95e11a812b605.png" src="_images/5a25896486506c17e8577956c3cb6cc60a2ddcd71ccef69a7de95e11a812b605.png" />
-<img alt="_images/0d011b5ce07d5078e26684a86823c3c015016f77c5f5218483b2d50c89f3845a.png" src="_images/0d011b5ce07d5078e26684a86823c3c015016f77c5f5218483b2d50c89f3845a.png" />
-<img alt="_images/86ce4dddf5f9ba6826d2816d4fb1641dc08ccff6cc041539e204d2712ef13bde.png" src="_images/86ce4dddf5f9ba6826d2816d4fb1641dc08ccff6cc041539e204d2712ef13bde.png" />
-<img alt="_images/7dce9fc4e8e759c0a601e47cd3c37b5ed05096dbc59506bccfd13325b30420dd.png" src="_images/7dce9fc4e8e759c0a601e47cd3c37b5ed05096dbc59506bccfd13325b30420dd.png" />
-<img alt="_images/979c4c61ef3a38e91485d0543df925870a5f7ddfcf2db2de4d37e4c5882be6b5.png" src="_images/979c4c61ef3a38e91485d0543df925870a5f7ddfcf2db2de4d37e4c5882be6b5.png" />
-<img alt="_images/4b0b8b92ebcd92c89daa6d47c359ca2876a8643832ff5614738b0f0f7fcc0603.png" src="_images/4b0b8b92ebcd92c89daa6d47c359ca2876a8643832ff5614738b0f0f7fcc0603.png" />
-<img alt="_images/cb17cc7e1c88224a159b6e28adf7403ae5d33c432ccec6d41dec9f6453546222.png" src="_images/cb17cc7e1c88224a159b6e28adf7403ae5d33c432ccec6d41dec9f6453546222.png" />
-<img alt="_images/ebf788ba9a14b247c2548e8b7b43dd460aa8f9c2ccb84184f7fbdc617b26a81b.png" src="_images/ebf788ba9a14b247c2548e8b7b43dd460aa8f9c2ccb84184f7fbdc617b26a81b.png" />
-<img alt="_images/8348fc42b6d7bebf47c2e48be0aa89b6e1dc568cac4f23add8e354be26f0e878.png" src="_images/8348fc42b6d7bebf47c2e48be0aa89b6e1dc568cac4f23add8e354be26f0e878.png" />
-<img alt="_images/c530c90993b1628df708bf53b0a62d55f83c73bb30ab8a45f5e8945fe6fb036e.png" src="_images/c530c90993b1628df708bf53b0a62d55f83c73bb30ab8a45f5e8945fe6fb036e.png" />
-<img alt="_images/998a8ab67e955b940062495745500ad05e6c60b64bacfdf1f13b2a5d85435346.png" src="_images/998a8ab67e955b940062495745500ad05e6c60b64bacfdf1f13b2a5d85435346.png" />
-<img alt="_images/ea1f10b4eb7beb4791c8407fe07e11b64ed357ab092b23756752217ee2248b10.png" src="_images/ea1f10b4eb7beb4791c8407fe07e11b64ed357ab092b23756752217ee2248b10.png" />
-<img alt="_images/26506e2568fd77ca033d7afb0f025c69ea4c1508e7186770e310911b68af5b6a.png" src="_images/26506e2568fd77ca033d7afb0f025c69ea4c1508e7186770e310911b68af5b6a.png" />
-<img alt="_images/8fbced40082fb867b6e18ea5701412397a288e0bee86b03407b15e89e6fb351e.png" src="_images/8fbced40082fb867b6e18ea5701412397a288e0bee86b03407b15e89e6fb351e.png" />
-<img alt="_images/94e6fb0d48b77adbea9fcfbd07d01a4ef226cd937d89e8b2c0f78a3b3b8e64b7.png" src="_images/94e6fb0d48b77adbea9fcfbd07d01a4ef226cd937d89e8b2c0f78a3b3b8e64b7.png" />
-<img alt="_images/6521c0555d3b6e34a5780eab0fad042a2b96f002c67d9a580cece68f89388ac2.png" src="_images/6521c0555d3b6e34a5780eab0fad042a2b96f002c67d9a580cece68f89388ac2.png" />
-<img alt="_images/bf601867d8aa9005c8fe1255c34cb09ccf4dfbe95628ced3e7551c2c9114d3c4.png" src="_images/bf601867d8aa9005c8fe1255c34cb09ccf4dfbe95628ced3e7551c2c9114d3c4.png" />
-<img alt="_images/4e1d314792c96dc55ca9c52fd722fe8e3755c7ac374ed17b01772e842d7c873f.png" src="_images/4e1d314792c96dc55ca9c52fd722fe8e3755c7ac374ed17b01772e842d7c873f.png" />
-<img alt="_images/734057238d6081f1fced35ad0c6a6e2ae9254a359ea2408ce3fe44973d4644b8.png" src="_images/734057238d6081f1fced35ad0c6a6e2ae9254a359ea2408ce3fe44973d4644b8.png" />
-<img alt="_images/2acb66acbce00c24cbb1c37a03be4ccf21596104b6a6bec20428f787508f5d25.png" src="_images/2acb66acbce00c24cbb1c37a03be4ccf21596104b6a6bec20428f787508f5d25.png" />
-<img alt="_images/1a992ed0356d884e068f6d2792d0f6c15593392c7d459ed3a507206d2ea792e2.png" src="_images/1a992ed0356d884e068f6d2792d0f6c15593392c7d459ed3a507206d2ea792e2.png" />
-<img alt="_images/f6bf97917a84c53f80314aee4fc3f473e20815e532e60fdeae15d0bae9f9257a.png" src="_images/f6bf97917a84c53f80314aee4fc3f473e20815e532e60fdeae15d0bae9f9257a.png" />
-<img alt="_images/21a99c200939562ce93bbe9a7bdd8139af548ce037763044fb801dea30dfc5d4.png" src="_images/21a99c200939562ce93bbe9a7bdd8139af548ce037763044fb801dea30dfc5d4.png" />
-<img alt="_images/a9e9097fd16e1c3c5727201c1621ed3ebea02d337825553b047164ffd5ff5d3b.png" src="_images/a9e9097fd16e1c3c5727201c1621ed3ebea02d337825553b047164ffd5ff5d3b.png" />
-<img alt="_images/a5da659722cb45135f02af01de785955b8992821ecfac913f31483f933055c25.png" src="_images/a5da659722cb45135f02af01de785955b8992821ecfac913f31483f933055c25.png" />
-<img alt="_images/36301f614bee53cada65e244434a878d3cd74c66b3038c3049a23a6151640f38.png" src="_images/36301f614bee53cada65e244434a878d3cd74c66b3038c3049a23a6151640f38.png" />
-<img alt="_images/8e2c7a8f3295a3cc7416e5a4b88b2e23c7b83c59c85b06be7d2540ce8e5ea119.png" src="_images/8e2c7a8f3295a3cc7416e5a4b88b2e23c7b83c59c85b06be7d2540ce8e5ea119.png" />
-<img alt="_images/0a84329cf8b1e7f19c89aa69db799b79e0ce5ee3c5b13c0c92c33a70f1b25d56.png" src="_images/0a84329cf8b1e7f19c89aa69db799b79e0ce5ee3c5b13c0c92c33a70f1b25d56.png" />
-<img alt="_images/30e0d11e004643e85670d1011f553ffec93777754eb2bf01d1321d82e6b6fd23.png" src="_images/30e0d11e004643e85670d1011f553ffec93777754eb2bf01d1321d82e6b6fd23.png" />
-<img alt="_images/18060c9aa667f86ba858c994f637be1f56c2ff60c0f1d5d21cecda642e768764.png" src="_images/18060c9aa667f86ba858c994f637be1f56c2ff60c0f1d5d21cecda642e768764.png" />
-<img alt="_images/2bc358e9ffa71603cc02d2a08f2295bf3e9f144e05d2a8e9bcf69af73baef221.png" src="_images/2bc358e9ffa71603cc02d2a08f2295bf3e9f144e05d2a8e9bcf69af73baef221.png" />
-<img alt="_images/21bda145fbe3357505597554a2837cfbb48df73bd7e8eee3635915d7284a11db.png" src="_images/21bda145fbe3357505597554a2837cfbb48df73bd7e8eee3635915d7284a11db.png" />
-<img alt="_images/fef8d30c1cc257327743ac40c11c8d2184fae2582c10c24009fbdef6dd2d87c8.png" src="_images/fef8d30c1cc257327743ac40c11c8d2184fae2582c10c24009fbdef6dd2d87c8.png" />
-<img alt="_images/606dc482564810f0f20e1fbcddc4dffc2e5139ee64a662c757ee9e3bcd75ac57.png" src="_images/606dc482564810f0f20e1fbcddc4dffc2e5139ee64a662c757ee9e3bcd75ac57.png" />
-<img alt="_images/aa983910eb36533dd620fbb052aff86ec9d8d0019b26c623c16e862d8d2f7059.png" src="_images/aa983910eb36533dd620fbb052aff86ec9d8d0019b26c623c16e862d8d2f7059.png" />
-<img alt="_images/e374800c69026f07bae16a0fb49c94c8c0d3beadd144a49fa017dab4da6c3c12.png" src="_images/e374800c69026f07bae16a0fb49c94c8c0d3beadd144a49fa017dab4da6c3c12.png" />
-<img alt="_images/85d2dc2a8e4100476e0d0a24f6a122ff80b6e2d6bab4f0987898c0a9458bcdf7.png" src="_images/85d2dc2a8e4100476e0d0a24f6a122ff80b6e2d6bab4f0987898c0a9458bcdf7.png" />
-<img alt="_images/e6591b09bd3b5a127b9681867ddfa5bae8eeb0f3e4f6ab79aa473f27e612d2f8.png" src="_images/e6591b09bd3b5a127b9681867ddfa5bae8eeb0f3e4f6ab79aa473f27e612d2f8.png" />
-<img alt="_images/ee03625ce77b56a4c8a6747be7e2223df99f367c8c9b21edcd834a5414b242a3.png" src="_images/ee03625ce77b56a4c8a6747be7e2223df99f367c8c9b21edcd834a5414b242a3.png" />
-<img alt="_images/b88952dc9598a70d6270542957442fe281b8a17658256bd78bba3b71ee20aedd.png" src="_images/b88952dc9598a70d6270542957442fe281b8a17658256bd78bba3b71ee20aedd.png" />
-<img alt="_images/92c00661aa444c3de88d8e5b7d0b4a08df324579d6ff4d77d5367955bdf95d4d.png" src="_images/92c00661aa444c3de88d8e5b7d0b4a08df324579d6ff4d77d5367955bdf95d4d.png" />
-<img alt="_images/228c1662ee7141921d49b4b68a8e0c0fed630039bddf38c9511a1b966acc11ec.png" src="_images/228c1662ee7141921d49b4b68a8e0c0fed630039bddf38c9511a1b966acc11ec.png" />
-<img alt="_images/0c55f9f3cc34e59a374d3b06727458eb39241e6c348c9125f2ef407f7639457a.png" src="_images/0c55f9f3cc34e59a374d3b06727458eb39241e6c348c9125f2ef407f7639457a.png" />
-<img alt="_images/ab6b7bd4472e91797d676bb8ca59df7c56172ca1264d4ae27a8cc4d44a6321e0.png" src="_images/ab6b7bd4472e91797d676bb8ca59df7c56172ca1264d4ae27a8cc4d44a6321e0.png" />
-<img alt="_images/28165c53da39a3c13a78913114c204b1a127c1b3c0d09252ddb79ded8b0a64f9.png" src="_images/28165c53da39a3c13a78913114c204b1a127c1b3c0d09252ddb79ded8b0a64f9.png" />
-<img alt="_images/5101da1f2b4053a9e241747ba1527c5dc4bc8a66f6ffffc93476c93c4e7605ed.png" src="_images/5101da1f2b4053a9e241747ba1527c5dc4bc8a66f6ffffc93476c93c4e7605ed.png" />
+<img alt="_images/cdc18687dc4bd41d887f9ee159715e978b0f948e9c650ff051397cbdac369daa.png" src="_images/cdc18687dc4bd41d887f9ee159715e978b0f948e9c650ff051397cbdac369daa.png" />
+<img alt="_images/351271258a23a78a828e426e6bc60cd5915785f57d1295d3ceea48e6c17ee6aa.png" src="_images/351271258a23a78a828e426e6bc60cd5915785f57d1295d3ceea48e6c17ee6aa.png" />
+<img alt="_images/7d8a430bc33965e91d6f08d7ee65d98eaa855be1d892cfa15bd43686b1d56940.png" src="_images/7d8a430bc33965e91d6f08d7ee65d98eaa855be1d892cfa15bd43686b1d56940.png" />
+<img alt="_images/482ec6910d29f8bb75c837e670484c80a12909a6c0ae1a861aef84b5abcfb251.png" src="_images/482ec6910d29f8bb75c837e670484c80a12909a6c0ae1a861aef84b5abcfb251.png" />
+<img alt="_images/e8cdd7d0b7bd9b5509b1fdef43115f6c3d3af43aa92d246d8b694c1543967a7b.png" src="_images/e8cdd7d0b7bd9b5509b1fdef43115f6c3d3af43aa92d246d8b694c1543967a7b.png" />
+<img alt="_images/42cc46cd8e3b6dfd115abe43ae2f7ac5a8dc4c6da24910f6afaf71a944bff425.png" src="_images/42cc46cd8e3b6dfd115abe43ae2f7ac5a8dc4c6da24910f6afaf71a944bff425.png" />
+<img alt="_images/9694c95f500811f8547b19fc272a8a82a7d5d2fa25d72360f1dc9809da4f4d00.png" src="_images/9694c95f500811f8547b19fc272a8a82a7d5d2fa25d72360f1dc9809da4f4d00.png" />
+<img alt="_images/eb04c2237ff06392bd4d7c743ae69195d419b8b308be4871d8432e1f1869cdd0.png" src="_images/eb04c2237ff06392bd4d7c743ae69195d419b8b308be4871d8432e1f1869cdd0.png" />
+<img alt="_images/b46c3507e13d4a8d5da62f466f4b7619640194845919ac4de667ee23991bcdfe.png" src="_images/b46c3507e13d4a8d5da62f466f4b7619640194845919ac4de667ee23991bcdfe.png" />
+<img alt="_images/eeeeee45e0bf2b109da6a623e46b8998157dcf2d8e2c81fddc710dc499c2b1dd.png" src="_images/eeeeee45e0bf2b109da6a623e46b8998157dcf2d8e2c81fddc710dc499c2b1dd.png" />
+<img alt="_images/a110b5fef93f4f44088ae7e03e00410124e1225ef3db87582bc16c7f50c38c88.png" src="_images/a110b5fef93f4f44088ae7e03e00410124e1225ef3db87582bc16c7f50c38c88.png" />
+<img alt="_images/af0640d2870016c0792c64bdecad44618f75760d1e043818dc0f4204a8af6cd5.png" src="_images/af0640d2870016c0792c64bdecad44618f75760d1e043818dc0f4204a8af6cd5.png" />
+<img alt="_images/ef481d8d364d0f017762e08caab0d0786aaba6b4d6d4f290954cdc6ee98aac2b.png" src="_images/ef481d8d364d0f017762e08caab0d0786aaba6b4d6d4f290954cdc6ee98aac2b.png" />
+<img alt="_images/fe3b715dfc0beed23df8a1cb01e98647b2564c7b32819f92fc12aa5b150f247c.png" src="_images/fe3b715dfc0beed23df8a1cb01e98647b2564c7b32819f92fc12aa5b150f247c.png" />
+<img alt="_images/25ce0b9115151ae077d5bc8d5aa40a32ea1dadb38cf43cfeade2d3a0ffac6f0f.png" src="_images/25ce0b9115151ae077d5bc8d5aa40a32ea1dadb38cf43cfeade2d3a0ffac6f0f.png" />
+<img alt="_images/9ef19a1e7f4a369273f6f676ea13f9ad3451b11792fe2de956c58815f56b9d61.png" src="_images/9ef19a1e7f4a369273f6f676ea13f9ad3451b11792fe2de956c58815f56b9d61.png" />
+<img alt="_images/f8e3dac5f57395dc15e1fa18a429751dbe06f319d0e06a30ec1908ba852ca187.png" src="_images/f8e3dac5f57395dc15e1fa18a429751dbe06f319d0e06a30ec1908ba852ca187.png" />
+<img alt="_images/24dc71a426c59efb7f96801fa83cca4a5680052ba41564fc3432bae1d8a1b989.png" src="_images/24dc71a426c59efb7f96801fa83cca4a5680052ba41564fc3432bae1d8a1b989.png" />
+<img alt="_images/ef0556464792a3535d391a4325f2e64eb56311b7a06d7bca86a2df4a46fb44b1.png" src="_images/ef0556464792a3535d391a4325f2e64eb56311b7a06d7bca86a2df4a46fb44b1.png" />
+<img alt="_images/0ea653376c0ae6b7d01f07f2997ac2f7aa92acc4e176ecbea981c9d833b8ab82.png" src="_images/0ea653376c0ae6b7d01f07f2997ac2f7aa92acc4e176ecbea981c9d833b8ab82.png" />
+<img alt="_images/7e4212e4e643c8815b7c13491854e5a83481af6e3f8e18a9a09037b9f15a4b9f.png" src="_images/7e4212e4e643c8815b7c13491854e5a83481af6e3f8e18a9a09037b9f15a4b9f.png" />
+<img alt="_images/9f347c2968cdd164d6bc50f43051dba8c4cb6b087b260c21a4bbc2e418e3c0a6.png" src="_images/9f347c2968cdd164d6bc50f43051dba8c4cb6b087b260c21a4bbc2e418e3c0a6.png" />
+<img alt="_images/d98942a3165074ed7f43a4f74235dedc780b1b89a9653ec5828de4dd3ba18ad4.png" src="_images/d98942a3165074ed7f43a4f74235dedc780b1b89a9653ec5828de4dd3ba18ad4.png" />
+<img alt="_images/1deb55d723d4d594b5f4408d11f59f6e6b345b8e482c928567fc60f7cbfaf6fc.png" src="_images/1deb55d723d4d594b5f4408d11f59f6e6b345b8e482c928567fc60f7cbfaf6fc.png" />
+<img alt="_images/a596580ff76f2ac095b81edee2250700251d4101b7ca0baddfd2fef911d5dc03.png" src="_images/a596580ff76f2ac095b81edee2250700251d4101b7ca0baddfd2fef911d5dc03.png" />
+<img alt="_images/7ebd6c980295229dcd557c00a5f7feb0921296cf4f8a836939096ea41a550473.png" src="_images/7ebd6c980295229dcd557c00a5f7feb0921296cf4f8a836939096ea41a550473.png" />
+<img alt="_images/f67c900d6a2023ea0421e75da42d7cbbfec90d196a484f63ddad39dab4a12b8f.png" src="_images/f67c900d6a2023ea0421e75da42d7cbbfec90d196a484f63ddad39dab4a12b8f.png" />
+<img alt="_images/8c23fe3198a119d9924d2a9bfdcb54f4442b95d57a13787bb40915ddbdcc6905.png" src="_images/8c23fe3198a119d9924d2a9bfdcb54f4442b95d57a13787bb40915ddbdcc6905.png" />
+<img alt="_images/109a3dbf8fc3a90f178532f028f4e476725dea1d95d5530f555e5e51cef6319d.png" src="_images/109a3dbf8fc3a90f178532f028f4e476725dea1d95d5530f555e5e51cef6319d.png" />
+<img alt="_images/57da7f8aa9bcc3620af700835ef16579f833ddf9a5a0d35638ed03c24d566772.png" src="_images/57da7f8aa9bcc3620af700835ef16579f833ddf9a5a0d35638ed03c24d566772.png" />
+<img alt="_images/c8073a33aa1025ad830b031364bae365be422be60e68a20a64b0f8cfb8a5d4b4.png" src="_images/c8073a33aa1025ad830b031364bae365be422be60e68a20a64b0f8cfb8a5d4b4.png" />
+<img alt="_images/534e77be88925625b95608ddfaa68d59837b641434fbe51bf3d35aa16e27aa4b.png" src="_images/534e77be88925625b95608ddfaa68d59837b641434fbe51bf3d35aa16e27aa4b.png" />
+<img alt="_images/c026b6dce50a0575cb133bebf9f0941aabcc484450c7f30cd99fcf81aa66ac10.png" src="_images/c026b6dce50a0575cb133bebf9f0941aabcc484450c7f30cd99fcf81aa66ac10.png" />
+<img alt="_images/7140526872f2002c24514b97f7fa3430759d64bea76de45a1601b6537ecd0df4.png" src="_images/7140526872f2002c24514b97f7fa3430759d64bea76de45a1601b6537ecd0df4.png" />
+<img alt="_images/ad2a5b53986d77db36cd6cb495f6a932ba38dae2e38059381190379f6b527f96.png" src="_images/ad2a5b53986d77db36cd6cb495f6a932ba38dae2e38059381190379f6b527f96.png" />
+<img alt="_images/328b34c6ab143daf57af50e90521c5d9acd0e432aa7c79b2799988b92ee52bae.png" src="_images/328b34c6ab143daf57af50e90521c5d9acd0e432aa7c79b2799988b92ee52bae.png" />
+<img alt="_images/2f93ac4f657273d6b00d2032740bfaf9ac511e67271832e0576c46a1de0c98c9.png" src="_images/2f93ac4f657273d6b00d2032740bfaf9ac511e67271832e0576c46a1de0c98c9.png" />
+<img alt="_images/2792c3f6ec73912bd5613de8887e03c57d5d40268c5fb6239bcf965e4a79b681.png" src="_images/2792c3f6ec73912bd5613de8887e03c57d5d40268c5fb6239bcf965e4a79b681.png" />
+<img alt="_images/4631b83e8d1bddd3f6882876a080ad21e862eff330c68d351d69fa1d1303f187.png" src="_images/4631b83e8d1bddd3f6882876a080ad21e862eff330c68d351d69fa1d1303f187.png" />
+<img alt="_images/371f89107c72174e1ca122e6e9603149be213100bfc08078cfe70c66fcaa841c.png" src="_images/371f89107c72174e1ca122e6e9603149be213100bfc08078cfe70c66fcaa841c.png" />
+<img alt="_images/8ee478acfa1a2840fcbbdafcf55882603a41dbd3fa2b54d70d0833d9e33c8f04.png" src="_images/8ee478acfa1a2840fcbbdafcf55882603a41dbd3fa2b54d70d0833d9e33c8f04.png" />
+<img alt="_images/b3452f4f9a5f525dfa07405ade20d91cfff02f29d855e02f10f7e6fcf6f2a25c.png" src="_images/b3452f4f9a5f525dfa07405ade20d91cfff02f29d855e02f10f7e6fcf6f2a25c.png" />
+<img alt="_images/9813e5fff99dc8132d1509883d68dd524b4e2eeff57e6b31a5f8ea2084d4d0e0.png" src="_images/9813e5fff99dc8132d1509883d68dd524b4e2eeff57e6b31a5f8ea2084d4d0e0.png" />
+<img alt="_images/97f9be6e014991283dd4c4f38948a6a073831f5551146b68e15edaf89ed55100.png" src="_images/97f9be6e014991283dd4c4f38948a6a073831f5551146b68e15edaf89ed55100.png" />
+<img alt="_images/dd5a876372b026f32f945b6a02b1066ca8928f702030c5b32b447971524d9761.png" src="_images/dd5a876372b026f32f945b6a02b1066ca8928f702030c5b32b447971524d9761.png" />
+<img alt="_images/1dc355d11a48674d19b89b70ef3c13893893146f6ef26d870847ef559bac9941.png" src="_images/1dc355d11a48674d19b89b70ef3c13893893146f6ef26d870847ef559bac9941.png" />
+<img alt="_images/211d51c23fe15f87822a21b53a4f386f7746e822a844fec29d4acd9ec6ffd0fe.png" src="_images/211d51c23fe15f87822a21b53a4f386f7746e822a844fec29d4acd9ec6ffd0fe.png" />
+<img alt="_images/473a3c3d71517f7194bb1f613cffbce940dc5b2904e0f424e6c3572a1d1d8480.png" src="_images/473a3c3d71517f7194bb1f613cffbce940dc5b2904e0f424e6c3572a1d1d8480.png" />
+<img alt="_images/b93fe896fd7658ae230096228176afdec5d1256f1030147b142599e563c3a9de.png" src="_images/b93fe896fd7658ae230096228176afdec5d1256f1030147b142599e563c3a9de.png" />
+<img alt="_images/094e54810c435dcd13ee5d6a7f95109cad16d14ccde597831329b548b873b5cb.png" src="_images/094e54810c435dcd13ee5d6a7f95109cad16d14ccde597831329b548b873b5cb.png" />
+<img alt="_images/dcd01fb4d0835defaa452c45ef20badaa6e1e3b25a08e74bf6ac6e5a1ef6bfc4.png" src="_images/dcd01fb4d0835defaa452c45ef20badaa6e1e3b25a08e74bf6ac6e5a1ef6bfc4.png" />
+<img alt="_images/cc8a59bb33843574b1f496ae2aaf381d3665117b8df192e0bb45dbc0908c236e.png" src="_images/cc8a59bb33843574b1f496ae2aaf381d3665117b8df192e0bb45dbc0908c236e.png" />
+<img alt="_images/4efef1d4da9cccc4ba89e73c62f932022324067225b630a35a7509875b05dfe0.png" src="_images/4efef1d4da9cccc4ba89e73c62f932022324067225b630a35a7509875b05dfe0.png" />
+<img alt="_images/0d8cb941f1cd8036b4058ec6ca4f7b5577d43c5b738793ee4ad63ba231e9bc6d.png" src="_images/0d8cb941f1cd8036b4058ec6ca4f7b5577d43c5b738793ee4ad63ba231e9bc6d.png" />
+<img alt="_images/7a393ab8b47342c59fed816f7b335679289a406a2923f65d716444f931358b0b.png" src="_images/7a393ab8b47342c59fed816f7b335679289a406a2923f65d716444f931358b0b.png" />
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3144,6 +3171,18 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
 </table>
 </div></div></div>
 </div>
+<p>Se usó Kruskal-Wallis porque ninguna variable numérica pasó normalidad.
+Casi todas las combinaciones cumplen homocedasticidad.
+La mayoría de los p-valores son altos, así que no hay diferencias fuertes entre grupos.
+Gender solo muestra diferencias pequeñas en Nodule_Size.
+Country y Ethnicity casi no afectan las hormonas ni el tamaño del nódulo.
+Family_History muestra una leve diferencia en TSH.
+Radiation_Exposure prácticamente no cambia las variables numéricas.
+Iodine_Deficiency mantiene valores muy estables entre grupos.
+Smoking no altera mucho TSH, T3, T4 ni Nodule_Size.
+Obesity y Diabetes tampoco generan cambios marcados.
+Diagnosis no muestra diferencias fuertes entre grupos numéricos.
+Thyroid_Cancer_Risk casi no cambia las variables numéricas.</p>
 <section id="comparacion-de-variables-con-el-target">
 <h3>Comparacion de variables con el target<a class="headerlink" href="#comparacion-de-variables-con-el-target" title="Link to this heading">#</a></h3>
 <p>realizamos una comparacion mas detenidamente entre la variable objetivo y las demas variables para ver como se comparan entre si</p>
@@ -3157,27 +3196,27 @@ Thyroid_Cancer_Risk vs Diagnosis (p = 0.0000, V de Cramer = 0.465)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Patient_ID vs Thyroid_Cancer_Risk =====
 </pre></div>
 </div>
-<img alt="_images/26bae73855d768c4f0549b02c24a9f4d096e7551a9a91eb88a2c1c1b5f9b58a6.png" src="_images/26bae73855d768c4f0549b02c24a9f4d096e7551a9a91eb88a2c1c1b5f9b58a6.png" />
+<img alt="_images/2aa436373181919a9893e7dec5f9775994a428245406a93838a20b24176e018a.png" src="_images/2aa436373181919a9893e7dec5f9775994a428245406a93838a20b24176e018a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Age vs Thyroid_Cancer_Risk =====
 </pre></div>
 </div>
-<img alt="_images/2be64e9a3b24d12cfd0bfd5f942f036c7f2ea7c6b3952ed3ffba0f0edb319e3d.png" src="_images/2be64e9a3b24d12cfd0bfd5f942f036c7f2ea7c6b3952ed3ffba0f0edb319e3d.png" />
+<img alt="_images/58fff8a04c067729432a8be113edabd7356f91b390a5cd25b52b3dc35b28a608.png" src="_images/58fff8a04c067729432a8be113edabd7356f91b390a5cd25b52b3dc35b28a608.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: TSH_Level vs Thyroid_Cancer_Risk =====
 </pre></div>
 </div>
-<img alt="_images/b495b7ba6a41704435700fd89832c0fbf6b8e41a8797cfdd408db98f5589ccea.png" src="_images/b495b7ba6a41704435700fd89832c0fbf6b8e41a8797cfdd408db98f5589ccea.png" />
+<img alt="_images/77f4b25d955abe6095c13566daac9a3e5211e46be26523038006e66aaa0f2ef5.png" src="_images/77f4b25d955abe6095c13566daac9a3e5211e46be26523038006e66aaa0f2ef5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: T3_Level vs Thyroid_Cancer_Risk =====
 </pre></div>
 </div>
-<img alt="_images/05975900217e75c04e966a2c95be4400d2892d1c881df1b62f046e584e77b786.png" src="_images/05975900217e75c04e966a2c95be4400d2892d1c881df1b62f046e584e77b786.png" />
+<img alt="_images/cac956587297aaa6cfa0d1bc56975041ca1e1e71ef045a1e8653dd343bc32223.png" src="_images/cac956587297aaa6cfa0d1bc56975041ca1e1e71ef045a1e8653dd343bc32223.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: T4_Level vs Thyroid_Cancer_Risk =====
 </pre></div>
 </div>
-<img alt="_images/3e1dff2b253f4b6a5d7f3c541d0bf1ed7b40e03692d41cc5a2c8eb464ef88f3a.png" src="_images/3e1dff2b253f4b6a5d7f3c541d0bf1ed7b40e03692d41cc5a2c8eb464ef88f3a.png" />
+<img alt="_images/f8e9be7d96d72f66ffbe51bfad629f61d45a23fa4747e65150b2462c98774df8.png" src="_images/f8e9be7d96d72f66ffbe51bfad629f61d45a23fa4747e65150b2462c98774df8.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Nodule_Size vs Thyroid_Cancer_Risk =====
 </pre></div>
 </div>
-<img alt="_images/0beafa69f4005263f9e42d870721b99069528cb3c26a07720b15d11680a81277.png" src="_images/0beafa69f4005263f9e42d870721b99069528cb3c26a07720b15d11680a81277.png" />
+<img alt="_images/c9b1169078a9395a5b3845702d9cf50c4b117df14713431dde3871887a626cd8.png" src="_images/c9b1169078a9395a5b3845702d9cf50c4b117df14713431dde3871887a626cd8.png" />
 </div>
 </div>
 <p>Se realizan comparaciones entre la variable objetivo y las categoricas y se examina el numero de personas que pertenecen a cada una de las categorias con respecto a las otras variables</p>
@@ -3203,8 +3242,8 @@ Female               0.15  0.51    0.34
 Male                 0.15  0.51    0.34
 </pre></div>
 </div>
-<img alt="_images/892e5c8bd31a060309c377888515dbd8c789c056c57855f42ccfc0c222f432ee.png" src="_images/892e5c8bd31a060309c377888515dbd8c789c056c57855f42ccfc0c222f432ee.png" />
-<img alt="_images/77d1b4c77708599b6ae52b07d8aa46bdc45f61ff20c904765e17f16d866a989e.png" src="_images/77d1b4c77708599b6ae52b07d8aa46bdc45f61ff20c904765e17f16d866a989e.png" />
+<img alt="_images/bb834fbd20783c1a876a737273faffb7afc34d8f325ec07298c0720afa3c4aee.png" src="_images/bb834fbd20783c1a876a737273faffb7afc34d8f325ec07298c0720afa3c4aee.png" />
+<img alt="_images/ade12853d62084fbaee736bd61e66031b4ad02550cfedb9d127c5df34b6e994a.png" src="_images/ade12853d62084fbaee736bd61e66031b4ad02550cfedb9d127c5df34b6e994a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Country vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3236,8 +3275,8 @@ UK                   0.10  0.55    0.35
 USA                  0.10  0.54    0.36
 </pre></div>
 </div>
-<img alt="_images/679e955c7d1a849354e5242008701c304370ebe2f3cb85c2b4341ffeefcf49fa.png" src="_images/679e955c7d1a849354e5242008701c304370ebe2f3cb85c2b4341ffeefcf49fa.png" />
-<img alt="_images/68fdac190ae0e77426a9376abf133f8926252441d54ed22643870c8f8c84b4eb.png" src="_images/68fdac190ae0e77426a9376abf133f8926252441d54ed22643870c8f8c84b4eb.png" />
+<img alt="_images/3161c6e69115fbbe4e4a05405bbbc4827636383af8465a313b2d720f78cd5907.png" src="_images/3161c6e69115fbbe4e4a05405bbbc4827636383af8465a313b2d720f78cd5907.png" />
+<img alt="_images/8a3951f206f6d43976107dd62428c2d0c53081272f6513c4d8ccae37b1218111.png" src="_images/8a3951f206f6d43976107dd62428c2d0c53081272f6513c4d8ccae37b1218111.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Ethnicity vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3259,8 +3298,8 @@ Hispanic             0.05  0.57    0.38
 Middle Eastern       0.05  0.56    0.38
 </pre></div>
 </div>
-<img alt="_images/f7a0515659a8f2faa95cd292da32015265c2e11d0afa14261f012d6d2724fec4.png" src="_images/f7a0515659a8f2faa95cd292da32015265c2e11d0afa14261f012d6d2724fec4.png" />
-<img alt="_images/fbb3f3edc0dc6986ddc935821a656806206e43e908fc846557dd52313473d71d.png" src="_images/fbb3f3edc0dc6986ddc935821a656806206e43e908fc846557dd52313473d71d.png" />
+<img alt="_images/40161c817676c2441ef91b320369ec6e51c65cced2dfb150896d28c45fb188b6.png" src="_images/40161c817676c2441ef91b320369ec6e51c65cced2dfb150896d28c45fb188b6.png" />
+<img alt="_images/081fd2f74d5847c19d1fedcafb2a051e442ee78d361ceec2535480965803f738.png" src="_images/081fd2f74d5847c19d1fedcafb2a051e442ee78d361ceec2535480965803f738.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Family_History vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3276,8 +3315,8 @@ No                   0.08  0.55    0.37
 Yes                  0.32  0.41    0.27
 </pre></div>
 </div>
-<img alt="_images/e6d29daa99cc4b679ec525cacea04b682f63c9a5255707a302ead05828ae9f80.png" src="_images/e6d29daa99cc4b679ec525cacea04b682f63c9a5255707a302ead05828ae9f80.png" />
-<img alt="_images/79e6e221d9e8efd72f7afe3ca06313f115868410ea3cd363c75cada0c260c582.png" src="_images/79e6e221d9e8efd72f7afe3ca06313f115868410ea3cd363c75cada0c260c582.png" />
+<img alt="_images/02fa81facb170cd75d5157de367f0dea9dda53d723d1022e1c5891195fa3b846.png" src="_images/02fa81facb170cd75d5157de367f0dea9dda53d723d1022e1c5891195fa3b846.png" />
+<img alt="_images/9aae67a6efa59107923da0d4f74fa6e2ca5cfaa05f493943628c46893a222936.png" src="_images/9aae67a6efa59107923da0d4f74fa6e2ca5cfaa05f493943628c46893a222936.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Radiation_Exposure vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3293,8 +3332,8 @@ No                   0.12  0.53    0.35
 Yes                  0.31  0.41    0.28
 </pre></div>
 </div>
-<img alt="_images/32c29bcd2cd3e274b5c9b81e7144b04acdf4f75315247dbc555be5e22aa86b3a.png" src="_images/32c29bcd2cd3e274b5c9b81e7144b04acdf4f75315247dbc555be5e22aa86b3a.png" />
-<img alt="_images/2b818d8830d726e021d03b8a2e00369e4ffe4080bfb45153b2c9852447abfc0f.png" src="_images/2b818d8830d726e021d03b8a2e00369e4ffe4080bfb45153b2c9852447abfc0f.png" />
+<img alt="_images/9dc40d0652e66610c8066b0bd56392a41d4009677bd80f81ef6bae86d95824c7.png" src="_images/9dc40d0652e66610c8066b0bd56392a41d4009677bd80f81ef6bae86d95824c7.png" />
+<img alt="_images/c212b8583b1a102831cb5d7cad0475a0d617ef15e767c49038061f955008f55d.png" src="_images/c212b8583b1a102831cb5d7cad0475a0d617ef15e767c49038061f955008f55d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Iodine_Deficiency vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3310,8 +3349,8 @@ No                   0.11  0.54    0.36
 Yes                  0.28  0.43    0.29
 </pre></div>
 </div>
-<img alt="_images/b52a0446c74ff95779507e74acc3c420c408cf2a7fc8ec3d3efa77a7f8cb4b86.png" src="_images/b52a0446c74ff95779507e74acc3c420c408cf2a7fc8ec3d3efa77a7f8cb4b86.png" />
-<img alt="_images/d78ea0c30e8827ef6947a23fd8c99ffb865f7d82c30aba3a64dda190869d06c6.png" src="_images/d78ea0c30e8827ef6947a23fd8c99ffb865f7d82c30aba3a64dda190869d06c6.png" />
+<img alt="_images/aeab831cdef9e305114d3e6cd8ec6443d595f23f3fd306bb96619226d8b1746b.png" src="_images/aeab831cdef9e305114d3e6cd8ec6443d595f23f3fd306bb96619226d8b1746b.png" />
+<img alt="_images/cad25a20c74ddd839a95b3f5c230f530eabff5d30e753fcee03cddc5267b14c0.png" src="_images/cad25a20c74ddd839a95b3f5c230f530eabff5d30e753fcee03cddc5267b14c0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Smoking vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3327,8 +3366,8 @@ No                   0.15  0.51    0.34
 Yes                  0.15  0.51    0.34
 </pre></div>
 </div>
-<img alt="_images/98620b942f3823e012966c5847e13e270dda922066d9e0c02fa78a46136dc856.png" src="_images/98620b942f3823e012966c5847e13e270dda922066d9e0c02fa78a46136dc856.png" />
-<img alt="_images/7f2618e9ce57b10d78a9e40ec7f67bf5793460e07b66dcb458c4bab7ed9055ef.png" src="_images/7f2618e9ce57b10d78a9e40ec7f67bf5793460e07b66dcb458c4bab7ed9055ef.png" />
+<img alt="_images/476364615acf76872544bd83e19a5756dd295b4728591cc2cc0acff456d4da69.png" src="_images/476364615acf76872544bd83e19a5756dd295b4728591cc2cc0acff456d4da69.png" />
+<img alt="_images/c4f788cdb53f02a489a8367a7c9cc33bbbee6ac9cea055f3307086423e80db48.png" src="_images/c4f788cdb53f02a489a8367a7c9cc33bbbee6ac9cea055f3307086423e80db48.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Obesity vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3344,8 +3383,8 @@ No                   0.15  0.51    0.34
 Yes                  0.15  0.51    0.34
 </pre></div>
 </div>
-<img alt="_images/197fc0b369059324463311211d7c28c4e119bbdab9977dbe232d5d31938c2b30.png" src="_images/197fc0b369059324463311211d7c28c4e119bbdab9977dbe232d5d31938c2b30.png" />
-<img alt="_images/99ee952e80ad21f9d7e58eba789827a6d4e48a00920f044c0c196e6182c8a81c.png" src="_images/99ee952e80ad21f9d7e58eba789827a6d4e48a00920f044c0c196e6182c8a81c.png" />
+<img alt="_images/0bf8fbb94217ea43422a20cfa2d51cad4369ff0edda61570d63622d44594e9d9.png" src="_images/0bf8fbb94217ea43422a20cfa2d51cad4369ff0edda61570d63622d44594e9d9.png" />
+<img alt="_images/4826edff75309f680966fcc6e8cb249b042a89474f9f3eda3ad0a1d9d5e1ce3e.png" src="_images/4826edff75309f680966fcc6e8cb249b042a89474f9f3eda3ad0a1d9d5e1ce3e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Diabetes vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3361,8 +3400,8 @@ No                   0.15  0.51    0.34
 Yes                  0.15  0.51    0.34
 </pre></div>
 </div>
-<img alt="_images/3c36e6cb7803e2c5eb0c52c51557869c45488cb76fde4f030845d1507aaaa0ed.png" src="_images/3c36e6cb7803e2c5eb0c52c51557869c45488cb76fde4f030845d1507aaaa0ed.png" />
-<img alt="_images/344c87bc117148b0ba089e880576edc9ed4483fd192881e6a96db794de60ac53.png" src="_images/344c87bc117148b0ba089e880576edc9ed4483fd192881e6a96db794de60ac53.png" />
+<img alt="_images/907bce1f0a9e3b564caca782174f924fcde167d6ad7ec27940dc5f344a10e4c0.png" src="_images/907bce1f0a9e3b564caca782174f924fcde167d6ad7ec27940dc5f344a10e4c0.png" />
+<img alt="_images/eae9a6e8c791f1fe7dbc690c220592e9fb0d23bbfd62aff8fba5a9b18dfcadd9.png" src="_images/eae9a6e8c791f1fe7dbc690c220592e9fb0d23bbfd62aff8fba5a9b18dfcadd9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== Análisis bivariado: Diagnosis vs Thyroid_Cancer_Risk =====
 
 Frecuencias absolutas:
@@ -3378,10 +3417,20 @@ Benign               0.06  0.56    0.38
 Malignant            0.45  0.33    0.22
 </pre></div>
 </div>
-<img alt="_images/76940b71e56f6248cff6ceb77ab86644ccfb8ae2f34c0214ce99410f80f9e360.png" src="_images/76940b71e56f6248cff6ceb77ab86644ccfb8ae2f34c0214ce99410f80f9e360.png" />
-<img alt="_images/065f06bd40e6726526d2583051e773436af964ea21f42962d7135e1721724a4c.png" src="_images/065f06bd40e6726526d2583051e773436af964ea21f42962d7135e1721724a4c.png" />
+<img alt="_images/be39dd2f0a66e043bc8c0020926b0783e71ba8360ca96879d249d196844bbc2d.png" src="_images/be39dd2f0a66e043bc8c0020926b0783e71ba8360ca96879d249d196844bbc2d.png" />
+<img alt="_images/c16a1db81d34437f832433b44ebe255d8f007800f148221439781d83003e807f.png" src="_images/c16a1db81d34437f832433b44ebe255d8f007800f148221439781d83003e807f.png" />
 </div>
 </div>
+<p>Gender: hombres y mujeres tienen exactamente la misma distribución de riesgo.
+Country: casi todos los países tienen patrones similares, excepto India, donde el riesgo High es mucho más común.
+Ethnicity: los asiáticos muestran más riesgo High; caucásicos e hispanos tienen más casos Low.
+Family_History: tener historial familiar aumenta mucho la proporción de riesgo High.
+Radiation_Exposure: la exposición a radiación sube notablemente el riesgo High.
+Iodine_Deficiency: la deficiencia de yodo también incrementa el riesgo High.
+Smoking: fumar no cambia la distribución del riesgo.
+Obesity: la obesidad tampoco afecta el riesgo.
+Diabetes: la diabetes no muestra cambios en el riesgo.
+Diagnosis: los malignos tienen una proporción muy alta de riesgo High, como era de esperar.</p>
 </section>
 </section>
 <section id="analisis-de-correlacion">
@@ -3397,7 +3446,7 @@ Malignant            0.45  0.33    0.22
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c9657076eb69a8356b7543d592107a9e41a965ae402294ce3b54429e0fba02ad.png" src="_images/c9657076eb69a8356b7543d592107a9e41a965ae402294ce3b54429e0fba02ad.png" />
+<img alt="_images/9d1cf8be27183d42b33b8f76d138424ea8968262a492712e65cbf711a8de5247.png" src="_images/9d1cf8be27183d42b33b8f76d138424ea8968262a492712e65cbf711a8de5247.png" />
 </div>
 </div>
 <p>Podemos observar que no hay correlaciones fuertes entre las variables numericas</p>
@@ -3418,9 +3467,22 @@ Malignant            0.45  0.33    0.22
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4b527588674c949ba6aaabef978250cf0cd2f200b4ca154746d2246530a9e980.png" src="_images/4b527588674c949ba6aaabef978250cf0cd2f200b4ca154746d2246530a9e980.png" />
+<img alt="_images/eb7563522053c9a7e8b9f2d2bbb4c00e2cb3361cb18bf2ab9e73bfe1da3ce1be.png" src="_images/eb7563522053c9a7e8b9f2d2bbb4c00e2cb3361cb18bf2ab9e73bfe1da3ce1be.png" />
 </div>
 </div>
+</section>
+<section id="observaciones">
+<h2>Observaciones<a class="headerlink" href="#observaciones" title="Link to this heading">#</a></h2>
+<p>La mayoría de las variables tienen correlaciones casi nulas entre sí; el dataset es muy independiente en sus categorías.</p>
+<p>Diagnosis es la única variable que se relaciona moderadamente con Thyroid_Cancer_Risk (0.46).</p>
+<p>Family_History es la categoría más asociada con el riesgo (0.31), más que cualquier factor ambiental.</p>
+<p>La influencia de Ethnicity en el riesgo (0.24) es mayor que la de Country (0.18).</p>
+<p>Tabaquismo, obesidad y diabetes prácticamente no se relacionan con el riesgo en este dataset.</p>
+<p>Radiation_Exposure tiene una correlación baja pero visible con el riesgo (0.19).</p>
+<p>Gender prácticamente no aporta información sobre el riesgo (0.0039).</p>
+<p>Las correlaciones internas entre factores de salud (obesidad, diabetes, smoking) son casi cero, indicando independencia.</p>
+<p>La deficiencia de yodo se asocia un poco con el riesgo (0.22), más que el tabaquismo o la obesidad.</p>
+<p>El patrón general sugiere que los factores clínicos pesan más que los sociodemográficos.</p>
 </section>
 </section>
 
@@ -3492,12 +3554,15 @@ Malignant            0.45  0.33    0.22
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-de-datos-desde-la-red">Cargado de datos desde la red</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-usadas">Funciones usadas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-general-del-dataset">Analisis general del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general-de-la-hoja-datos-pacientes">Resumen general de la hoja “Datos pacientes”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encabezado-del-dataset">Encabezado del dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">Analisis univariado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Analisis Bivariado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-variables-con-el-target">Comparacion de variables con el target</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-correlacion">Analisis de correlacion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones">Observaciones</a></li>
 </ul>
   </nav></div>
 

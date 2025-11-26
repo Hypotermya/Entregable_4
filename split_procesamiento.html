@@ -193,7 +193,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
 </ul>
 
     </div>
@@ -596,7 +598,7 @@ document.write(`
 <h2>Split de los datos<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Thyroid_Cancer_Risk&#39;</span><span class="p">,</span><span class="s1">&#39;Patient_ID&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Thyroid_Cancer_Risk&#39;</span><span class="p">,</span><span class="s1">&#39;Patient_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Diagnosis&#39;</span><span class="p">])</span>
 <span class="n">Y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Thyroid_Cancer_Risk&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -636,7 +638,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2c3fd9d647b5a9a8c3a92f3c7283ebc2aa499104e6f77757e5fcc148af5256e0.png" src="_images/2c3fd9d647b5a9a8c3a92f3c7283ebc2aa499104e6f77757e5fcc148af5256e0.png" />
+<img alt="_images/b1260ba2083875e99a176c6db0639cf7c358a198e9a75c95babcc5ec8d59521c.png" src="_images/b1260ba2083875e99a176c6db0639cf7c358a198e9a75c95babcc5ec8d59521c.png" />
 </div>
 </div>
 <p>La matriz de correlación muestra que la mayoría de las variables presentan bajas correlaciones entre sí, indicando ausencia de multicolinealidad y confirmando que cada variable aporta información independiente al modelo.</p>
@@ -653,32 +655,31 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          feature       VIF
-16       cat__Ethnicity_Caucasian  2.049344
-15           cat__Ethnicity_Asian  1.900163
-8              cat__Country_India  1.845439
-5                cat__Gender_Male  1.600013
-6              cat__Country_China  1.599202
-10           cat__Country_Nigeria  1.596607
-17        cat__Ethnicity_Hispanic  1.529831
-19        cat__Family_History_Yes  1.429798
-11            cat__Country_Russia  1.397129
-25       cat__Diagnosis_Malignant  1.395989
-23               cat__Obesity_Yes  1.391919
-18  cat__Ethnicity_Middle Eastern  1.348411
-21     cat__Iodine_Deficiency_Yes  1.322381
-9              cat__Country_Japan  1.315885
-12       cat__Country_South Korea  1.280807
-24              cat__Diabetes_Yes  1.231910
-22               cat__Smoking_Yes  1.229027
-13                cat__Country_UK  1.202751
-14               cat__Country_USA  1.197535
-7            cat__Country_Germany  1.195027
-20    cat__Radiation_Exposure_Yes  1.174618
-4                num__Nodule_Size  1.000150
+16       cat__Ethnicity_Caucasian  2.047728
+15           cat__Ethnicity_Asian  1.876673
+8              cat__Country_India  1.791717
+5                cat__Gender_Male  1.599525
+6              cat__Country_China  1.591680
+10           cat__Country_Nigeria  1.588638
+17        cat__Ethnicity_Hispanic  1.528972
+19        cat__Family_History_Yes  1.391897
+11            cat__Country_Russia  1.391823
+23               cat__Obesity_Yes  1.391627
+18  cat__Ethnicity_Middle Eastern  1.347987
+9              cat__Country_Japan  1.311942
+21     cat__Iodine_Deficiency_Yes  1.304508
+12       cat__Country_South Korea  1.277366
+24              cat__Diabetes_Yes  1.231793
+22               cat__Smoking_Yes  1.228893
+13                cat__Country_UK  1.200212
+14               cat__Country_USA  1.195319
+7            cat__Country_Germany  1.192443
+20    cat__Radiation_Exposure_Yes  1.162637
 3                   num__T4_Level  1.000147
-2                   num__T3_Level  1.000135
-0                        num__Age  1.000132
-1                  num__TSH_Level  1.000079
+4                num__Nodule_Size  1.000136
+2                   num__T3_Level  1.000134
+0                        num__Age  1.000128
+1                  num__TSH_Level  1.000065
 </pre></div>
 </div>
 </div>

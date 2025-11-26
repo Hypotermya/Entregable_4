@@ -193,7 +193,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
 </ul>
 
     </div>
@@ -565,6 +567,7 @@ weighted avg       0.45      0.65      0.52     42539
 </div>
 </div>
 </div>
+<p>El modelo mejora la precisión general (65%), pero sigue sin identificar la clase Medium, señal de fuerte desbalanceo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass</span><span class="p">(</span><span class="n">model_pipe</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -586,6 +589,7 @@ AUC macro promedio: 0.7527
 </div>
 </div>
 </div>
+<p>El AUC muestra un rendimiento muy alto para la clase High (0.99), pero bajo para Low y Medium (~0.64 y ~0.62). Esto confirma que el modelo discrimina bien solo la clase High y continúa teniendo dificultades para separar Low y Medium.</p>
 </section>
 <section id="balance-de-modelos">
 <h2>Balance de modelos<a class="headerlink" href="#balance-de-modelos" title="Link to this heading">#</a></h2>
@@ -643,6 +647,7 @@ weighted avg       0.54      0.58      0.54     42539
 </div>
 </div>
 </div>
+<p>El modelo mejora la clasificación de las tres clases respecto a versiones anteriores: High logra un muy buen desempeño (recall 0.96, f1 0.81), Low es moderado (f1 0.66) y Medium sigue siendo débil (f1 0.25), aunque ya muestra señales de mejora. El accuracy (0.58) y el AUC (~0.75) indican un modelo aceptable, pero aún con problemas significativos para diferenciar la clase Medium.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass</span><span class="p">(</span><span class="n">model_pipe_bal</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -664,6 +669,7 @@ AUC macro promedio: 0.7519
 </div>
 </div>
 </div>
+<p>El AUC por clase muestra un rendimiento excelente para High (~0.99), mientras que Low y Medium se mantienen moderados (~0.64 y ~0.61). El AUC macro (~0.75) confirma que el modelo distingue bien la clase High, pero aún tiene dificultades claras para separar Low y, especialmente, Medium.</p>
 </section>
 <section id="adasyn">
 <h3>ADASYN<a class="headerlink" href="#adasyn" title="Link to this heading">#</a></h3>
@@ -719,6 +725,7 @@ weighted avg       0.42      0.63      0.50     42539
 </div>
 </div>
 </div>
+<p>El modelo acierta muy bien en Low y High gracias a recalls altísimos, pero prácticamente ignora la clase Medium. El AUC macro (~0.75) indica buen rendimiento global, aunque la falta de separación de Medium sigue siendo el mayor problema.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass</span><span class="p">(</span><span class="n">model_pipe_ads</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -740,6 +747,7 @@ AUC macro promedio: 0.7547
 </div>
 </div>
 </div>
+<p>El modelo separa casi perfectamente la clase High (AUC ~0.998), mientras que Low y Medium siguen con AUC moderados (~0.65 y ~0.62). El AUC macro (~0.755) confirma buen rendimiento general, aunque el desequilibrio entre clases sigue siendo evidente.</p>
 </section>
 <section id="class-weight-balanced">
 <h3>Class weight balanced<a class="headerlink" href="#class-weight-balanced" title="Link to this heading">#</a></h3>
@@ -795,6 +803,7 @@ weighted avg       0.54      0.55      0.54     42539
 </div>
 </div>
 </div>
+<p>El modelo mantiene un rendimiento sólido en High, pero Low y Medium siguen siendo más difíciles de distinguir. La accuracy baja (0.55) refleja esa confusión, aunque el AUC macro (~0.75) indica que aún conserva una buena capacidad general de separación entre clases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass</span><span class="p">(</span><span class="n">model_pipe_cw</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -816,6 +825,7 @@ AUC macro promedio: 0.7526
 </div>
 </div>
 </div>
+<p>El modelo distingue muy bien la clase High (AUC ~0.99), pero sigue teniendo dificultades separando Low y Medium, que rondan ~0.64 y ~0.61. El AUC macro (~0.75) muestra un desempeño general estable pero aún mejorable en las clases bajas.</p>
 </section>
 </section>
 <section id="tabla-comparativa">

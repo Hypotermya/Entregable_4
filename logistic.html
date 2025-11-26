@@ -193,7 +193,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
 </ul>
 
     </div>
@@ -399,10 +401,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-weight-balanced">Class weight balanced</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa">Tabla comparativa</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gridsearch">Gridsearch</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa">Tabla comparativa</a></li>
 </ul>
             </nav>
         </div>
@@ -490,7 +489,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 15), (42539, 15), (170152, 1), (42539, 1))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 14), (42539, 14), (170152, 1), (42539, 1))
 </pre></div>
 </div>
 </div>
@@ -533,7 +532,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.10 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.09 minutos
 </pre></div>
 </div>
 </div>
@@ -546,25 +545,25 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/35955637151bfff425574f33d0b1d131170ee430c05bcf996c02362eca0fe3f7.png" src="_images/35955637151bfff425574f33d0b1d131170ee430c05bcf996c02362eca0fe3f7.png" />
+<img alt="_images/cb0a001844469cf23477bbf08bbe43f317d2dd2ad4da1f310991d7b5adc98d26.png" src="_images/cb0a001844469cf23477bbf08bbe43f317d2dd2ad4da1f310991d7b5adc98d26.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.57      0.94      0.71     21678
+         Low       0.58      0.96      0.72     21678
       Medium       0.00      0.00      0.00     14480
-        High       0.69      0.76      0.72      6381
+        High       0.77      0.80      0.79      6381
 
-    accuracy                           0.59     42539
-   macro avg       0.42      0.57      0.48     42539
-weighted avg       0.40      0.59      0.47     42539
+    accuracy                           0.61     42539
+   macro avg       0.45      0.59      0.50     42539
+weighted avg       0.41      0.61      0.49     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5925386116269776,
- &#39;Precision (macro)&#39;: 0.42143356464092907,
- &#39;Recall (macro)&#39;: 0.566251237517668,
- &#39;F1-score (macro)&#39;: 0.47853395779435487,
- &#39;ROC-AUC&#39;: np.float64(0.7338948325316103)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6084064035355791,
+ &#39;Precision (macro)&#39;: 0.4509458401900453,
+ &#39;Recall (macro)&#39;: 0.5858827466025186,
+ &#39;F1-score (macro)&#39;: 0.5026281922491407,
+ &#39;ROC-AUC&#39;: 0.7198865972747441}
 </pre></div>
 </div>
 </div>
@@ -577,18 +576,16 @@ weighted avg       0.40      0.59      0.47     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b0aefc8097b05d24af28c3b8bdb411bec9d625a02fbf46e964bbdab7a03f3e1e.png" src="_images/b0aefc8097b05d24af28c3b8bdb411bec9d625a02fbf46e964bbdab7a03f3e1e.png" />
+<img alt="_images/76c49e2b5c3aee6395e9a08f698425b223df2d0924e88e533ff10c0ac6372ca5.png" src="_images/76c49e2b5c3aee6395e9a08f698425b223df2d0924e88e533ff10c0ac6372ca5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9579
-Low: 0.6377
-Medium: 0.6061
-AUC macro promedio: 0.7339
+High: 0.9310
+Low: 0.6289
+Medium: 0.5998
+AUC macro promedio: 0.7199
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9579406274499217),
-  1: np.float64(0.6376857765934167),
-  2: np.float64(0.6060580935514924)},
- np.float64(0.733914251780824))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.9309939046792135, 1: 0.6288561383894864, 2: 0.5998097487555327},
+ 0.7199048666102492)
 </pre></div>
 </div>
 </div>
@@ -620,7 +617,7 @@ Sin embargo, las clases “Low” (0.6377) y “Medium” (0.6061) presentan un 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.23 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.24 minutos
 </pre></div>
 </div>
 </div>
@@ -632,25 +629,25 @@ Sin embargo, las clases “Low” (0.6377) y “Medium” (0.6061) presentan un 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/eb3e6e65236e5cdc908ea53fdf8326bc48c4714f5cabfe0eba71e65e3bea9c28.png" src="_images/eb3e6e65236e5cdc908ea53fdf8326bc48c4714f5cabfe0eba71e65e3bea9c28.png" />
+<img alt="_images/202429326d006b0cb246854f5ee6ff0ae5d5dd070726e525c0d10c9e2a8866bf.png" src="_images/202429326d006b0cb246854f5ee6ff0ae5d5dd070726e525c0d10c9e2a8866bf.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.59      0.41      0.49     21678
-      Medium       0.40      0.49      0.44     14480
-        High       0.59      0.93      0.72      6381
+         Low       0.57      0.36      0.44     21678
+      Medium       0.40      0.43      0.41     14480
+        High       0.40      0.83      0.54      6381
 
-    accuracy                           0.51     42539
-   macro avg       0.53      0.61      0.55     42539
-weighted avg       0.53      0.51      0.51     42539
+    accuracy                           0.45     42539
+   macro avg       0.45      0.54      0.46     42539
+weighted avg       0.48      0.45      0.44     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5144925832765227,
- &#39;Precision (macro)&#39;: 0.528656647782051,
- &#39;Recall (macro)&#39;: 0.6089235841271364,
- &#39;F1-score (macro)&#39;: 0.5491545618225436,
- &#39;ROC-AUC&#39;: np.float64(0.7354882101440374)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.45224382331507557,
+ &#39;Precision (macro)&#39;: 0.45426089098864003,
+ &#39;Recall (macro)&#39;: 0.5380448450574663,
+ &#39;F1-score (macro)&#39;: 0.4628730420567874,
+ &#39;ROC-AUC&#39;: 0.721600346117508}
 </pre></div>
 </div>
 </div>
@@ -663,18 +660,16 @@ weighted avg       0.53      0.51      0.51     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2423368dc37cb6798d8cfbb904a9a89add6d03f647d4718e281dcaf4ce6024cd.png" src="_images/2423368dc37cb6798d8cfbb904a9a89add6d03f647d4718e281dcaf4ce6024cd.png" />
+<img alt="_images/36f1d5e125f047f6cbd8b83461db626338623e6236dc948d95722b127bab4acb.png" src="_images/36f1d5e125f047f6cbd8b83461db626338623e6236dc948d95722b127bab4acb.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9593
-Low: 0.6394
-Medium: 0.6078
-AUC macro promedio: 0.7355
+High: 0.9322
+Low: 0.6303
+Medium: 0.6023
+AUC macro promedio: 0.7216
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9593286439769096),
-  1: np.float64(0.6393591856375099),
-  2: np.float64(0.6077768008176929)},
- np.float64(0.7355068742926003))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.932183216430554, 1: 0.6302879197958463, 2: 0.6023299021261237},
+ 0.7216186700405132)
 </pre></div>
 </div>
 </div>
@@ -701,7 +696,7 @@ AUC macro promedio: 0.7355
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.36 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.40 minutos
 </pre></div>
 </div>
 </div>
@@ -713,25 +708,25 @@ AUC macro promedio: 0.7355
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2c7c275a2ff327e484c62ecacf6cf4863a8191052284d6d215e4e5901c7bf962.png" src="_images/2c7c275a2ff327e484c62ecacf6cf4863a8191052284d6d215e4e5901c7bf962.png" />
+<img alt="_images/fc13086a750ea7d08358c0a1e391537a5319f057bbc6cab95a4929f596a2f093.png" src="_images/fc13086a750ea7d08358c0a1e391537a5319f057bbc6cab95a4929f596a2f093.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.59      0.83      0.69     21678
-      Medium       0.41      0.03      0.05     14480
-        High       0.55      0.95      0.70      6381
+         Low       0.58      0.73      0.65     21678
+      Medium       0.40      0.02      0.04     14480
+        High       0.39      0.89      0.54      6381
 
-    accuracy                           0.58     42539
-   macro avg       0.52      0.60      0.48     42539
-weighted avg       0.52      0.58      0.48     42539
+    accuracy                           0.51     42539
+   macro avg       0.46      0.55      0.41     42539
+weighted avg       0.49      0.51      0.43     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5771879921953972,
- &#39;Precision (macro)&#39;: 0.5164075793252094,
- &#39;Recall (macro)&#39;: 0.6042266853908326,
- &#39;F1-score (macro)&#39;: 0.4807471612776572,
- &#39;ROC-AUC&#39;: np.float64(0.7363009719484391)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5133877148028868,
+ &#39;Precision (macro)&#39;: 0.45635265863542757,
+ &#39;Recall (macro)&#39;: 0.5478833164587168,
+ &#39;F1-score (macro)&#39;: 0.4115690423880265,
+ &#39;ROC-AUC&#39;: 0.7227956325063754}
 </pre></div>
 </div>
 </div>
@@ -744,18 +739,16 @@ weighted avg       0.52      0.58      0.48     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/98d7280223fed6e5abfbf8513ffee4d19242709bed1c004edb8adce6691bf365.png" src="_images/98d7280223fed6e5abfbf8513ffee4d19242709bed1c004edb8adce6691bf365.png" />
+<img alt="_images/efc5b9d0b78d9f62499fba63e347cfcb8a7cc9fabda6fef8ca38109a80bfc41e.png" src="_images/efc5b9d0b78d9f62499fba63e347cfcb8a7cc9fabda6fef8ca38109a80bfc41e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9610
-Low: 0.6397
-Medium: 0.6082
-AUC macro promedio: 0.7363
+High: 0.9350
+Low: 0.6307
+Medium: 0.6027
+AUC macro promedio: 0.7228
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9610232646685806),
-  1: np.float64(0.6396961353451595),
-  2: np.float64(0.6081835158315774)},
- np.float64(0.7363197768739524))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.9350357304091702, 1: 0.6306896580836912, 2: 0.6026615090262645},
+ 0.7228146465644232)
 </pre></div>
 </div>
 </div>
@@ -783,7 +776,7 @@ Sin embargo, las clases “Low” (0.6397) y “Medium” (0.6082) presentan un 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.09 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.10 minutos
 </pre></div>
 </div>
 </div>
@@ -795,25 +788,25 @@ Sin embargo, las clases “Low” (0.6397) y “Medium” (0.6082) presentan un 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/80753731fb80ac7f3692b01bd58dcdf7f2f0c7727b3b7e1cf0d3e50e601b557d.png" src="_images/80753731fb80ac7f3692b01bd58dcdf7f2f0c7727b3b7e1cf0d3e50e601b557d.png" />
+<img alt="_images/48fe06fc3ae59696f109dd390ae0c2549448cfe9c3c78bce85c7e13f47f52125.png" src="_images/48fe06fc3ae59696f109dd390ae0c2549448cfe9c3c78bce85c7e13f47f52125.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.59      0.73      0.65     21678
-      Medium       0.38      0.15      0.22     14480
-        High       0.60      0.94      0.73      6381
+         Low       0.59      0.68      0.63     21678
+      Medium       0.36      0.12      0.18     14480
+        High       0.44      0.87      0.58      6381
 
-    accuracy                           0.56     42539
-   macro avg       0.52      0.61      0.53     42539
-weighted avg       0.52      0.56      0.52     42539
+    accuracy                           0.52     42539
+   macro avg       0.46      0.56      0.47     42539
+weighted avg       0.49      0.52      0.47     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5634359058746092,
- &#39;Precision (macro)&#39;: 0.5233790862417881,
- &#39;Recall (macro)&#39;: 0.6069347616646784,
- &#39;F1-score (macro)&#39;: 0.5332161983292594,
- &#39;ROC-AUC&#39;: np.float64(0.7355177994122947)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5181362984555349,
+ &#39;Precision (macro)&#39;: 0.46318671617156526,
+ &#39;Recall (macro)&#39;: 0.5562076252057193,
+ &#39;F1-score (macro)&#39;: 0.46557195038354626,
+ &#39;ROC-AUC&#39;: 0.7225153830984881}
 </pre></div>
 </div>
 </div>
@@ -826,18 +819,16 @@ weighted avg       0.52      0.56      0.52     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/14845d5d7b56054264cb285b168f690e06412ac90721232ac6e8ca8c9ee09d0c.png" src="_images/14845d5d7b56054264cb285b168f690e06412ac90721232ac6e8ca8c9ee09d0c.png" />
+<img alt="_images/96003f86e5b41ac703cdd802c6b3f221c5844ab0bd0c6bdcc5b5ed5ed9808038.png" src="_images/96003f86e5b41ac703cdd802c6b3f221c5844ab0bd0c6bdcc5b5ed5ed9808038.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9619
-Low: 0.6377
-Medium: 0.6070
-AUC macro promedio: 0.7355
+High: 0.9365
+Low: 0.6296
+Medium: 0.6015
+AUC macro promedio: 0.7225
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9619091058667372),
-  1: np.float64(0.6376813473799239),
-  2: np.float64(0.6069629449902229)},
- np.float64(0.7355364597232114))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.936485079904796, 1: 0.6295705243099494, 2: 0.6014905450807189},
+ 0.7225344016661113)
 </pre></div>
 </div>
 </div>
@@ -898,123 +889,6 @@ Sin embargo, las clases “Low” (0.6377) y “Medium” (0.6070) presentan un 
 </table>
 </div>
 <p>Entre los modelos de LogisticRegression realizados se pudo observar que SMOTE es el mejor de entre todos, teniendo un mejor balance entre todas las clases en general y tiene mayor recall a comparacion de los otros</p>
-<section id="gridsearch">
-<h3>Gridsearch<a class="headerlink" href="#gridsearch" title="Link to this heading">#</a></h3>
-<p>realizamos gridsearch y tuning de hiperparametros con el mejor modelo de los vistos el cual es el de SMOTE</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scoring</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;recall_macro&#39;</span><span class="p">:</span> <span class="s1">&#39;recall_macro&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;f1_macro&#39;</span><span class="p">:</span> <span class="s1">&#39;f1_macro&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;roc_auc_ovr&#39;</span><span class="p">:</span> <span class="s1">&#39;roc_auc_ovr&#39;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid_log</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;model__C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">grid_log_bal</span> <span class="o">=</span> <span class="n">gridsearch_pipeline</span><span class="p">(</span><span class="n">pipe_logit_bal</span><span class="p">,</span> <span class="n">param_grid_log</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">)</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic GridSearch balanceado SMOTE - Mejor score:&quot;</span><span class="p">,</span> <span class="n">grid_log_bal</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic GridSearch balanceado SMOTE - Params:&quot;</span><span class="p">,</span> <span class="n">grid_log_bal</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tiempo de ejecución: </span><span class="si">{</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> minutos&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic GridSearch balanceado SMOTE - Mejor score: 0.6066070125494305
-Logistic GridSearch balanceado SMOTE - Params: {&#39;model__C&#39;: 0.01}
-Tiempo de ejecución: 3.74 minutos
-</pre></div>
-</div>
-</div>
-</div>
-<p>El modelo de Regresión Logística con balanceo mediante SMOTE alcanzó un mejor puntaje de 0.6066, utilizando un valor de regularización C = 0.01, lo que indica un modelo con mayor penalización y menor complejidad.</p>
-<p>El resultado sugiere que el modelo logra un rendimiento moderado, siendo capaz de aprovechar parcialmente los datos sintéticos generados por SMOTE para mejorar el equilibrio entre clases, aunque aún hay margen para optimizar su capacidad predictiva.</p>
-<p>El tiempo de ejecución (3.74 minutos) fue razonable, considerando la búsqueda de hiperparámetros y el proceso de sobremuestreo.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evaluar_modelo</span><span class="p">(</span><span class="n">grid_log_bal</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/8c7c65d99dd192e77c79b23ed74483030a3e8b72d482b9cb2efdf5137edfc51c.png" src="_images/8c7c65d99dd192e77c79b23ed74483030a3e8b72d482b9cb2efdf5137edfc51c.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
-
-              precision    recall  f1-score   support
-
-         Low       0.60      0.38      0.47     21678
-      Medium       0.40      0.51      0.45     14480
-        High       0.58      0.94      0.72      6381
-
-    accuracy                           0.51     42539
-   macro avg       0.53      0.61      0.54     42539
-weighted avg       0.53      0.51      0.50     42539
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5092033193069889,
- &#39;Precision (macro)&#39;: 0.527307294078184,
- &#39;Recall (macro)&#39;: 0.6104785812579032,
- &#39;F1-score (macro)&#39;: 0.5448994122184374,
- &#39;ROC-AUC&#39;: np.float64(0.7354410852872407)}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass</span><span class="p">(</span><span class="n">grid_log_bal</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/586d594cb031c7f8122ba7e2e0e8d15949b742808fc57df650ba454b2d641c59.png" src="_images/586d594cb031c7f8122ba7e2e0e8d15949b742808fc57df650ba454b2d641c59.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9590
-Low: 0.6391
-Medium: 0.6081
-AUC macro promedio: 0.7355
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9590422197501798),
-  1: np.float64(0.6391353721505004),
-  2: np.float64(0.6081456639610419)},
- np.float64(0.7354599685600501))
-</pre></div>
-</div>
-</div>
-</div>
-<p>Los valores de AUC indican el desempeño del modelo para distinguir correctamente cada categoría del riesgo de cáncer de tiroides:</p>
-<p>Clase “High” (AUC = 0.9590): el modelo tiene excelente capacidad predictiva para identificar pacientes con alto riesgo.</p>
-<p>Clase “Low” (AUC = 0.6391): el rendimiento es moderado, indicando cierta dificultad para separar correctamente los casos de bajo riesgo.</p>
-<p>Clase “Medium” (AUC = 0.6081): el modelo presenta rendimiento limitado en la identificación de riesgos intermedios.</p>
-<p>El AUC macro promedio (0.7355) sugiere un buen desempeño general, aunque el modelo muestra un desequilibrio en su capacidad de discriminación entre clases, siendo más preciso para el grupo de alto riesgo que para los demás.</p>
-</section>
 </section>
 </section>
 
@@ -1092,10 +966,7 @@ AUC macro promedio: 0.7355
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-weight-balanced">Class weight balanced</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa">Tabla comparativa</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gridsearch">Gridsearch</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa">Tabla comparativa</a></li>
 </ul>
   </nav></div>
 

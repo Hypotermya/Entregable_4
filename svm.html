@@ -193,7 +193,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
 </ul>
 
     </div>
@@ -495,7 +497,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 15), (42539, 15), (170152, 1), (42539, 1))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 14), (42539, 14), (170152, 1), (42539, 1))
 </pre></div>
 </div>
 </div>
@@ -539,7 +541,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 461.75 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 669.48 minutos
 </pre></div>
 </div>
 </div>
@@ -569,7 +571,7 @@ weighted avg       0.46      0.66      0.53     42539
  &#39;Precision (macro)&#39;: 0.5331784575105555,
  &#39;Recall (macro)&#39;: 0.6666666666666666,
  &#39;F1-score (macro)&#39;: 0.5832123014500773,
- &#39;ROC-AUC&#39;: 0.7564573704115531}
+ &#39;ROC-AUC&#39;: 0.757175018523292}
 </pre></div>
 </div>
 </div>
@@ -581,15 +583,15 @@ weighted avg       0.46      0.66      0.53     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e88c40338c20b7b7f87f1704fd8a848d653060e24810782e9ca7a03e7aa7eb7d.png" src="_images/e88c40338c20b7b7f87f1704fd8a848d653060e24810782e9ca7a03e7aa7eb7d.png" />
+<img alt="_images/874680055cc0b849d3f4207bf5d8761d5f282f2984fc78964b19593dd7316011.png" src="_images/874680055cc0b849d3f4207bf5d8761d5f282f2984fc78964b19593dd7316011.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
 High: 1.0000
-Low: 0.6542
-Medium: 0.6152
-AUC macro promedio: 0.7565
+Low: 0.6553
+Medium: 0.6162
+AUC macro promedio: 0.7572
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 1.0, 1: 0.6542137969367878, 2: 0.6151583142978716}, 0.7564720836789891)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 1.0, 1: 0.6552872233501201, 2: 0.6162378322197564}, 0.7571898656674924)
 </pre></div>
 </div>
 </div>
@@ -619,7 +621,7 @@ El <strong>AUC macro promedio de 0.7565</strong> refleja un rendimiento general 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 485.55 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 420.43 minutos
 </pre></div>
 </div>
 </div>
@@ -631,25 +633,25 @@ El <strong>AUC macro promedio de 0.7565</strong> refleja un rendimiento general 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09a3deb0de14e7b74a2892bc3d6d56aaea334df1dc75b255b98d65458dfe92a5.png" src="_images/09a3deb0de14e7b74a2892bc3d6d56aaea334df1dc75b255b98d65458dfe92a5.png" />
+<img alt="_images/2f23d1496791a247c2b62da14a4809be0a875bdba7624e0ec32ebc42da4edf95.png" src="_images/2f23d1496791a247c2b62da14a4809be0a875bdba7624e0ec32ebc42da4edf95.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.60      0.62      0.61     21678
-      Medium       0.40      0.38      0.39     14480
+         Low       0.60      0.60      0.60     21678
+      Medium       0.40      0.40      0.40     14480
         High       1.00      1.00      1.00      6381
 
-    accuracy                           0.60     42539
+    accuracy                           0.59     42539
    macro avg       0.67      0.67      0.67     42539
-weighted avg       0.59      0.60      0.59     42539
+weighted avg       0.59      0.59      0.59     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5965584522438233,
- &#39;Precision (macro)&#39;: 0.6673516060509949,
- &#39;Recall (macro)&#39;: 0.6673370278733929,
- &#39;F1-score (macro)&#39;: 0.6671582166472559,
- &#39;ROC-AUC&#39;: 0.7567071895764254}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5921624861891441,
+ &#39;Precision (macro)&#39;: 0.6671286977335615,
+ &#39;Recall (macro)&#39;: 0.6671292551265577,
+ &#39;F1-score (macro)&#39;: 0.6671282299477231,
+ &#39;ROC-AUC&#39;: 0.7562668748234692}
 </pre></div>
 </div>
 </div>
@@ -661,15 +663,15 @@ weighted avg       0.59      0.60      0.59     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/213bb9a6315d3a2995494c76d7ef2f51ec63ed22c6cd645da8b21703db4c70e7.png" src="_images/213bb9a6315d3a2995494c76d7ef2f51ec63ed22c6cd645da8b21703db4c70e7.png" />
+<img alt="_images/f9d4fd39a3cde6e9419474af06c35a6b70a181b30531ca009284c7acd8586bb9.png" src="_images/f9d4fd39a3cde6e9419474af06c35a6b70a181b30531ca009284c7acd8586bb9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
 High: 1.0000
-Low: 0.6546
-Medium: 0.6155
-AUC macro promedio: 0.7567
+Low: 0.6540
+Medium: 0.6148
+AUC macro promedio: 0.7563
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 1.0, 1: 0.6545848292543064, 2: 0.6155367394749698}, 0.7567219480926943)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 1.0, 1: 0.6539598656825418, 2: 0.6148407587878659}, 0.7562817610559258)
 </pre></div>
 </div>
 </div>
@@ -696,7 +698,7 @@ Aunque la mejora es marginal, indica una mayor estabilidad y consistencia del mo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 344.86 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 357.93 minutos
 </pre></div>
 </div>
 </div>
@@ -708,25 +710,25 @@ Aunque la mejora es marginal, indica una mayor estabilidad y consistencia del mo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1cfeae952e4e73a50db175a9f6806a4c315ba3fe5eb2428afb741b906fa4b516.png" src="_images/1cfeae952e4e73a50db175a9f6806a4c315ba3fe5eb2428afb741b906fa4b516.png" />
+<img alt="_images/0643ec32f3d42d7c310862d05e8480fd757513a9e489569980e50ed733261e7d.png" src="_images/0643ec32f3d42d7c310862d05e8480fd757513a9e489569980e50ed733261e7d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.60      0.93      0.73     21678
-      Medium       0.38      0.07      0.11     14480
+         Low       0.60      0.92      0.72     21678
+      Medium       0.39      0.08      0.13     14480
         High       1.00      1.00      1.00      6381
 
-    accuracy                           0.65     42539
-   macro avg       0.66      0.66      0.61     42539
-weighted avg       0.58      0.65      0.56     42539
+    accuracy                           0.64     42539
+   macro avg       0.66      0.67      0.62     42539
+weighted avg       0.59      0.64      0.56     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6455252826817743,
- &#39;Precision (macro)&#39;: 0.6591887070983403,
- &#39;Recall (macro)&#39;: 0.664671739066535,
- &#39;F1-score (macro)&#39;: 0.6129466381999906,
- &#39;ROC-AUC&#39;: 0.7541789640630358}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6445614612473259,
+ &#39;Precision (macro)&#39;: 0.6622234582676693,
+ &#39;Recall (macro)&#39;: 0.6653177950946866,
+ &#39;F1-score (macro)&#39;: 0.6176963780577843,
+ &#39;ROC-AUC&#39;: 0.7538951422827758}
 </pre></div>
 </div>
 </div>
@@ -738,15 +740,15 @@ weighted avg       0.58      0.65      0.56     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/61c9f84c976c73eefc1f8a8ec06badcee4fcf5a55c6be5f54db4a9b37f7e92eb.png" src="_images/61c9f84c976c73eefc1f8a8ec06badcee4fcf5a55c6be5f54db4a9b37f7e92eb.png" />
+<img alt="_images/9409797d747c6dd057e0ac61846b5e4a94a40f4ed4d0f5d10c60b517ee10ef4e.png" src="_images/9409797d747c6dd057e0ac61846b5e4a94a40f4ed4d0f5d10c60b517ee10ef4e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
 High: 1.0000
-Low: 0.6510
-Medium: 0.6115
-AUC macro promedio: 0.7542
+Low: 0.6506
+Medium: 0.6111
+AUC macro promedio: 0.7539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 1.0, 1: 0.6509952270238155, 2: 0.6115416651652921}, 0.7541937667862052)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 1.0, 1: 0.6505936965972128, 2: 0.6110917302511145}, 0.7539098514477589)
 </pre></div>
 </div>
 </div>
@@ -782,7 +784,7 @@ Aunque la caída es leve, sugiere que el modelo anterior ofrecía una mayor capa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.16 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.12 minutos
 </pre></div>
 </div>
 </div>
@@ -803,9 +805,9 @@ Aunque la caída es leve, sugiere que el modelo anterior ofrecía una mayor capa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;High&#39;: 0.959238592737464,
- &#39;Low&#39;: 0.6369075662151163,
- &#39;Medium&#39;: 0.6077575413803471}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;High&#39;: 0.9321384010185183,
+ &#39;Low&#39;: 0.6293727509717635,
+ &#39;Medium&#39;: 0.6030654895692364}
 </pre></div>
 </div>
 </div>
@@ -818,7 +820,7 @@ Aunque la caída es leve, sugiere que el modelo anterior ofrecía una mayor capa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ROC-AUC macro: 0.7346345667776425
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ROC-AUC macro: 0.7215255471865061
 </pre></div>
 </div>
 </div>
@@ -834,24 +836,24 @@ Aunque la caída es leve, sugiere que el modelo anterior ofrecía una mayor capa
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Aviso] No se pudo calcular AUC: This &#39;Pipeline&#39; has no attribute &#39;predict_proba&#39;
 </pre></div>
 </div>
-<img alt="_images/ad8cb65cec58260f2c9d73c4c606e0715d789323b328d8e99a86edb5266116ef.png" src="_images/ad8cb65cec58260f2c9d73c4c606e0715d789323b328d8e99a86edb5266116ef.png" />
+<img alt="_images/0a299ea2971dc877a98fec92784c1dbd94a2ffba4af409618cae308df497614c.png" src="_images/0a299ea2971dc877a98fec92784c1dbd94a2ffba4af409618cae308df497614c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.59      0.40      0.48     21678
-      Medium       0.40      0.51      0.45     14480
-        High       0.63      0.91      0.75      6381
+         Low       0.58      0.32      0.42     21678
+      Medium       0.41      0.43      0.42     14480
+        High       0.39      0.92      0.55      6381
 
-    accuracy                           0.52     42539
-   macro avg       0.54      0.61      0.56     42539
-weighted avg       0.53      0.52      0.51     42539
+    accuracy                           0.45     42539
+   macro avg       0.46      0.56      0.46     42539
+weighted avg       0.49      0.45      0.44     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5174310632595971,
- &#39;Precision (macro)&#39;: 0.5421664216198195,
- &#39;Recall (macro)&#39;: 0.6091075162503112,
- &#39;F1-score (macro)&#39;: 0.5592099943428509,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.4491878041326782,
+ &#39;Precision (macro)&#39;: 0.45807266089870097,
+ &#39;Recall (macro)&#39;: 0.5578915291144475,
+ &#39;F1-score (macro)&#39;: 0.4596229322003424,
  &#39;ROC-AUC&#39;: None}
 </pre></div>
 </div>
@@ -864,7 +866,7 @@ weighted avg       0.53      0.52      0.51     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4624970cb9a2862cc5a4c14f9df2ec4871040e74198f1ec63d0261fd6b2ecc98.png" src="_images/4624970cb9a2862cc5a4c14f9df2ec4871040e74198f1ec63d0261fd6b2ecc98.png" />
+<img alt="_images/16b1f746305d1632dada9a44839c7b2bd3f0986b9efee1a0b2f8525bfbcd2df8.png" src="_images/16b1f746305d1632dada9a44839c7b2bd3f0986b9efee1a0b2f8525bfbcd2df8.png" />
 </div>
 </div>
 <p>Los resultados muestran un AUC macro promedio de 0.34, indicando un bajo desempeño general.</p>

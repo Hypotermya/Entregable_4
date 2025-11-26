@@ -193,7 +193,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
 </ul>
 
     </div>
@@ -401,9 +403,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-computacional">Optimizacion computacional</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa">Tabla comparativa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lime">Lime</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-normal">modelo normal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-smote">modelo Smote</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-adasyn">modelo ADASYN</a></li>
 </ul>
             </nav>
         </div>
@@ -471,7 +470,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Cargamos las librerias a utilizar</p>
 </section>
 <section id="cargado-de-datos">
 <h2>Cargado de datos<a class="headerlink" href="#cargado-de-datos" title="Link to this heading">#</a></h2>
@@ -492,7 +490,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 15), (42539, 15), (170152, 1), (42539, 1))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 14), (42539, 14), (170152, 1), (42539, 1))
 </pre></div>
 </div>
 </div>
@@ -505,7 +503,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p>cargamos los datos</p>
 </section>
 <section id="funciones-usadas">
 <h2>Funciones usadas<a class="headerlink" href="#funciones-usadas" title="Link to this heading">#</a></h2>
@@ -533,10 +530,19 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_XGBoost</span><span class="o">=</span><span class="n">crear_pipeline</span><span class="p">(</span><span class="n">XGBClassifier</span><span class="p">(</span>
-    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;multi:softprob&quot;</span><span class="p">,</span>  
-    <span class="n">num_class</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>                 
-    <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;mlogloss&quot;</span><span class="p">,</span>       
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;multi:softprob&quot;</span><span class="p">,</span>
+    <span class="n">num_class</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;mlogloss&quot;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">min_child_weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">reg_alpha</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">reg_lambda</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>       
+    <span class="n">max_delta_step</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">),</span> <span class="n">tipo</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -552,7 +558,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.04 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.03 minutos
 </pre></div>
 </div>
 </div>
@@ -564,30 +570,30 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d0790b795ce2ed03d5e0cea49f12ec514c87d8b48770211dd44daf1264a9dd80.png" src="_images/d0790b795ce2ed03d5e0cea49f12ec514c87d8b48770211dd44daf1264a9dd80.png" />
+<img alt="_images/820e4c93feb0ef606e50e7f4dbf07283829a67d59bf0bbb61d7078c1aba00b9f.png" src="_images/820e4c93feb0ef606e50e7f4dbf07283829a67d59bf0bbb61d7078c1aba00b9f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.60      0.95      0.73     21678
-      Medium       0.36      0.05      0.08     14480
-        High       1.00      1.00      1.00      6381
+         Low       0.58      1.00      0.74     21678
+      Medium       0.00      0.00      0.00     14480
+        High       1.00      0.83      0.91      6381
 
-    accuracy                           0.65     42539
-   macro avg       0.65      0.66      0.61     42539
-weighted avg       0.58      0.65      0.55     42539
+    accuracy                           0.63     42539
+   macro avg       0.53      0.61      0.55     42539
+weighted avg       0.45      0.63      0.51     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6476644961094525,
- &#39;Precision (macro)&#39;: 0.6538081913159317,
- &#39;Recall (macro)&#39;: 0.6640454304650164,
- &#39;F1-score (macro)&#39;: 0.6050973716255372,
- &#39;ROC-AUC&#39;: 0.7550632207255386}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6336068078704248,
+ &#39;Precision (macro)&#39;: 0.5272470301989408,
+ &#39;Recall (macro)&#39;: 0.6088909784255342,
+ &#39;F1-score (macro)&#39;: 0.5468946024290241,
+ &#39;ROC-AUC&#39;: 0.7535900325047837}
 </pre></div>
 </div>
 </div>
 </div>
-<p>En general se puede observar que hay un desbalance muy grande en el modelo, medium tiene muy bajos scores de recall y F1, y High tiene todos su scores en 1, lo que se debe tomar en cuenta, talvez se deba al desbalance</p>
+<p>En general se puede observar que hay un desbalance muy grande en el modelo, medium tiene scores de 0 en las metricas por clase, y Low y High tienen scores de 1 en precision y recall respectivamente en que se debe al balanceo. Las metricas generales rondan 0.53-0.63 salvo AUC con 0.75</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass2</span><span class="p">(</span><span class="n">model_pipe</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -595,7 +601,7 @@ weighted avg       0.58      0.65      0.55     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a9a46f9c4dbe149a310df5aa04fe2ca842c40bd6c0f97cca145eac73f3da0c70.png" src="_images/a9a46f9c4dbe149a310df5aa04fe2ca842c40bd6c0f97cca145eac73f3da0c70.png" />
+<img alt="_images/c078d2198a569f7fa8622028e12fdb4c5364b575653f29ee377e8021623b12a6.png" src="_images/c078d2198a569f7fa8622028e12fdb4c5364b575653f29ee377e8021623b12a6.png" />
 </div>
 </div>
 </section>
@@ -606,10 +612,19 @@ weighted avg       0.58      0.65      0.55     42539
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_XGBoost_bal</span><span class="o">=</span><span class="n">crear_pipeline</span><span class="p">(</span><span class="n">XGBClassifier</span><span class="p">(</span>
-    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;multi:softprob&quot;</span><span class="p">,</span>  
-    <span class="n">num_class</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>                 
-    <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;mlogloss&quot;</span><span class="p">,</span>       
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;multi:softprob&quot;</span><span class="p">,</span>
+    <span class="n">num_class</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;mlogloss&quot;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">min_child_weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">reg_alpha</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">reg_lambda</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>       <span class="c1"># clave</span>
+    <span class="n">max_delta_step</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">),</span> <span class="n">tipo</span><span class="o">=</span><span class="s2">&quot;balanceo_smote&quot;</span><span class="p">,</span><span class="n">y_train</span><span class="o">=</span><span class="n">y_train_enc</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -625,7 +640,7 @@ weighted avg       0.58      0.65      0.55     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.25 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.15 minutos
 </pre></div>
 </div>
 </div>
@@ -637,30 +652,30 @@ weighted avg       0.58      0.65      0.55     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c6f041bdd254d663f8abf6bc2c6c8bfe5944fadab7880e468180d8a0b7505019.png" src="_images/c6f041bdd254d663f8abf6bc2c6c8bfe5944fadab7880e468180d8a0b7505019.png" />
+<img alt="_images/0dc965ff33171f5c650c4bca2553ecd28221fa5166f0ba0767e301e08aab2d97.png" src="_images/0dc965ff33171f5c650c4bca2553ecd28221fa5166f0ba0767e301e08aab2d97.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.60      0.90      0.72     21678
-      Medium       0.40      0.10      0.16     14480
-        High       1.00      1.00      1.00      6381
+         Low       0.60      0.58      0.59     21678
+      Medium       0.41      0.37      0.39     14480
+        High       0.73      1.00      0.85      6381
 
-    accuracy                           0.64     42539
-   macro avg       0.67      0.67      0.63     42539
-weighted avg       0.59      0.64      0.57     42539
+    accuracy                           0.57     42539
+   macro avg       0.58      0.65      0.61     42539
+weighted avg       0.55      0.57      0.56     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6434801006135547,
- &#39;Precision (macro)&#39;: 0.6680448973745063,
- &#39;Recall (macro)&#39;: 0.6671787511232968,
- &#39;F1-score (macro)&#39;: 0.6269056480147055,
- &#39;ROC-AUC&#39;: 0.7566235243622073}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5684195679259033,
+ &#39;Precision (macro)&#39;: 0.5800041805308656,
+ &#39;Recall (macro)&#39;: 0.647570694852858,
+ &#39;F1-score (macro)&#39;: 0.6064532909782909,
+ &#39;ROC-AUC&#39;: 0.7552973458229969}
 </pre></div>
 </div>
 </div>
 </div>
-<p>Podemos observar que incluso luego del balanceo por SMOTE, Medium tiene valores bajos en recall y F1, aunque si es una mejora en comparacion con el modelo benchmark no balanceado</p>
+<p>Podemos observar que incluso luego del balanceo por SMOTE, Medium tiene valores bajos en recall y F1, aunque si es una mejora en comparacion con el modelo benchmark no balanceado, aunque recall ahora esta en un perfecto 1 en High y hubo un bajon leve en accuracy con 0.58 pero recall mejoro con 0.65</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass2</span><span class="p">(</span><span class="n">model_pipe_bal</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -668,7 +683,7 @@ weighted avg       0.59      0.64      0.57     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/adf2e0e52124e1c3a8ecb2c04633894062bcd4f30df42f99f82c4740ea6180c6.png" src="_images/adf2e0e52124e1c3a8ecb2c04633894062bcd4f30df42f99f82c4740ea6180c6.png" />
+<img alt="_images/973e37dcd32c734156611e846af111cd09b68e2f52699a79e65825e60cf0c734.png" src="_images/973e37dcd32c734156611e846af111cd09b68e2f52699a79e65825e60cf0c734.png" />
 </div>
 </div>
 </section>
@@ -677,10 +692,19 @@ weighted avg       0.59      0.64      0.57     42539
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_XGBoost_ads</span><span class="o">=</span><span class="n">crear_pipeline</span><span class="p">(</span><span class="n">XGBClassifier</span><span class="p">(</span>
-    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;multi:softprob&quot;</span><span class="p">,</span>  
-    <span class="n">num_class</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>                 
-    <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;mlogloss&quot;</span><span class="p">,</span>       
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;multi:softprob&quot;</span><span class="p">,</span>
+    <span class="n">num_class</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;mlogloss&quot;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">min_child_weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">reg_alpha</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">reg_lambda</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>       <span class="c1"># clave</span>
+    <span class="n">max_delta_step</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">),</span> <span class="n">tipo</span><span class="o">=</span><span class="s2">&quot;balanceo_adasyn&quot;</span><span class="p">,</span><span class="n">y_train</span><span class="o">=</span><span class="n">y_train_enc</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -696,7 +720,7 @@ weighted avg       0.59      0.64      0.57     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.48 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.40 minutos
 </pre></div>
 </div>
 </div>
@@ -708,30 +732,30 @@ weighted avg       0.59      0.64      0.57     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4d1a9d74d49aaffd027d862113f660870464c41e0790bb081529a00ebaae3106.png" src="_images/4d1a9d74d49aaffd027d862113f660870464c41e0790bb081529a00ebaae3106.png" />
+<img alt="_images/f897e1f00b036c2f5f01f13adb3cd3c1e1353e2d56b63ff2a9d1e082f9ed6a81.png" src="_images/f897e1f00b036c2f5f01f13adb3cd3c1e1353e2d56b63ff2a9d1e082f9ed6a81.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.60      0.94      0.73     21678
-      Medium       0.39      0.05      0.10     14480
-        High       1.00      1.00      1.00      6381
+         Low       0.60      0.92      0.73     21678
+      Medium       0.00      0.00      0.00     14480
+        High       0.70      1.00      0.82      6381
 
-    accuracy                           0.65     42539
-   macro avg       0.66      0.67      0.61     42539
-weighted avg       0.59      0.65      0.56     42539
+    accuracy                           0.62     42539
+   macro avg       0.43      0.64      0.52     42539
+weighted avg       0.41      0.62      0.49     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6488163802628176,
- &#39;Precision (macro)&#39;: 0.6619897670860365,
- &#39;Recall (macro)&#39;: 0.6656320442328764,
- &#39;F1-score (macro)&#39;: 0.6092363939747257,
- &#39;ROC-AUC&#39;: 0.7556133000120336}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6198782293895014,
+ &#39;Precision (macro)&#39;: 0.43212245338250216,
+ &#39;Recall (macro)&#39;: 0.6406802595565396,
+ &#39;F1-score (macro)&#39;: 0.5159673059323721,
+ &#39;ROC-AUC&#39;: 0.7558216480356365}
 </pre></div>
 </div>
 </div>
 </div>
-<p>El balanceo por ADASYN no ayudo a la mejora del modelo, con scores casi iguales no se observa una mejora significativa en comparacion al original</p>
+<p>El balanceo por ADASYN no ayudo a la mejora del modelo, con scores casi iguales no se observa una mejora significativa en comparacion al original o al balanceado por SMOTE, salvo accuracy que ahora tiene 0.63 y recall con 0.646</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_roc_multiclass2</span><span class="p">(</span><span class="n">model_pipe_ads</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -739,7 +763,7 @@ weighted avg       0.59      0.65      0.56     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/11ead156598ad4e9f97eb5b78e4482ee40eb94536b36c05fce913c030b041374.png" src="_images/11ead156598ad4e9f97eb5b78e4482ee40eb94536b36c05fce913c030b041374.png" />
+<img alt="_images/71f341136004c5474eff311b82ed8c84152d4f7e8028ace0e134d0e53f2f205a.png" src="_images/71f341136004c5474eff311b82ed8c84152d4f7e8028ace0e134d0e53f2f205a.png" />
 </div>
 </div>
 </section>
@@ -754,7 +778,16 @@ weighted avg       0.59      0.65      0.56     42539
         <span class="n">num_class</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>                  <span class="c1"># Número de clases</span>
         <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;mlogloss&quot;</span><span class="p">,</span>       <span class="c1"># Métrica multiclase</span>
         <span class="n">tree_method</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span>           <span class="c1"># Entrenamiento rápido</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">min_child_weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">subsample</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="n">reg_alpha</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">reg_lambda</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+        <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>       <span class="c1"># clave</span>
+        <span class="n">max_delta_step</span><span class="o">=</span><span class="mi">1</span>
     <span class="p">),</span>
     <span class="n">tipo</span><span class="o">=</span><span class="s2">&quot;balanceo_smote&quot;</span><span class="p">,</span>
     <span class="n">y_train</span><span class="o">=</span><span class="n">y_train_enc</span>
@@ -776,7 +809,7 @@ weighted avg       0.59      0.65      0.56     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.26 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.13 minutos
 </pre></div>
 </div>
 </div>
@@ -788,25 +821,25 @@ weighted avg       0.59      0.65      0.56     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c6f041bdd254d663f8abf6bc2c6c8bfe5944fadab7880e468180d8a0b7505019.png" src="_images/c6f041bdd254d663f8abf6bc2c6c8bfe5944fadab7880e468180d8a0b7505019.png" />
+<img alt="_images/0dc965ff33171f5c650c4bca2553ecd28221fa5166f0ba0767e301e08aab2d97.png" src="_images/0dc965ff33171f5c650c4bca2553ecd28221fa5166f0ba0767e301e08aab2d97.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.60      0.90      0.72     21678
-      Medium       0.40      0.10      0.16     14480
-        High       1.00      1.00      1.00      6381
+         Low       0.60      0.58      0.59     21678
+      Medium       0.41      0.37      0.39     14480
+        High       0.73      1.00      0.85      6381
 
-    accuracy                           0.64     42539
-   macro avg       0.67      0.67      0.63     42539
-weighted avg       0.59      0.64      0.57     42539
+    accuracy                           0.57     42539
+   macro avg       0.58      0.65      0.61     42539
+weighted avg       0.55      0.57      0.56     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.6434801006135547,
- &#39;Precision (macro)&#39;: 0.6680448973745063,
- &#39;Recall (macro)&#39;: 0.6671787511232968,
- &#39;F1-score (macro)&#39;: 0.6269056480147055,
- &#39;ROC-AUC&#39;: 0.7566235243622073}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5684195679259033,
+ &#39;Precision (macro)&#39;: 0.5800041805308656,
+ &#39;Recall (macro)&#39;: 0.647570694852858,
+ &#39;F1-score (macro)&#39;: 0.6064532909782909,
+ &#39;ROC-AUC&#39;: 0.7552973458229969}
 </pre></div>
 </div>
 </div>
@@ -818,7 +851,7 @@ weighted avg       0.59      0.64      0.57     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/adf2e0e52124e1c3a8ecb2c04633894062bcd4f30df42f99f82c4740ea6180c6.png" src="_images/adf2e0e52124e1c3a8ecb2c04633894062bcd4f30df42f99f82c4740ea6180c6.png" />
+<img alt="_images/973e37dcd32c734156611e846af111cd09b68e2f52699a79e65825e60cf0c734.png" src="_images/973e37dcd32c734156611e846af111cd09b68e2f52699a79e65825e60cf0c734.png" />
 </div>
 </div>
 </section>
@@ -837,36 +870,36 @@ weighted avg       0.59      0.64      0.57     42539
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Benchmark</p></td>
-<td><p>0.65</p></td>
-<td><p>0.65</p></td>
-<td><p>0.66</p></td>
-<td><p>0.61</p></td>
-<td><p>0.76</p></td>
-<td><p>0.07</p></td>
+<td><p>0.63</p></td>
+<td><p>0.53</p></td>
+<td><p>0.60</p></td>
+<td><p>0.54</p></td>
+<td><p>0.75</p></td>
+<td><p>0.06</p></td>
 </tr>
 <tr class="row-odd"><td><p>SMOTE</p></td>
-<td><p>0.64</p></td>
-<td><p>0.67</p></td>
-<td><p>0.67</p></td>
-<td><p>0.63</p></td>
-<td><p>0.76</p></td>
-<td><p>0.22</p></td>
+<td><p>0.58</p></td>
+<td><p>0.59</p></td>
+<td><p>0.65</p></td>
+<td><p>0.62</p></td>
+<td><p>0.75</p></td>
+<td><p>0.31</p></td>
 </tr>
 <tr class="row-even"><td><p>ADASYN</p></td>
+<td><p>0.63</p></td>
+<td><p>0.45</p></td>
 <td><p>0.65</p></td>
-<td><p>0.66</p></td>
-<td><p>0.67</p></td>
-<td><p>0.61</p></td>
+<td><p>0.53</p></td>
 <td><p>0.76</p></td>
-<td><p>0.37</p></td>
+<td><p>0.94</p></td>
 </tr>
 <tr class="row-odd"><td><p>Optimizacion</p></td>
-<td><p>0.64</p></td>
-<td><p>0.67</p></td>
-<td><p>0.67</p></td>
-<td><p>0.63</p></td>
-<td><p>0.76</p></td>
-<td><p>0.17</p></td>
+<td><p>0.58</p></td>
+<td><p>0.59</p></td>
+<td><p>0.65</p></td>
+<td><p>0.62</p></td>
+<td><p>0.75</p></td>
+<td><p>0.28</p></td>
 </tr>
 </tbody>
 </table>
@@ -38044,25 +38077,25 @@ weighted avg       0.59      0.64      0.57     42539
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_divHQPAK4M0EWK0QNP"></div>
+        <div class="lime top_div" id="top_divFQZ79LUXZ1GAGAE"></div>
         
         <script>
-        var top_div = d3.select('#top_divHQPAK4M0EWK0QNP').classed('lime top_div', true);
+        var top_div = d3.select('#top_divFQZ79LUXZ1GAGAE').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["High", "Low", "Medium"], [0.6116605401039124, 0.3883335590362549, 5.932372459938051e-06]);
+            var pp = new lime.PredictProba(pp_svg, ["High", "Low", "Medium"], [0.46430152654647827, 0.3308810889720917, 0.20481739938259125]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["High", "Low", "Medium"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["cat__Radiation_Exposure_Yes <= 0.00", 0.14820470134071173], ["cat__Family_History_Yes <= 0.00", 0.10055570200429141], ["cat__Country_India <= 0.00", 0.08631699579753078], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.07475910690723367], ["cat__Iodine_Deficiency_Yes > 0.00", -0.05828079019454622], ["cat__Ethnicity_Middle Eastern <= 0.00", -0.034562232231143346], ["cat__Ethnicity_Caucasian <= 0.00", -0.0320508845984723], ["cat__Ethnicity_Hispanic <= 0.00", -0.0239061128342602], ["cat__Country_UK <= 0.00", 0.011022156134042421], ["cat__Country_Germany > 0.00", -0.009940789893180877]], 1, exp_div);
+                exp.show([["cat__Family_History_Yes <= 0.00", 0.04129289063818076], ["cat__Radiation_Exposure_Yes <= 0.00", 0.039392142171219884], ["cat__Country_India <= 0.00", 0.034270783906073736], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.031244248444167594], ["cat__Iodine_Deficiency_Yes > 0.00", -0.021178680082096897], ["cat__Ethnicity_Caucasian <= 0.00", -0.017425456998905613], ["cat__Ethnicity_Hispanic <= 0.00", -0.011542766811351815], ["cat__Ethnicity_Middle Eastern <= 0.00", -0.008056367036175419], ["cat__Country_China <= 0.00", -0.0026352003392510303], ["cat__Country_USA <= 0.00", -0.0020212173229431046]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["cat__Radiation_Exposure_Yes", "0.00", 0.14820470134071173], ["cat__Family_History_Yes", "0.00", 0.10055570200429141], ["cat__Country_India", "0.00", 0.08631699579753078], ["cat__Ethnicity_Asian", "1.00", -0.07475910690723367], ["cat__Iodine_Deficiency_Yes", "1.00", -0.05828079019454622], ["cat__Ethnicity_Middle Eastern", "0.00", -0.034562232231143346], ["cat__Ethnicity_Caucasian", "0.00", -0.0320508845984723], ["cat__Ethnicity_Hispanic", "0.00", -0.0239061128342602], ["cat__Country_UK", "0.00", 0.011022156134042421], ["cat__Country_Germany", "1.00", -0.009940789893180877]], 1, raw_div);
+            exp.show_raw_tabular([["cat__Family_History_Yes", "0.00", 0.04129289063818076], ["cat__Radiation_Exposure_Yes", "0.00", 0.039392142171219884], ["cat__Country_India", "0.00", 0.034270783906073736], ["cat__Ethnicity_Asian", "1.00", -0.031244248444167594], ["cat__Iodine_Deficiency_Yes", "1.00", -0.021178680082096897], ["cat__Ethnicity_Caucasian", "0.00", -0.017425456998905613], ["cat__Ethnicity_Hispanic", "0.00", -0.011542766811351815], ["cat__Ethnicity_Middle Eastern", "0.00", -0.008056367036175419], ["cat__Country_China", "0.00", -0.0026352003392510303], ["cat__Country_USA", "0.00", -0.0020212173229431046]], 1, raw_div);
         
         </script>
         </body></html></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Generando LIME para modelo: SMOTE ---
@@ -75159,25 +75192,25 @@ weighted avg       0.59      0.64      0.57     42539
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_div2SSDE7EF64VZA4A"></div>
+        <div class="lime top_div" id="top_div2L8LR1NFC1UB0WD"></div>
         
         <script>
-        var top_div = d3.select('#top_div2SSDE7EF64VZA4A').classed('lime top_div', true);
+        var top_div = d3.select('#top_div2L8LR1NFC1UB0WD').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["High", "Low", "Medium"], [0.5273395776748657, 0.47265544533729553, 4.940476173942443e-06]);
+            var pp = new lime.PredictProba(pp_svg, ["High", "Low", "Medium"], [0.3348698914051056, 0.340851366519928, 0.32427874207496643]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["High", "Low", "Medium"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["cat__Radiation_Exposure_Yes <= 0.00", 0.1856039678659543], ["cat__Family_History_Yes <= 0.00", 0.13119353662293798], ["cat__Iodine_Deficiency_Yes > 0.00", -0.10465268367886027], ["cat__Country_India <= 0.00", 0.10352006395783743], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.08753483585074939], ["cat__Ethnicity_Caucasian <= 0.00", -0.050286395641200535], ["cat__Ethnicity_Middle Eastern <= 0.00", -0.038415200448750506], ["cat__Country_UK <= 0.00", 0.034170300627482074], ["cat__Ethnicity_Hispanic <= 0.00", -0.027725583470830054], ["cat__Country_South Korea <= 0.00", 0.02432032968775612]], 1, exp_div);
+                exp.show([["cat__Radiation_Exposure_Yes <= 0.00", 0.09950523559635661], ["cat__Family_History_Yes <= 0.00", 0.08324075821525972], ["cat__Country_India <= 0.00", 0.0698085809130096], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.05984341073317457], ["cat__Iodine_Deficiency_Yes > 0.00", -0.05166573538762543], ["cat__Ethnicity_Caucasian <= 0.00", -0.04376920822073092], ["cat__Ethnicity_Hispanic <= 0.00", -0.032057753783608554], ["cat__Ethnicity_Middle Eastern <= 0.00", -0.017291917778167815], ["cat__Country_China <= 0.00", -0.01024155875287679], ["cat__Country_Nigeria <= 0.00", -0.009079399213622344]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["cat__Radiation_Exposure_Yes", "0.00", 0.1856039678659543], ["cat__Family_History_Yes", "0.00", 0.13119353662293798], ["cat__Iodine_Deficiency_Yes", "1.00", -0.10465268367886027], ["cat__Country_India", "0.00", 0.10352006395783743], ["cat__Ethnicity_Asian", "1.00", -0.08753483585074939], ["cat__Ethnicity_Caucasian", "0.00", -0.050286395641200535], ["cat__Ethnicity_Middle Eastern", "0.00", -0.038415200448750506], ["cat__Country_UK", "0.00", 0.034170300627482074], ["cat__Ethnicity_Hispanic", "0.00", -0.027725583470830054], ["cat__Country_South Korea", "0.00", 0.02432032968775612]], 1, raw_div);
+            exp.show_raw_tabular([["cat__Radiation_Exposure_Yes", "0.00", 0.09950523559635661], ["cat__Family_History_Yes", "0.00", 0.08324075821525972], ["cat__Country_India", "0.00", 0.0698085809130096], ["cat__Ethnicity_Asian", "1.00", -0.05984341073317457], ["cat__Iodine_Deficiency_Yes", "1.00", -0.05166573538762543], ["cat__Ethnicity_Caucasian", "0.00", -0.04376920822073092], ["cat__Ethnicity_Hispanic", "0.00", -0.032057753783608554], ["cat__Ethnicity_Middle Eastern", "0.00", -0.017291917778167815], ["cat__Country_China", "0.00", -0.01024155875287679], ["cat__Country_Nigeria", "0.00", -0.009079399213622344]], 1, raw_div);
         
         </script>
         </body></html></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Generando LIME para modelo: ADASYN ---
@@ -112274,51 +112307,29 @@ weighted avg       0.59      0.64      0.57     42539
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_divAMECRWUXSD2SQ5M"></div>
+        <div class="lime top_div" id="top_divRWDKZWS6PSBGYG5"></div>
         
         <script>
-        var top_div = d3.select('#top_divAMECRWUXSD2SQ5M').classed('lime top_div', true);
+        var top_div = d3.select('#top_divRWDKZWS6PSBGYG5').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["High", "Low", "Medium"], [0.5344536900520325, 0.46554115414619446, 5.155197413841961e-06]);
+            var pp = new lime.PredictProba(pp_svg, ["High", "Low", "Medium"], [0.35347405076026917, 0.3281751573085785, 0.31835079193115234]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["High", "Low", "Medium"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["cat__Radiation_Exposure_Yes <= 0.00", 0.1615913903731796], ["cat__Family_History_Yes <= 0.00", 0.11727569014207734], ["cat__Country_India <= 0.00", 0.10426941287499815], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.08990638072063513], ["cat__Iodine_Deficiency_Yes > 0.00", -0.08375867053434613], ["cat__Ethnicity_Caucasian <= 0.00", -0.04372046267940792], ["cat__Ethnicity_Hispanic <= 0.00", -0.032271249790098246], ["cat__Diabetes_Yes <= 0.00", 0.021118351389616017], ["cat__Country_UK <= 0.00", 0.016702634298892936], ["cat__Country_USA <= 0.00", 0.016042134664794126]], 1, exp_div);
+                exp.show([["cat__Radiation_Exposure_Yes <= 0.00", 0.11243769498266654], ["cat__Family_History_Yes <= 0.00", 0.07484165782816034], ["cat__Country_India <= 0.00", 0.058437315206417734], ["cat__Iodine_Deficiency_Yes > 0.00", -0.045581493133269764], ["cat__Ethnicity_Caucasian <= 0.00", -0.04551158319383042], ["0.00 < cat__Ethnicity_Asian <= 1.00", -0.043660653239900635], ["cat__Ethnicity_Hispanic <= 0.00", -0.03130664359701793], ["cat__Ethnicity_Middle Eastern <= 0.00", -0.020737212238762348], ["cat__Country_Nigeria <= 0.00", -0.010928086111823576], ["cat__Country_China <= 0.00", -0.009794950959819653]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["cat__Radiation_Exposure_Yes", "0.00", 0.1615913903731796], ["cat__Family_History_Yes", "0.00", 0.11727569014207734], ["cat__Country_India", "0.00", 0.10426941287499815], ["cat__Ethnicity_Asian", "1.00", -0.08990638072063513], ["cat__Iodine_Deficiency_Yes", "1.00", -0.08375867053434613], ["cat__Ethnicity_Caucasian", "0.00", -0.04372046267940792], ["cat__Ethnicity_Hispanic", "0.00", -0.032271249790098246], ["cat__Diabetes_Yes", "0.00", 0.021118351389616017], ["cat__Country_UK", "0.00", 0.016702634298892936], ["cat__Country_USA", "0.00", 0.016042134664794126]], 1, raw_div);
+            exp.show_raw_tabular([["cat__Radiation_Exposure_Yes", "0.00", 0.11243769498266654], ["cat__Family_History_Yes", "0.00", 0.07484165782816034], ["cat__Country_India", "0.00", 0.058437315206417734], ["cat__Iodine_Deficiency_Yes", "1.00", -0.045581493133269764], ["cat__Ethnicity_Caucasian", "0.00", -0.04551158319383042], ["cat__Ethnicity_Asian", "1.00", -0.043660653239900635], ["cat__Ethnicity_Hispanic", "0.00", -0.03130664359701793], ["cat__Ethnicity_Middle Eastern", "0.00", -0.020737212238762348], ["cat__Country_Nigeria", "0.00", -0.010928086111823576], ["cat__Country_China", "0.00", -0.009794950959819653]], 1, raw_div);
         
         </script>
         </body></html></div></div>
 </div>
-</section>
-<section id="modelo-normal">
-<h2>modelo normal<a class="headerlink" href="#modelo-normal" title="Link to this heading">#</a></h2>
-<p>El gráfico muestra la explicación local del modelo XGBoost para una observación clasificada como <strong>“NOT Low”</strong> (riesgo no bajo).<br />
-El modelo asigna una probabilidad del <strong>61 % para riesgo alto</strong> y <strong>39 % para riesgo bajo</strong>.<br />
-Las variables que más influyeron hacia la clase <em>Low</em> fueron <code class="docutils literal notranslate"><span class="pre">Radiation_Exposure_Yes</span></code>, <code class="docutils literal notranslate"><span class="pre">Country_India</span></code> y <code class="docutils literal notranslate"><span class="pre">Family_History_Yes</span></code>.<br />
-Sin embargo, factores como <code class="docutils literal notranslate"><span class="pre">Ethnicity_Asian</span></code>, <code class="docutils literal notranslate"><span class="pre">Iodine_Deficiency_Yes</span></code> y <code class="docutils literal notranslate"><span class="pre">Ethnicity_Caucasian</span></code> impulsaron la predicción hacia un riesgo mayor, inclinando el resultado final hacia <strong>riesgo alto</strong>.<br />
-Esto evidencia que las características étnicas y nutricionales tienen una contribución relevante en la decisión del modelo.</p>
-</section>
-<section id="modelo-smote">
-<h2>modelo Smote<a class="headerlink" href="#modelo-smote" title="Link to this heading">#</a></h2>
-<p>En esta explicación local, el modelo XGBoost presenta una predicción <strong>equilibrada</strong> entre las clases <em>High</em> (53 %) y <em>Low</em> (47 %).<br />
-Las variables con mayor influencia hacia la clase <strong>Low</strong> fueron <code class="docutils literal notranslate"><span class="pre">Radiation_Exposure_Yes</span></code>, <code class="docutils literal notranslate"><span class="pre">Family_History_Yes</span></code> y <code class="docutils literal notranslate"><span class="pre">Country_India</span></code>, sugiriendo que estos factores reducen el riesgo estimado.<br />
-Por otro lado, características como <code class="docutils literal notranslate"><span class="pre">Ethnicity_Asian</span></code> y <code class="docutils literal notranslate"><span class="pre">Iodine_Deficiency_Yes</span></code> aportaron mayor peso hacia la clase <strong>High</strong>, indicando que el modelo las asocia con un mayor riesgo de cáncer de tiroides.<br />
-En conjunto, el modelo muestra una decisión borderline, donde pequeñas variaciones en los factores podrían cambiar la clasificación final.</p>
-</section>
-<section id="modelo-adasyn">
-<h2>modelo ADASYN<a class="headerlink" href="#modelo-adasyn" title="Link to this heading">#</a></h2>
-<p>En este caso, el modelo ADASYN muestra una predicción <strong>muy equilibrada</strong> entre las clases <em>High</em> (53 %) y <em>Low</em> (47 %), indicando incertidumbre en la clasificación.<br />
-Las variables que impulsaron la predicción hacia <strong>Low</strong> fueron <code class="docutils literal notranslate"><span class="pre">Radiation_Exposure_Yes</span></code>, <code class="docutils literal notranslate"><span class="pre">Family_History_Yes</span></code> y <code class="docutils literal notranslate"><span class="pre">Country_India</span></code>.<br />
-Por el contrario, las características <code class="docutils literal notranslate"><span class="pre">Ethnicity_Asian</span></code>, <code class="docutils literal notranslate"><span class="pre">Iodine_Deficiency_Yes</span></code> y <code class="docutils literal notranslate"><span class="pre">Country_Germany</span></code> favorecieron la clase <strong>High</strong>, siendo las principales responsables de mantener el riesgo alto.<br />
-Este resultado sugiere que el modelo ADASYN, al manejar mejor el desbalance de clases, logra una decisión más estable pero aún sensible a factores étnicos y de deficiencia de yodo.</p>
 </section>
 </section>
 
@@ -112398,9 +112409,6 @@ Este resultado sugiere que el modelo ADASYN, al manejar mejor el desbalance de c
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-computacional">Optimizacion computacional</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa">Tabla comparativa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lime">Lime</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-normal">modelo normal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-smote">modelo Smote</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-adasyn">modelo ADASYN</a></li>
 </ul>
   </nav></div>
 

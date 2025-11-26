@@ -193,7 +193,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Gridsearch.html">Gridsearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Conclusiones</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo Original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelooriginal.html">Modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones.html">Conclusiones</a></li>
+
 </ul>
 
     </div>
@@ -488,7 +490,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 15), (42539, 15), (170152, 1), (42539, 1))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((170152, 14), (42539, 14), (170152, 1), (42539, 1))
 </pre></div>
 </div>
 </div>
@@ -544,25 +546,25 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d19ac04f8fb88467774e6bdac4d2bd78cd1c8df33b12bca3cabed02933217340.png" src="_images/d19ac04f8fb88467774e6bdac4d2bd78cd1c8df33b12bca3cabed02933217340.png" />
+<img alt="_images/d45255a29cacaa799d91242edc6228cea821eab97739f2acc914ab96a45802e2.png" src="_images/d45255a29cacaa799d91242edc6228cea821eab97739f2acc914ab96a45802e2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.58      0.86      0.69     21678
+         Low       0.57      0.86      0.68     21678
       Medium       0.00      0.00      0.00     14480
-        High       0.52      0.82      0.64      6381
+        High       0.47      0.72      0.57      6381
 
-    accuracy                           0.56     42539
-   macro avg       0.37      0.56      0.44     42539
-weighted avg       0.37      0.56      0.45     42539
+    accuracy                           0.54     42539
+   macro avg       0.35      0.52      0.42     42539
+weighted avg       0.36      0.54      0.43     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5638825548320365,
- &#39;Precision (macro)&#39;: 0.36513196900185174,
- &#39;Recall (macro)&#39;: 0.5628048611482513,
- &#39;F1-score (macro)&#39;: 0.4427949538338601,
- &#39;ROC-AUC&#39;: np.float64(0.7126820905293645)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5445356026234749,
+ &#39;Precision (macro)&#39;: 0.3459250609681718,
+ &#39;Recall (macro)&#39;: 0.5249364409711176,
+ &#39;F1-score (macro)&#39;: 0.4170318340650731,
+ &#39;ROC-AUC&#39;: 0.6884335342474501}
 </pre></div>
 </div>
 </div>
@@ -574,18 +576,16 @@ weighted avg       0.37      0.56      0.45     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cef15bb37f89032cf4fbee344d13a9e79a4a993a07ca4ff97cb7c41460791ac8.png" src="_images/cef15bb37f89032cf4fbee344d13a9e79a4a993a07ca4ff97cb7c41460791ac8.png" />
+<img alt="_images/73f2f05da6c580ddfe3b0cf18456d1d680bddfd663c7923f1e394d3fce7aa365.png" src="_images/73f2f05da6c580ddfe3b0cf18456d1d680bddfd663c7923f1e394d3fce7aa365.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9227
-Low: 0.6231
-Medium: 0.5922
-AUC macro promedio: 0.7127
+High: 0.8769
+Low: 0.6058
+Medium: 0.5826
+AUC macro promedio: 0.6885
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9227115311069367),
-  1: np.float64(0.6230963232667592),
-  2: np.float64(0.5922384172143976)},
- np.float64(0.7127024696259489))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.8768717098325336, 1: 0.6057810527923373, 2: 0.5826478401174794},
+ 0.6884543801467806)
 </pre></div>
 </div>
 </div>
@@ -615,7 +615,7 @@ En cambio, las clases “Low” (0.6231) y “Medium” (0.5922) muestran rendim
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.10 minutos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.07 minutos
 </pre></div>
 </div>
 </div>
@@ -627,25 +627,25 @@ En cambio, las clases “Low” (0.6231) y “Medium” (0.5922) muestran rendim
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/28c98c92c66c56c7f2a90e9e52d2901e472618f655024cb6868bc928f28e812f.png" src="_images/28c98c92c66c56c7f2a90e9e52d2901e472618f655024cb6868bc928f28e812f.png" />
+<img alt="_images/6230dac4819911b15f9228e8d4996afdfaee8ae65ea88a6092dbaa9021a86403.png" src="_images/6230dac4819911b15f9228e8d4996afdfaee8ae65ea88a6092dbaa9021a86403.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.57      0.35      0.43     21678
-      Medium       0.40      0.48      0.44     14480
-        High       0.44      0.82      0.57      6381
+         Low       0.56      0.34      0.43     21678
+      Medium       0.40      0.43      0.41     14480
+        High       0.37      0.80      0.51      6381
 
-    accuracy                           0.46     42539
-   macro avg       0.47      0.55      0.48     42539
-weighted avg       0.49      0.46      0.45     42539
+    accuracy                           0.44     42539
+   macro avg       0.44      0.52      0.45     42539
+weighted avg       0.48      0.44      0.43     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.4631749688521122,
- &#39;Precision (macro)&#39;: 0.4691734104801422,
- &#39;Recall (macro)&#39;: 0.5482197918296581,
- &#39;F1-score (macro)&#39;: 0.48029470503635524,
- &#39;ROC-AUC&#39;: np.float64(0.7024662552851986)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.4402548249841322,
+ &#39;Precision (macro)&#39;: 0.4439880013791824,
+ &#39;Recall (macro)&#39;: 0.524440267178062,
+ &#39;F1-score (macro)&#39;: 0.44854428170371413,
+ &#39;ROC-AUC&#39;: 0.6776040876868255}
 </pre></div>
 </div>
 </div>
@@ -657,18 +657,16 @@ weighted avg       0.49      0.46      0.45     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c6e4f1ebb2260bc80661924a2c591141319c6043c7411c8d3dfd7cf028d97f53.png" src="_images/c6e4f1ebb2260bc80661924a2c591141319c6043c7411c8d3dfd7cf028d97f53.png" />
+<img alt="_images/90c242d465ec95f84ffe1362e97c76e9dcdbd537dcdcfa170bcc2f8df3da0036.png" src="_images/90c242d465ec95f84ffe1362e97c76e9dcdbd537dcdcfa170bcc2f8df3da0036.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9052
-Low: 0.6068
-Medium: 0.5954
-AUC macro promedio: 0.7025
+High: 0.8566
+Low: 0.5914
+Medium: 0.5848
+AUC macro promedio: 0.6776
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9052029731185804),
-  1: np.float64(0.6068367535065384),
-  2: np.float64(0.5953590392304771)},
- np.float64(0.7024852546125281))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.8566247221281924, 1: 0.5913819472926778, 2: 0.5848055936396059},
+ 0.6776232354074644)
 </pre></div>
 </div>
 </div>
@@ -711,25 +709,25 @@ Esto podría deberse a variaciones en el balance de clases, la selección de hip
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d19ac04f8fb88467774e6bdac4d2bd78cd1c8df33b12bca3cabed02933217340.png" src="_images/d19ac04f8fb88467774e6bdac4d2bd78cd1c8df33b12bca3cabed02933217340.png" />
+<img alt="_images/d45255a29cacaa799d91242edc6228cea821eab97739f2acc914ab96a45802e2.png" src="_images/d45255a29cacaa799d91242edc6228cea821eab97739f2acc914ab96a45802e2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.58      0.86      0.69     21678
+         Low       0.57      0.86      0.68     21678
       Medium       0.00      0.00      0.00     14480
-        High       0.52      0.82      0.64      6381
+        High       0.47      0.72      0.57      6381
 
-    accuracy                           0.56     42539
-   macro avg       0.37      0.56      0.44     42539
-weighted avg       0.37      0.56      0.45     42539
+    accuracy                           0.54     42539
+   macro avg       0.35      0.52      0.42     42539
+weighted avg       0.36      0.54      0.43     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5638825548320365,
- &#39;Precision (macro)&#39;: 0.36513196900185174,
- &#39;Recall (macro)&#39;: 0.5628048611482513,
- &#39;F1-score (macro)&#39;: 0.4427949538338601,
- &#39;ROC-AUC&#39;: np.float64(0.7126820905293645)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5445356026234749,
+ &#39;Precision (macro)&#39;: 0.3459250609681718,
+ &#39;Recall (macro)&#39;: 0.5249364409711176,
+ &#39;F1-score (macro)&#39;: 0.4170318340650731,
+ &#39;ROC-AUC&#39;: 0.6884335342474501}
 </pre></div>
 </div>
 </div>
@@ -741,18 +739,16 @@ weighted avg       0.37      0.56      0.45     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cef15bb37f89032cf4fbee344d13a9e79a4a993a07ca4ff97cb7c41460791ac8.png" src="_images/cef15bb37f89032cf4fbee344d13a9e79a4a993a07ca4ff97cb7c41460791ac8.png" />
+<img alt="_images/73f2f05da6c580ddfe3b0cf18456d1d680bddfd663c7923f1e394d3fce7aa365.png" src="_images/73f2f05da6c580ddfe3b0cf18456d1d680bddfd663c7923f1e394d3fce7aa365.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9227
-Low: 0.6231
-Medium: 0.5922
-AUC macro promedio: 0.7127
+High: 0.8769
+Low: 0.6058
+Medium: 0.5826
+AUC macro promedio: 0.6885
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9227115311069367),
-  1: np.float64(0.6230963232667592),
-  2: np.float64(0.5922384172143976)},
- np.float64(0.7127024696259489))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.8768717098325336, 1: 0.6057810527923373, 2: 0.5826478401174794},
+ 0.6884543801467806)
 </pre></div>
 </div>
 </div>
@@ -786,7 +782,7 @@ El mayor avance se observa en la clase “High”, donde el modelo alcanza una e
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {
+<div class="output text_html"><style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -817,15 +813,15 @@ El mayor avance se observa en la clase “High”, donde el modelo alcanza una e
   }
 }
 
-#sk-container-id-1 {
+#sk-container-id-2 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-1 pre {
+#sk-container-id-2 pre {
   padding: 0;
 }
 
-#sk-container-id-1 input.sk-hidden--visually {
+#sk-container-id-2 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -837,7 +833,7 @@ El mayor avance se observa en la clase “High”, donde el modelo alcanza una e
   width: 1px;
 }
 
-#sk-container-id-1 div.sk-dashed-wrapped {
+#sk-container-id-2 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -845,7 +841,7 @@ El mayor avance se observa en la clase “High”, donde el modelo alcanza una e
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-1 div.sk-container {
+#sk-container-id-2 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -855,7 +851,7 @@ El mayor avance se observa en la clase “High”, donde el modelo alcanza una e
   position: relative;
 }
 
-#sk-container-id-1 div.sk-text-repr-fallback {
+#sk-container-id-2 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -871,14 +867,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-1 div.sk-parallel-item::after {
+#sk-container-id-2 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-1 div.sk-parallel {
+#sk-container-id-2 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -886,28 +882,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-1 div.sk-parallel-item {
+#sk-container-id-2 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-1 div.sk-serial {
+#sk-container-id-2 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -925,14 +921,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-1 div.sk-toggleable {
+#sk-container-id-2 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
+#sk-container-id-2 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -945,13 +941,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-1 label.sk-toggleable__label .caption {
+#sk-container-id-2 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -959,13 +955,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-1 div.sk-toggleable__content {
+#sk-container-id-2 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -974,12 +970,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted {
+#sk-container-id-2 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content pre {
+#sk-container-id-2 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -987,79 +983,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-1 div.sk-label-container {
+#sk-container-id-2 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
+#sk-container-id-2 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1069,18 +1065,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted {
+#sk-container-id-2 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
+#sk-container-id-2 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted:hover {
+#sk-container-id-2 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1168,7 +1164,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-1 a.estimator_doc_link {
+#sk-container-id-2 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1183,25 +1179,25 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted {
+#sk-container-id-2 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
+#sk-container-id-2 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                  Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler())]),
                                  [&#x27;Age&#x27;, &#x27;TSH_Level&#x27;, &#x27;T3_Level&#x27;, &#x27;T4_Level&#x27;,
                                   &#x27;Nodule_Size&#x27;]),
@@ -1213,7 +1209,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                  [&#x27;Gender&#x27;, &#x27;Country&#x27;, &#x27;Ethnicity&#x27;,
                                   &#x27;Family_History&#x27;, &#x27;Radiation_Exposure&#x27;,
                                   &#x27;Iodine_Deficiency&#x27;, &#x27;Smoking&#x27;, &#x27;Obesity&#x27;,
-                                  &#x27;Diabetes&#x27;, &#x27;Diagnosis&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                  &#x27;Diabetes&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                  Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler())]),
                                  [&#x27;Age&#x27;, &#x27;TSH_Level&#x27;, &#x27;T3_Level&#x27;, &#x27;T4_Level&#x27;,
                                   &#x27;Nodule_Size&#x27;]),
@@ -1225,7 +1221,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                  [&#x27;Gender&#x27;, &#x27;Country&#x27;, &#x27;Ethnicity&#x27;,
                                   &#x27;Family_History&#x27;, &#x27;Radiation_Exposure&#x27;,
                                   &#x27;Iodine_Deficiency&#x27;, &#x27;Smoking&#x27;, &#x27;Obesity&#x27;,
-                                  &#x27;Diabetes&#x27;, &#x27;Diagnosis&#x27;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>[&#x27;Age&#x27;, &#x27;TSH_Level&#x27;, &#x27;T3_Level&#x27;, &#x27;T4_Level&#x27;, &#x27;Nodule_Size&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>[&#x27;Gender&#x27;, &#x27;Country&#x27;, &#x27;Ethnicity&#x27;, &#x27;Family_History&#x27;, &#x27;Radiation_Exposure&#x27;, &#x27;Iodine_Deficiency&#x27;, &#x27;Smoking&#x27;, &#x27;Obesity&#x27;, &#x27;Diabetes&#x27;, &#x27;Diagnosis&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop=&#x27;first&#x27;, handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
+                                  &#x27;Diabetes&#x27;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>[&#x27;Age&#x27;, &#x27;TSH_Level&#x27;, &#x27;T3_Level&#x27;, &#x27;T4_Level&#x27;, &#x27;Nodule_Size&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>[&#x27;Gender&#x27;, &#x27;Country&#x27;, &#x27;Ethnicity&#x27;, &#x27;Family_History&#x27;, &#x27;Radiation_Exposure&#x27;, &#x27;Iodine_Deficiency&#x27;, &#x27;Smoking&#x27;, &#x27;Obesity&#x27;, &#x27;Diabetes&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop=&#x27;first&#x27;, handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1268,25 +1264,25 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d19ac04f8fb88467774e6bdac4d2bd78cd1c8df33b12bca3cabed02933217340.png" src="_images/d19ac04f8fb88467774e6bdac4d2bd78cd1c8df33b12bca3cabed02933217340.png" />
+<img alt="_images/d45255a29cacaa799d91242edc6228cea821eab97739f2acc914ab96a45802e2.png" src="_images/d45255a29cacaa799d91242edc6228cea821eab97739f2acc914ab96a45802e2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
 
               precision    recall  f1-score   support
 
-         Low       0.58      0.86      0.69     21678
+         Low       0.57      0.86      0.68     21678
       Medium       0.00      0.00      0.00     14480
-        High       0.52      0.82      0.64      6381
+        High       0.47      0.72      0.57      6381
 
-    accuracy                           0.56     42539
-   macro avg       0.37      0.56      0.44     42539
-weighted avg       0.37      0.56      0.45     42539
+    accuracy                           0.54     42539
+   macro avg       0.35      0.52      0.42     42539
+weighted avg       0.36      0.54      0.43     42539
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5638825548320365,
- &#39;Precision (macro)&#39;: 0.36513196900185174,
- &#39;Recall (macro)&#39;: 0.5628048611482513,
- &#39;F1-score (macro)&#39;: 0.4427949538338601,
- &#39;ROC-AUC&#39;: np.float64(0.7126820905293645)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Accuracy&#39;: 0.5445356026234749,
+ &#39;Precision (macro)&#39;: 0.3459250609681718,
+ &#39;Recall (macro)&#39;: 0.5249364409711176,
+ &#39;F1-score (macro)&#39;: 0.4170318340650731,
+ &#39;ROC-AUC&#39;: 0.6884335342474501}
 </pre></div>
 </div>
 </div>
@@ -1298,18 +1294,16 @@ weighted avg       0.37      0.56      0.45     42539
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cef15bb37f89032cf4fbee344d13a9e79a4a993a07ca4ff97cb7c41460791ac8.png" src="_images/cef15bb37f89032cf4fbee344d13a9e79a4a993a07ca4ff97cb7c41460791ac8.png" />
+<img alt="_images/73f2f05da6c580ddfe3b0cf18456d1d680bddfd663c7923f1e394d3fce7aa365.png" src="_images/73f2f05da6c580ddfe3b0cf18456d1d680bddfd663c7923f1e394d3fce7aa365.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===== AUC por clase =====
-High: 0.9227
-Low: 0.6231
-Medium: 0.5922
-AUC macro promedio: 0.7127
+High: 0.8769
+Low: 0.6058
+Medium: 0.5826
+AUC macro promedio: 0.6885
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: np.float64(0.9227115311069367),
-  1: np.float64(0.6230963232667592),
-  2: np.float64(0.5922384172143976)},
- np.float64(0.7127024696259489))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({0: 0.8768717098325336, 1: 0.6057810527923373, 2: 0.5826478401174794},
+ 0.6884543801467806)
 </pre></div>
 </div>
 </div>
